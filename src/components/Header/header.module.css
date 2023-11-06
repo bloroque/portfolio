@@ -1,0 +1,50 @@
+@font-face {
+    font-family: 'Anton';
+    src: url('../../assets/fonts/Anton/Anton-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('../../assets/fonts/Ubuntu/Ubuntu-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+.divLogo{
+    display: flex;
+    padding: 1rem 2rem;
+    background-color: #fff;
+    border-bottom-left-radius: .5rem;
+    border-top-left-radius: .5rem;
+}
+
+.myLogo{
+    display: flex;
+    background-color: #fff;
+}
+
+.logoImg{
+    width: 48px;
+    height: 48px;
+    background-color: #2445A6;
+    color : #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Anton ;
+    font-size: 2.2rem;
+    border-radius: .2rem;
+}
+
+.logoText{
+    font-family: Ubuntu;
+    padding-left: .6rem;
+    line-height: 1;
+    letter-spacing: 1px;
+    font-weight: 700;
+    justify-content: center;
+    color: #2445A6;
+}

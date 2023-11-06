@@ -1,14 +1,12 @@
 import React from 'react'
 import layoutCSS from './layout.module.css';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 
 
 const Layout = () => {
     return (
-        <div className={layoutCSS.app_main}>
-            <React.Fragment> 
-                <Header/>
-            </React.Fragment>
+        <div className="bg-body py-4">
+            <Header/>
         </div>
     );
 }
