@@ -8,9 +8,6 @@ module.exports = {
       backgroundColor: {
         'body': '#2445A6',
       },
-      fontFamily: {
-        //'sans':['Helvetica', 'Arial', 'sans-serif','Georgia',''],
-      }
     },
   },
   plugins: [],

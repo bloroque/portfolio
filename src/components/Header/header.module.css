@@ -15,20 +15,22 @@
 
 .divLogo{
     display: flex;
-    padding: 1rem 2rem;
+    padding: .8rem 2rem;
     background-color: #fff;
-    border-bottom-left-radius: .5rem;
-    border-top-left-radius: .5rem;
+    border-bottom-left-radius: .3rem;
+    border-top-left-radius: .3rem;
+    position: relative;
 }
 
 .myLogo{
     display: flex;
     background-color: #fff;
+    position: relative;
 }
 
 .logoImg{
-    width: 48px;
-    height: 48px;
+    width: 46px;
+    height: 46px;
     background-color: #2445A6;
     color : #fff;
     display: flex;
@@ -37,6 +39,7 @@
     font-family: Anton ;
     font-size: 2.2rem;
     border-radius: .2rem;
+    position: relative;
 }
 
 .logoText{
@@ -47,4 +50,23 @@
     font-weight: 700;
     justify-content: center;
     color: #2445A6;
+    font-size: .85rem;
+    position: relative;
+}
+
+.ligneLogo{
+    height: calc(100% + 1.6rem);
+    margin-top: -.8rem;
+    width: 3px;
+    background-color: #2445A6;
+    position: absolute;
+    margin-left: 12px;
+}
+
+header > div > div:last-child{
+    /* background-color: #fff; */
+    border: 3px solid rgba(9,44,144,.58);
+    border-left: 0px !important;
+    border-bottom-right-radius: .3rem;
+    border-top-right-radius: .3rem;
 }

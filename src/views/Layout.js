@@ -5,7 +5,7 @@ import Header from '../components/Header/Header';
 
 const Layout = () => {
     return (
-        <div className="bg-body py-4">
+        <div className="bg-body py-5">
             <Header/>
         </div>
     );
