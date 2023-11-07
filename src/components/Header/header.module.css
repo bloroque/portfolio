@@ -15,7 +15,7 @@
 
 .divLogo{
     display: flex;
-    padding: .8rem 2rem;
+    /* padding: .8rem 2rem; */
     background-color: #fff;
     border-bottom-left-radius: .3rem;
     border-top-left-radius: .3rem;
@@ -50,7 +50,7 @@
     font-weight: 700;
     justify-content: center;
     color: #2445A6;
-    font-size: .8rem;
+    /* font-size: .8rem; */
     position: relative;
 }
 

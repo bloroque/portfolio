@@ -8,6 +8,13 @@ module.exports = {
       backgroundColor: {
         'body': '#2445A6',
       },
+      padding: {
+        '.8rem': '.8rem',
+      },
+      fontSize : {
+          '.8rem' : '.8rem',
+          '.7rem' : '.7rem',
+      },
     },
   },
   plugins: [],
