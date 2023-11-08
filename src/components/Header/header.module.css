@@ -12,8 +12,11 @@
     font-style: normal;
 }
 
+.menuHeader{
+    position: relative;
+}
 
-.divLogo{
+.menuHeader > .divLogo{
     display: flex;
     /* padding: .8rem 2rem; */
     background-color: #fff;
@@ -22,13 +25,13 @@
     position: relative;
 }
 
-.myLogo{
+.menuHeader .myLogo{
     display: flex;
     background-color: #fff;
     position: relative;
 }
 
-.logoImg{
+.menuHeader .logoImg{
     width: 36px;
     height: 36px;
     background-color: #2445A6;
@@ -42,7 +45,7 @@
     position: relative;
 }
 
-.logoText{
+.menuHeader .logoText{
     font-family: Ubuntu;
     padding-left: .6rem;
     line-height: 1;
@@ -54,7 +57,7 @@
     position: relative;
 }
 
-.ligneLogo{
+.menuHeader .ligneLogo{
     height: calc(100% + 1.6rem);
     margin-top: -.8rem;
     width: 3px;
@@ -63,7 +66,7 @@
     margin-left: 12px;
 }
 
-header > div > div:last-child{
+header >.menuHeader > div:last-child{
     border: 3px solid rgba(9,44,144,.58);
     border-left: 0px !important;
     border-bottom-right-radius: .3rem;

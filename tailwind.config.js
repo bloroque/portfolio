@@ -7,6 +7,8 @@ module.exports = {
     extend: {
       backgroundColor: {
         'body': '#2445A6',
+        'theme-base' : 'rgba(36,69,166,1)',
+        'theme-second' : 'rgba(9,44,144,.58)',
       },
       padding: {
         '.8rem': '.8rem',

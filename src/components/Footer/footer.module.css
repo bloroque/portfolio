@@ -1,0 +1,83 @@
+@font-face {
+    font-family: 'Anton';
+    src: url('../../assets/fonts/Anton/Anton-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('../../assets/fonts/Ubuntu/Ubuntu-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.footerSection{
+    position: relative;
+}
+
+.footerSection > .divLogo{
+    display: flex;
+    /* padding: .8rem 2rem; */
+    /* background-color: #fff; */
+    border-bottom-left-radius: .3rem;
+    border-top-left-radius: .3rem;
+    position: relative;
+}
+
+.footerSection .myLogo{
+    display: flex;
+    /* background-color: #fff; */
+    position: relative;
+}
+
+.footerSection .logoImg{
+    width: 36px;
+    height: 36px;
+    background-color: #fff;
+    color : #2445A6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Anton ;
+    font-size: 1.5rem;
+    border-radius: .2rem;
+    position: relative;
+}
+
+.footerSection .logoText{
+    font-family: Ubuntu;
+    padding-left: .6rem;
+    line-height: 1;
+    letter-spacing: 2.5px;
+    font-weight: 700;
+    justify-content: center;
+    color: #fff;
+    /* font-size: .8rem; */
+    position: relative;
+}
+
+.footerSection .ligneLogo{
+    height: calc(100% + 1.6rem);
+    margin-top: -.8rem;
+    width: 3px;
+    background-color: #2445A6;
+    position: absolute;
+    margin-left: 12px;
+}
+
+header >.footerSection > div:last-child{
+    border: 3px solid rgba(9,44,144,.58);
+    border-left: 0px !important;
+    border-bottom-right-radius: .3rem;
+    border-top-right-radius: .3rem;
+}
+
+
+.bg-theme-linear {
+    background: linear-gradient(rgba(36,69,166,1) 50%, rgba(9,44,144,.58) 50%);
+}
+
+footer {
+    background-color: rgba(9,44,144,.58);
+}
