@@ -25,16 +25,16 @@ const Header = () => {
               <nav className="hidden sm:flex text-sm leading-6 font-semibold uppercase text-slate-700 dark:text-slate-200 px-2">
                 <ul className="flex sm:space-x-4 md:space-x-8">
                   <li>
-                    <a class="text-[#fff] hover:text-sky-500" href="/docs/installation">About</a>
+                    <a class="text-[#fff] hover:text-sky-500" href="#section1">About</a>
                   </li>
                   <li>
-                    <a class="text-[#fff] hover:text-sky-500" href="/docs/installation">Skills</a>
+                    <a class="text-[#fff] hover:text-sky-500" href="#section2">Skills</a>
                   </li>
                   <li>
-                    <a class="text-[#fff]  hover:text-sky-500" href="/docs/installation">Projects</a>
+                    <a class="text-[#fff]  hover:text-sky-500" href="#section3">Projects</a>
                   </li>
                   <li>
-                    <a class="text-[#fff]  hover:text-sky-500" href="/docs/installation">Contact</a>
+                    <a class="text-[#fff]  hover:text-sky-500" href="#section4">Contact</a>
                   </li>
                 </ul>
               </nav>

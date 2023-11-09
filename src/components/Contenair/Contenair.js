@@ -3,8 +3,11 @@ import contenairCSS from './contenair.module.css';
 
 const Contenair = () => {
     return (
-        <main className="w-full mainSection">
-
+        <main className={contenairCSS.mainPage+' w-full'}>
+            <section id="section1" className="bg-slate-400"></section>
+            <section id="section2" className="bg-slate-100"></section>
+            <section id="section3" className="bg-red-600"></section>
+            <section id="section4" className="bg-green-600"></section>
         </main>
     );
 };
