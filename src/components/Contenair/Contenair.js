@@ -17,6 +17,7 @@ const Contenair = () => {
                 start: "top top",
                 scroller : `.${contenairCSS.mainPage}`,
                 // end : "+100vh",
+                
                 pin : true,
                 pinSpacing:false
             });

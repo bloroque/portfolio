@@ -5,7 +5,9 @@ import { FaGithub , FaLinkedin } from "react-icons/fa";
 
 const Header = () => {
   //const [isMenuOpen, setMenuOpen] = useState(false);
-  useEffect(() => {}, []);
+  useEffect(() => {
+    //Code use effect
+  }, []);
 
   return (
     <header className="top-0 w-full pt-8 pb-2 px-2">
