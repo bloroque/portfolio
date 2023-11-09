@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect } from "react";
 import headerCSS from './header.module.css';
 import { FaGithub , FaLinkedin } from "react-icons/fa";
 
 
 const Header = () => {
   //const [isMenuOpen, setMenuOpen] = useState(false);
+  useEffect(() => {}, []);
+
   return (
-    <header className="top-0 w-full py-8 px-2">
+    <header className="top-0 w-full pt-8 pb-2 px-2">
       <div className={headerCSS.menuHeader+' mx-auto flex max-w-screen-lg md:px-4 sm:px-3'}>
           <div className={headerCSS.divLogo+' px-2 py-2 md:px-6 lg:px-8 lg:py-[.8rem]'}>
             <div className={headerCSS.myLogo}>
