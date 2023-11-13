@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import contenairCSS from "./contenair.module.css";
+import HomeSection from "./HomeSection/HomeSection";
+import AboutSection from "./AboutSection/AboutSection";
 
 gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.defaults({
@@ -17,8 +19,7 @@ const Contenair = () => {
                 start: "top top",
                 scroller : `.${contenairCSS.mainPage}`,
                 // end : "+100vh",
-                
-                pin : true,
+                pin : false,
                 pinSpacing:false
             });
         });
@@ -26,16 +27,16 @@ const Contenair = () => {
 
     return (
         <main className={contenairCSS.mainPage + " w-full"}>
-            <section id="section1" className={`${contenairCSS.section} bg-slate-400 flex align-center justify-center`}>
-                <h1>Section 1</h1>
-            </section>
-            <section id="section2" className={`${contenairCSS.section} bg-slate-100 flex align-center justify-center`}>
+            <HomeSection id="homeSection" className={`${contenairCSS.section} flex align-center justify-center`}/>
+            <AboutSection id="aboutSection" className={`${contenairCSS.section} flex align-center justify-center`} />
+          
+            <section id="section2" className={`${contenairCSS.section} flex align-center justify-center`}>
                 <h1>Section 2</h1>
             </section>
-            <section id="section3" className={`${contenairCSS.section} bg-red-600 flex align-center justify-center`}>
+            <section id="section3" className={`${contenairCSS.section} flex align-center justify-center`}>
                 <h1>Section 3</h1>
             </section>
-            <section id="section4" className={`${contenairCSS.section} bg-green-600 flex align-center justify-center`}>
+            <section id="section4" className={`${contenairCSS.section} flex align-center justify-center`}>
                 <h1>Section 3</h1>
             </section>
         </main>

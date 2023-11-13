@@ -29,7 +29,7 @@ const Header = () => {
               <nav className="hidden sm:flex text-sm leading-6 font-semibold uppercase text-slate-700 dark:text-slate-200 px-2">
                 <ul className="flex sm:space-x-4 md:space-x-8">
                   <li>
-                    <a class="text-[#fff] hover:text-sky-500" href="#section1">About</a>
+                    <a class="text-[#fff] hover:text-sky-500" href="#aboutSection">About</a>
                   </li>
                   <li>
                     <a class="text-[#fff] hover:text-sky-500" href="#section2">Skills</a>

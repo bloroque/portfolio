@@ -1,6 +1,25 @@
+@font-face {
+    font-family: 'Anton';
+    src: url('./assets/fonts/Anton/Anton-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('./assets/fonts/Ubuntu/Ubuntu-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html{
     scroll-behavior: smooth;
     scroll-padding: 0px;
 }
 
-
+.img-zone{
+    /* background-color: #e5e5f7; */
+    opacity: 1;
+    background: repeating-linear-gradient( -45deg, #3767D2, #3767D2 3px, rgba(255,255,255,0) 1px, rgba(255,255,255,0) 8px );
+    border: 2px solid #3767D2;
+}
