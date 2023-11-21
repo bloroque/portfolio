@@ -5,8 +5,8 @@ const SkillsSection = (props) => {
     const classeCSS = props.className;
     const idSection = props.id;
     return (
-        <section id={idSection} className={`${classeCSS} ${SkillsCSS.Skills}`}>
-            <div className="mx-auto max-w-screen-lg md:px-4 sm:px-3 md:pb-5 pt-4 md:pt-5 w-full h-full py-10">
+        <section id={idSection} className={`${classeCSS} ${SkillsCSS.Skills} items-center justify-center`}>
+            <div className="mx-auto max-w-screen-lg md:px-4 sm:px-3 md:pb-5 pt-4 md:pt-5 w-full h-full justify-center py-10">
 
                 <div className="flex flex-col h-full  md:pb-8">
                     

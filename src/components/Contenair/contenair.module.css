@@ -1,17 +1,20 @@
 .mainPage{}
 
 .mainPage > .section{
-    height: 100vh;
+    /* height: 100vh; */
+    min-height: 100vh;
     display: flex;
     /* align-items: center; */
     /* justify-content: center; */
 }
 .mainPage > .section:first-child{
-    height: calc(100vh - 101.59px);
+    /* height: calc(100vh - 101.59px); */
+    min-height: calc(100vh - 85.59px);
 }
 
 .mainPage > .section:last-child{
-    height: calc(100vh - 85.59px);
+    /* height: calc(100vh - 85.59px); */
+    min-height: calc(100vh - 85.59px);
 }
 
 
