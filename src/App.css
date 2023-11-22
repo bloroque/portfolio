@@ -12,9 +12,17 @@
     font-style: normal;
 }
 
+:root {
+    --font-family-Anton: Anton;
+}
+
 html{
     scroll-behavior: smooth;
     scroll-padding: 0px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-Anton);
 }
 
 .img-zone{
@@ -22,4 +30,11 @@ html{
     opacity: 1;
     background: repeating-linear-gradient( -45deg, #3767D2, #3767D2 3px, rgba(255,255,255,0) 1px, rgba(255,255,255,0) 8px );
     border: 2px solid #3767D2;
+}
+
+.swiper-slide {
+    /* margin-right: 0px!important; */
+    /* width: calc(100% + 50px); */
+    /* Center slide text vertically */
+    display: flex !important;
 }
