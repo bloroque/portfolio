@@ -38,7 +38,7 @@ const Header = () => {
                     <a class="text-[#fff]  hover:text-sky-500" href="#projectsSection">Projects</a>
                   </li>
                   <li>
-                    <a class="text-[#fff]  hover:text-sky-500" href="#section4">Contact</a>
+                    <a class="text-[#fff]  hover:text-sky-500" href="#contactsSection">Contact</a>
                   </li>
                 </ul>
               </nav>
