@@ -17,7 +17,7 @@ const AboutSection = (props) => {
 
                     <div className="lg:mt-0 sm:col-span-3 lg:col-span-4 flex flex-col justify-center px-4 md:ps-7">
                         <div className={AboutCSS.homeSectionTitle}>
-                            <h2 className="title-section text-slate-300 font-bold text-4xl flex flex-col">
+                            <h2 className="title-section text-white font-bold text-4xl flex flex-col tracking-wide">
                                 <span> ― About me</span>
                                 <span></span>
                             </h2>

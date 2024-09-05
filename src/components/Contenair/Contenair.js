@@ -5,6 +5,8 @@ import contenairCSS from "./contenair.module.css";
 import HomeSection from "./HomeSection/HomeSection";
 import AboutSection from "./AboutSection/AboutSection";
 import SkillsSection from "./SkillsSection/SkillsSection";
+import ProjectSection from "./ProjectSection/ProjectSection";
+import ContactSection from "./ContactSection/ContactSection";
 
 gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.defaults({
@@ -31,13 +33,8 @@ const Contenair = () => {
             <HomeSection id="homeSection" className={`${contenairCSS.section} flex align-center justify-center`}/>
             <AboutSection id="aboutSection" className={`${contenairCSS.section} flex align-center justify-center`} />
             <SkillsSection id="skillsSection" className={`${contenairCSS.section} flex align-center justify-center`} />
-            
-            <section id="section3" className={`${contenairCSS.section} flex align-center justify-center`}>
-                <h1>Section 3</h1>
-            </section>
-            <section id="section4" className={`${contenairCSS.section} flex align-center justify-center`}>
-                <h1>Section 3</h1>
-            </section>
+            <ProjectSection id="projectsSection" className={`${contenairCSS.section} flex align-center justify-center`} />
+            <ContactSection id="contactsSection" className={`${contenairCSS.section} flex align-center justify-center`} />
         </main>
     );
 };
