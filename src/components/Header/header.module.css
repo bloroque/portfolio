@@ -2,10 +2,44 @@
     position: relative;
 }
 
+/* Sticky header — CSS only */
+.stickyHeader {
+    transition: padding 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* When the header becomes stuck, reduce padding and add background */
+@supports (animation-timeline: scroll()) {
+    .stickyHeader {
+        animation: stickyBg linear both;
+        animation-timeline: scroll();
+        animation-range: 0px 80px;
+    }
+
+    @keyframes stickyBg {
+        from {
+            padding-top: 2rem;
+            padding-bottom: .75rem;
+            background-color: transparent;
+            box-shadow: none;
+        }
+
+        to {
+            padding-top: 1rem;
+            padding-bottom: .75rem;
+            background-color: var(--bg-body);
+        }
+    }
+}
+
+/* Fallback for browsers without scroll-driven animations */
+@supports not (animation-timeline: scroll()) {
+    .stickyHeader {
+        background-color: var(--bg-body);
+    }
+}
 .menuHeader > .divLogo{
     display: flex;
-    /* padding: .8rem 2rem; */
-    background-color: #fff;
+    background-color: var(--logo-container-bg);
     border-bottom-left-radius: .3rem;
     border-top-left-radius: .3rem;
     position: relative;
@@ -13,15 +47,15 @@
 
 .menuHeader .myLogo{
     display: flex;
-    background-color: #fff;
+    background-color: var(--logo-container-bg);
     position: relative;
 }
 
 .menuHeader .logoImg{
     width: 36px;
     height: 36px;
-    background-color: #2445A6;
-    color : #fff;
+    background-color: var(--logo-bg);
+        color: var(--logo-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,8 +72,7 @@
     letter-spacing: 2.5px;
     font-weight: 700;
     justify-content: center;
-    color: #2445A6;
-    /* font-size: .8rem; */
+    color: var(--logo-text);
     position: relative;
 }
 
@@ -47,14 +80,15 @@
     height: calc(100% + 1.6rem);
     margin-top: -.8rem;
     width: 3px;
-    background-color: #2445A6;
+    background-color: var(--logo-bg);
     position: absolute;
     margin-left: 12px;
 }
 
 header >.menuHeader > div:last-child{
-    border: 3px solid rgba(9,44,144,.58);
+    border: 3px solid var(--border-menu);
     border-left: 0px !important;
     border-bottom-right-radius: .3rem;
     border-top-right-radius: .3rem;
+    transition: border-radius 0.3s ease;
 }

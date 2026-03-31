@@ -1,9 +1,12 @@
 import React  from "react";
 import footerCSS from './footer.module.css';
+import { useLanguage } from "../../context/LanguageContext";
 
 const Footer = () => {
+    const { t } = useLanguage();
+
     return (
-        <footer className="top-0 w-full py-3 bg-theme-2 px-2">
+        <footer className="top-0 w-full py-3 px-2 transition-colors duration-300">
              <div className="w-full">
                 <div className={footerCSS.footerSection+' mx-auto flex max-w-screen-lg md:px-4 sm:px-3 justify-between'}>
                     <div className="">
@@ -27,27 +30,27 @@ const Footer = () => {
                     </div>
                     <div className="flex">
                         <div className="relative flex items-center ml-auto">
-                            <nav className="hidden sm:flex text-sm leading-6 font-semibold uppercase text-slate-700 dark:text-slate-200 px-2">
+                            <nav className="hidden sm:flex text-sm leading-6 font-semibold uppercase px-2">
                                 <ul className="flex sm:space-x-4 md:space-x-8">
                                 <li>
-                                    <a class="text-[#fff] hover:text-sky-500" href="/docs/installation">About</a>
+                                    <a className="text-[var(--footer-text)] hover:text-sky-300 transition-colors" href="#aboutSection">{t('nav.about')}</a>
                                 </li>
                                 <li>
-                                    <a class="text-[#fff] hover:text-sky-500" href="/docs/installation">Skills</a>
+                                    <a className="text-[var(--footer-text)] hover:text-sky-300 transition-colors" href="#skillsSection">{t('nav.skills')}</a>
                                 </li>
                                 <li>
-                                    <a class="text-[#fff]  hover:text-sky-500" href="/docs/installation">Projects</a>
+                                    <a className="text-[var(--footer-text)] hover:text-sky-300 transition-colors" href="#projectsSection">{t('nav.projects')}</a>
                                 </li>
                                 <li>
-                                    <a class="text-[#fff]  hover:text-sky-500" href="/docs/installation">Contact</a>
+                                    <a className="text-[var(--footer-text)] hover:text-sky-300 transition-colors" href="#contactsSection">{t('nav.contact')}</a>
                                 </li>
                                 </ul>
                             </nav>
                         </div>
                     </div>
-                    <div className="flex justify-center flex-col leading-tight text-white text-xs pe-4 sm:pe-6 ml-4 sm:ml-6 uppercase">
-                        <span className="text-left">Copyright © 2023</span>
-                        <span className="text-left">All rights reserved</span>
+                    <div className="flex justify-center flex-col leading-tight text-[var(--footer-text)] text-xs pe-4 sm:pe-6 ml-4 sm:ml-6 uppercase">
+                        <span className="text-left">{t('footer.copyright')} © {new Date().getFullYear()}</span>
+                        <span className="text-left">{t('footer.rights')}</span>
                     </div>
                 </div>
             </div>

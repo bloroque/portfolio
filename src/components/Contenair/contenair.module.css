@@ -1,21 +1,16 @@
 .mainPage{}
 
-.mainPage > .section{
-    /* height: 100vh; */
-    /* min-height: 100vh; */
+.mainPage>.section {
     min-height: 90vh;
     display: flex;
-    /* align-items: center; */
-    /* justify-content: center; */
+    padding-top: 1rem;
 }
-.mainPage > .section:first-child{
-    /* height: calc(100vh - 101.59px); */
+.mainPage>.section:first-child {
     min-height: calc(100vh - 85.59px);
 }
 
 .mainPage > .section:last-child{
-    /* height: calc(100vh - 85.59px); */
-    min-height: calc(100vh - 85.59px);
+    min-height: calc(100vh - 60px);
 }
 
 
