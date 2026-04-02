@@ -83,6 +83,14 @@ const ProjectSection = (props) => {
                                         <FaAngleRight className="text-white"/>
                                     </button>
                                 </div>
+                                <div className="px-4 pt-2">
+                                    <a 
+                                        href="/detail-projets" 
+                                        className="inline-block w-full text-center bg-white text-[var(--color-accent)] font-semibold py-2 px-4 rounded-lg hover:bg-opacity-90 transition-all"
+                                    >
+                                        {t('projects.viewAll')}
+                                    </a>
+                                </div>
                             </div>
 
                         </div>

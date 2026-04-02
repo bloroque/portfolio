@@ -8,13 +8,17 @@ import { useLanguage } from "../../context/LanguageContext";
 const Header = () => {
   const { isDark, toggleTheme } = useTheme();
   const { lang, toggleLang, t } = useLanguage();
+  
+  // Détection de la page actuelle pour adapter les liens
+  const isDetailPage = window.location.pathname === '/detail-projets';
+  const linkPrefix = isDetailPage ? '/' : '';
 
   return (
     <header className={headerCSS.stickyHeader + ' sticky top-0 w-full pt-4 pb-2 px-2 z-50'}>
       
       <div className={headerCSS.menuHeader+' mx-auto flex max-w-screen-lg md:px-4 sm:px-3'}>
           <div className={headerCSS.divLogo+' px-2 py-2 md:px-6 lg:px-8 lg:py-[.8rem]'}>
-            <div className={headerCSS.myLogo}>
+            <a href={isDetailPage ? '/' : '#homeSection'} className={headerCSS.myLogo}>
               <div className={headerCSS.ligneLogo}></div>
               <div className={headerCSS.logoImg}>
                   <span>LB</span>
@@ -23,23 +27,23 @@ const Header = () => {
                 <span>LOROQUE</span>
                 <span>BRILLANT</span>
               </div>
-            </div>
+            </a>
           </div>
           <div className="flex-1 flex">
             <div className="relative flex items-center ml-auto">
               <nav className="hidden sm:flex text-sm leading-6 font-semibold uppercase px-2">
                 <ul className="flex sm:space-x-4 md:space-x-8">
                   <li>
-                    <a className="text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href="#aboutSection">{t('nav.about')}</a>
+                    <a className="text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href={`${linkPrefix}#aboutSection`}>{t('nav.about')}</a>
                   </li>
                   <li>
-                    <a className="text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href="#skillsSection">{t('nav.skills')}</a>
+                    <a className="text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href={`${linkPrefix}#skillsSection`}>{t('nav.skills')}</a>
                   </li>
                   <li>
-                    <a className="text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href="#projectsSection">{t('nav.projects')}</a>
+                    <a className="text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href={`${linkPrefix}#projectsSection`}>{t('nav.projects')}</a>
                   </li>
                   <li>
-                    <a className="text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href="#contactsSection">{t('nav.contact')}</a>
+                    <a className="text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href={`${linkPrefix}#contactsSection`}>{t('nav.contact')}</a>
                   </li>
                 </ul>
               </nav>

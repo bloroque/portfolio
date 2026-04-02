@@ -49,6 +49,13 @@
     display: flex;
     background-color: var(--logo-container-bg);
     position: relative;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.menuHeader .myLogo:hover{
+    opacity: 0.9;
 }
 
 .menuHeader .logoImg{

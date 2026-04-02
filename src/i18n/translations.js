@@ -23,13 +23,13 @@ const translations = {
 
     // About Section
     about: {
-      title: "― About me",
+      title: "― About Me",
       paragraph1:
-        "I am a passionate Fullstack Developer with solid experience in designing and developing modern web and mobile applications. I master both front-end and back-end technologies, which allows me to create complete and performant solutions.",
+        "I am a passionate Fullstack Developer with solid experience in designing and developing modern web applications. I master both front-end and back-end technologies, enabling me to create complete and high-performance solutions.",
       paragraph2:
         "My approach combines technical rigor and creativity. I am constantly on the lookout for new technologies and best practices to deliver high-quality projects.",
       paragraph3:
-        "Autonomous and team-oriented, I enjoy tackling complex challenges and turning ideas into concrete digital products.",
+        "Autonomous and team-oriented, I enjoy tackling complex challenges and transforming ideas into tangible digital products.",
       cta: "Let's work together!",
     },
 
@@ -37,28 +37,37 @@ const translations = {
     skills: {
       title: "― Development Expertise ―",
       subtitle:
-        "Keeping up with the latest technologies and innovations in web and mobile development",
-      whatIKnow: "― What I know",
+        "Always up-to-date with the latest technologies and innovations in web and mobile development",
+      whatIKnow: "― What I Master",
       description1:
         "My technical expertise covers the entire web application development cycle, from front-end design to back-end implementation and deployment.",
       description2:
         "I work with modern frameworks and tools that enable me to build robust, scalable, and maintainable applications.",
       description3:
-        "I am always looking to learn new technologies and improve my skills to stay at the forefront of development.",
+        "I am always seeking to learn new technologies and enhance my skills to stay at the forefront of development.",
       cta: "Let's work together!",
+      categories: {
+        languagesFrameworks: "Languages & Frameworks",
+        architectureParadigms: "Architecture & Paradigms",
+        databases: "Databases",
+        apisComm: "APIs & Communication",
+        uiDesign: "UI & Design Systems",
+        toolsDevops: "Tools & DevOps",
+      },
     },
 
     // Projects Section
     projects: {
       intro:
-        "I have had the opportunity to work on several projects that have allowed me to develop my skills and showcase my creativity. Each project is an opportunity to create something beautiful, functional and unique. In this portfolio I am happy to showcase some of my best projects.",
+        "I have had the opportunity to work on several projects that have allowed me to develop my skills and showcase my creativity. Each project represents an opportunity to create something beautiful, functional, and unique. In this portfolio, I am happy to present some of my best work.",
       title: "― Projects",
-      subtitle: "and challenges",
+      subtitle: "and Challenges",
+      viewAll: "View All Projects",
     },
 
     // Contact Section
     contact: {
-      title: "― Contact me",
+      title: "― Contact Me",
       description:
         "Have a project in mind or want to collaborate? Feel free to reach out!",
       nameLabel: "Full Name",
@@ -95,7 +104,7 @@ const translations = {
     // Home Section
     home: {
       greeting: "Bonjour, je suis",
-      role: "Développeur Fullstack",
+      role: "Développeur Fullstack PHP / JavaScript",
       downloadCV: "Télécharger mon CV",
     },
 
@@ -103,11 +112,11 @@ const translations = {
     about: {
       title: "― À propos de moi",
       paragraph1:
-        "Je suis un développeur Fullstack passionné, avec une solide expérience dans la conception et le développement d'applications web et mobile modernes. Je maîtrise les technologies front-end et back-end, ce qui me permet de créer des solutions complètes et performantes.",
+        "Développeur Fullstack passionné, avec une solide expérience dans la conception et le développement d'applications web modernes. Je maîtrise les technologies front-end et back-end, ce qui me permet de créer des solutions complètes et performantes.",
       paragraph2:
         "Mon approche allie rigueur technique et créativité. Je suis constamment à l'affût des nouvelles technologies et des meilleures pratiques pour livrer des projets de haute qualité.",
       paragraph3:
-        "Autonome et orienté travail d'équipe, j'aime relever des défis complexes et transformer les idées en produits numériques concrets.",
+        "Autonome et orienté vers le travail d'équipe, j'aime relever des défis complexes et transformer les idées en produits numériques concrets.",
       cta: "Travaillons ensemble !",
     },
 
@@ -124,14 +133,23 @@ const translations = {
       description3:
         "Je suis toujours en quête de nouvelles technologies et d'amélioration de mes compétences pour rester à la pointe du développement.",
       cta: "Travaillons ensemble !",
+      categories: {
+        languagesFrameworks: "Langages & Frameworks",
+        architectureParadigms: "Architecture & Paradigmes",
+        databases: "Bases de données",
+        apisComm: "APIs & Communication",
+        uiDesign: "UI & Design Systems",
+        toolsDevops: "Outils & DevOps",
+      },
     },
 
     // Projects Section
     projects: {
       intro:
-        "J'ai eu l'opportunité de travailler sur plusieurs projets qui m'ont permis de développer mes compétences et de montrer ma créativité. Chaque projet est une occasion de créer quelque chose de beau, fonctionnel et unique. Dans ce portfolio, je suis heureux de présenter certains de mes meilleurs projets.",
+        "J'ai eu l'opportunité de travailler sur plusieurs projets qui m'ont permis de développer mes compétences et de montrer ma créativité. Chaque projet représente une occasion de créer quelque chose de beau, fonctionnel et unique. Dans ce portfolio, je suis heureux de présenter certains de mes meilleurs travaux.",
       title: "― Projets",
-      subtitle: "et défis",
+      subtitle: "et Défis",
+      viewAll: "Voir tous les projets",
     },
 
     // Contact Section
@@ -140,7 +158,7 @@ const translations = {
       description:
         "Vous avez un projet en tête ou souhaitez collaborer ? N'hésitez pas à me contacter !",
       nameLabel: "Nom complet",
-      emailLabel: "Email",
+      emailLabel: "E-mail",
       messageLabel: "Message",
       sendButton: "Envoyer le message",
       namePlaceholder: "Votre nom",

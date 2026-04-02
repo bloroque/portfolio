@@ -3,7 +3,7 @@
 .mainPage>.section {
     min-height: 90vh;
     display: flex;
-    padding-top: 1rem;
+    /* padding-top: 1rem; */
 }
 .mainPage>.section:first-child {
     min-height: calc(100vh - 85.59px);

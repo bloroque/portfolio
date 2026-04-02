@@ -12,6 +12,13 @@
 .footerSection .myLogo{
     display: flex;
     position: relative;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.footerSection .myLogo:hover{
+    opacity: 0.9;
 }
 
 .footerSection .logoImg{
