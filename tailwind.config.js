@@ -1,18 +1,29 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {
       colors:{
-        'theme-base' : 'rgba(36,69,166,1)',
-        'theme-second' : 'rgba(9,44,144,.58)',
+        'theme-base' : 'var(--color-theme-base)',
+        'theme-second' : 'var(--color-theme-second)',
+        'theme-accent' : 'var(--color-accent)',
       },
       backgroundColor: {
-        'body': '#2445A6',
-        'theme-base' : 'rgba(36,69,166,1)',
-        'theme-second' : 'rgba(9,44,144,.58)',
+        'body': 'var(--bg-body)',
+        'theme-base' : 'var(--color-theme-base)',
+        'theme-second' : 'var(--color-theme-second)',
+        'theme-2' : 'var(--color-theme-second)',
+      },
+      textColor: {
+        'primary': 'var(--text-primary)',
+        'secondary': 'var(--text-secondary)',
+        'heading': 'var(--text-heading)',
+      },
+      borderColor: {
+        'theme': 'var(--border-theme)',
       },
       padding: {
         '.8rem': '.8rem',

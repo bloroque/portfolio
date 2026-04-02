@@ -12,29 +12,163 @@
     font-style: normal;
 }
 
+/* ===== LIGHT THEME (default) ===== */
 :root {
     --font-family-Anton: Anton;
+--bg-body: #eef2ff;
+    --bg-card: #ffffff;
+    --color-theme-base: #2445A6;
+    --color-theme-second: rgba(36, 69, 166, 0.12);
+    --color-accent: #3767D2;
+
+    --text-primary: #1e293b;
+    --text-secondary: #475569;
+    --text-heading: #0f172a;
+    --text-nav: #1e293b;
+    --text-nav-hover: #3767D2;
+
+    --border-theme: rgba(36, 69, 166, 0.25);
+    /* --border-menu: rgba(36, 69, 166, 0.25); */
+    --border-menu: #2445A6;
+
+    --logo-bg: #ffffff;
+    --logo-text: #ffffff;
+    --logo-container-bg: #2445A6;
+    --logo-color: #2445A6;
+
+    --icon-color: #2445A6;
+    --btn-bg: #2445A6;
+    --btn-text: #ffffff;
+
+    --footer-bg: #2445A6;
+    --footer-text: #ffffff;
+
+    --skill-border: #2445A6;
+    --skill-text: #1e293b;
+
+    --img-zone-color: #3767D2;
+    --slide-bg: #3767D2;
+}
+
+/* ===== DARK THEME ===== */
+.dark {
+    --bg-body: #2445A6;
+    --bg-card: rgba(55, 103, 210, 0.3);
+    --color-theme-base: rgba(36, 69, 166, 1);
+    --color-theme-second: rgba(9, 44, 144, .58);
+    --color-accent: #3767D2;
+
+    --text-primary: #ffffff;
+    --text-secondary: #cbd5e1;
+    --text-heading: #ffffff;
+    --text-nav: #ffffff;
+    --text-nav-hover: #38bdf8;
+
+    --border-theme: rgba(9, 44, 144, .58);
+    /* --border-menu: rgba(9, 44, 144, .58); */
+    --border-menu: #ffffff;
+
+    /* --logo-bg: #ffffff; */
+    --logo-bg: #2445A6;
+    --logo-text: #2445A6;
+    --logo-container-bg: #ffffff;
+    --logo-color: #ffffff;
+
+    --icon-color: #ffffff;
+    --btn-bg: #ffffff;
+    --btn-text: #2445A6;
+
+    --footer-bg: rgba(9, 44, 144, .58);
+    --footer-text: #ffffff;
+
+    --skill-border: #ffffff;
+    --skill-text: #ffffff;
+
+    --img-zone-color: #3767D2;
+    --slide-bg: #3767D2;
 }
 
 html{
     scroll-behavior: smooth;
-    scroll-padding: 0px;
+    scroll-padding-top: 80px;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-family-Anton);
 }
 
-.img-zone{
-    /* background-color: #e5e5f7; */
+.img-zone {
     opacity: 1;
-    background: repeating-linear-gradient( -45deg, #3767D2, #3767D2 3px, rgba(255,255,255,0) 1px, rgba(255,255,255,0) 8px );
-    border: 2px solid #3767D2;
+    background: repeating-linear-gradient(-45deg, var(--img-zone-color), var(--img-zone-color) 3px, rgba(255, 255, 255, 0) 1px, rgba(255, 255, 255, 0) 8px);
+        border: 2px solid var(--img-zone-color);
 }
 
 .swiper-slide {
-    /* margin-right: 0px!important; */
-    /* width: calc(100% + 50px); */
-    /* Center slide text vertically */
     display: flex !important;
+}
+/* Theme toggle button */
+.theme-toggle {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 2px solid var(--icon-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    padding: 2px;
+}
+
+.dark .theme-toggle {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.theme-toggle-knob {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--icon-color);
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-toggle-knob.dark-active {
+    transform: translateX(20px);
+}
+
+/* Language toggle button */
+.lang-toggle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--icon-color);
+    background-color: transparent;
+    color: var(--icon-color);
+    font-family: Ubuntu, sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.lang-toggle:hover {
+    background-color: var(--icon-color);
+    color: var(--bg-body);
+}
+
+/* Custom utility classes */
+.bg-body {
+    background-color: var(--bg-body);
+}
+
+.bg-card {
+    background-color: var(--bg-card);
 }

@@ -6,12 +6,12 @@ import Contenair from '../components/Contenair/Contenair';
 
 const Layout = () => {
     return (
-        <div className="bg-body">
+        <div className="bg-body min-h-screen transition-colors duration-300">
             <Header/>
             <Contenair/>
             <Footer/>
         </div>
     );
 }
-// <React.Fragment> == <>
+
 export default Layout;
