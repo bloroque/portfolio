@@ -18,7 +18,7 @@ const translations = {
     home: {
       greeting: "Hi there, I'm",
       role: "Fullstack Developer",
-      downloadCV: "Download My CV",
+      downloadCV: "Download my CV",
     },
 
     // About Section
@@ -96,7 +96,7 @@ const translations = {
     home: {
       greeting: "Bonjour, je suis",
       role: "Développeur Fullstack",
-      downloadCV: "Télécharger Mon CV",
+      downloadCV: "Télécharger mon CV",
     },
 
     // About Section

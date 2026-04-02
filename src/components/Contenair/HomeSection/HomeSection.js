@@ -57,29 +57,38 @@ const HomeSection = (props) => {
 
                     <div className="sm:col-span-3 lg:col-span-3 px-3 md:pe-7 flex flex-col justify-center">
                         <div ref={greetingRef} className="md:pb-6">
-                            <h2 className="text-[var(--text-secondary)] text-right">{t('home.greeting')} </h2>
+                            <h2 className="text-[var(--text-secondary)]">
+                                {t('home.greeting')}
+                            </h2>
                         </div>
                         <div ref={nameRef} className={HomeCSS.homeSectionName}>
-                            <h1 className="text-5xl md:text-6xl font-extrabold flex flex-col justify-end text-[var(--text-heading)]">
-                                <span className="text-right uppercase tracking-wide py-1">Loroque</span> 
-                                <span className="text-right uppercase tracking-wide py-1 whitespace-nowrap">Brillant . A</span>
+                            <h1 className="text-4xl md:text-5xl font-extrabold flex flex-col justify-end text-[var(--text-heading)]">
+                                <span className="uppercase tracking-wide py-1 te">
+                                    Loroque Brillant
+                                </span>
+                                <span className="uppercase tracking-wide py-1 whitespace-nowrap">
+                                    Andriamampiadana
+                                </span>
                             </h1>
                         </div>
                         <div ref={roleRef} className="flex  pt-2  md:pt-5">
                             <div className="grow flex flex-col justify-center pe-2">
-                                <h2 className="text-[var(--text-secondary)] text-right flex flex-col">
+                                <h2 className="text-[var(--text-secondary)] flex flex-col">
                                     <span>{t('home.role')}</span>
                                     <span></span>
                                 </h2>
                             </div>
                             <div className="relative">
-                                <div className="w-14 h-14 bg-[var(--logo-container-bg)] rounded-full border-2 border-[var(--color-accent)] relative"></div>
+
                             </div>
                         </div>
                         <div ref={btnRef} className="flex flex-col pt-2 md:pt-5">
-                            <div className="flex flex-row-reverse">
-                                <button className="relative flex rounded text-[var(--btn-bg)]" type="button">
-                                    <div className="h-full relative w-10 bg-[var(--color-accent)] rounded-s flex items-center justify-center">
+
+
+
+                            <div className="flex ">
+                                <button className="relative flex text-[var(--btn-bg)]" type="button">
+                                    <div className="h-full relative w-10 bg-[var(--color-accent)] flex items-center justify-center">
                                         <FaFileDownload size="25" className="text-white" />
                                     </div>
                                     <div className="text-md font-bold ps-2 bg-[var(--btn-text)] text-[var(--btn-bg)] flex items-center h-11 pe-4 ms-1">
@@ -87,6 +96,7 @@ const HomeSection = (props) => {
                                     </div>
                                 </button>
                             </div>
+
                         </div>
                     </div>
 

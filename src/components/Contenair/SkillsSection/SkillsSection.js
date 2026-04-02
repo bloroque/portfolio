@@ -91,93 +91,79 @@ const SkillsSection = (props) => {
 
                         <div className="sm:col-span-6 lg:col-span-7 px-3 md:pe-7 flex flex-col justify-center">
 
-                            <div ref={pillsRef} className="w-full flex flex-wrap py-2 ps-2">
+                            <div ref={pillsRef} className="w-full flex flex-wrap gap-2 py-2 ps-2">
 
-                                <div className="h-[2.5rem] px-4 mx-2 rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle my-2">
+                                <div className="h-[2.5rem] px-4 rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
                                     <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
-                                        VueJS, React, AlpineJs
+                                        PHP, Javascript/Typescript
                                     </span>
                                 </div>
 
-                                <div className="h-[2.5rem] px-4 mx-2 rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle my-2">
+                                <div className="h-[2.5rem] px-4  rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
+                                    <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
+                                        POO, DDD, Clean architeture, MVC
+                                    </span>
+                                </div>
+
+                                <div className="h-[2.5rem] px-4  rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
                                     <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
                                         Laravel, Symfony, Codeigniter
                                     </span>
                                 </div>
 
-                                <div className="h-[2.5rem] px-4 mx-2 rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle my-2">
+                                <div className="h-[2.5rem] px-4  rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
                                     <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
-                                        Javascript, Typescript
+                                        Vanilla JS,React JS, VueJS
                                     </span>
                                 </div>
 
-                                <div className="h-[2.5rem] px-4 mx-2 rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle my-2">
+                                <div className="h-[2.5rem] px-4  rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
                                     <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
-                                        NodeJs/NestJs/PHP/WebSocket
+                                        ORM, WebSocket, Cron Sheduling
                                     </span>
                                 </div>
 
-                                <div className="h-[2.5rem] px-4 mx-2 rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle my-2">
+                                <div className="h-[2.5rem] px-4  rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
                                     <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
-                                        VueJS, React, AlpineJs
+                                        API REST, JWT, Graphql
                                     </span>
                                 </div>
 
-                                <div className="h-[2.5rem] px-4 mx-2 rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle my-2">
-                                    <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
-                                        API REST, API Graphql
-                                    </span>
-                                </div>
-
-                                <div className="h-[2.5rem] px-4 mx-2 rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle my-2">
-                                    <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
-                                        Livewire
-                                    </span>
-                                </div>
-
-                                <div className="h-[2.5rem] px-4 mx-2 rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle my-2">
+                                <div className="h-[2.5rem] px-4  rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
                                     <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
                                         Agile, UML
                                     </span>
                                 </div>
 
-                                <div className="h-[2.5rem] px-4 mx-2 rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle my-2">
+                                <div className="h-[2.5rem] px-4  rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
                                     <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
-                                        Mysql, PostgreSql, MongoDb, PLSql
+                                        Mysql, PostgreSql, MongoDb
                                     </span>
                                 </div>
 
-                                <div className="h-[2.5rem] px-4 mx-2 rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle my-2">
+                                <div className="h-[2.5rem] px-4  rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
                                     <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
-                                        Jira, Trello, Notion    
+                                        Jira, Trello 
                                     </span>
                                 </div>
 
-                                <div className="h-[2.5rem] px-4 mx-2 rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle my-2">
+                                <div className="h-[2.5rem] px-4  rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
                                     <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
-                                        Tailwind CSS, Sass, Bootstrap, Material ui
+                                        Tailwind, Bootstrap, Shadcn UI
                                     </span>
                                 </div>
 
-                                <div className="h-[2.5rem] px-4 mx-2 rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle my-2">
+                                <div className="h-[2.5rem] px-4  rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
                                     <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
-                                        Linux, Docker, Cron sheduling    
+                                        Git/Gitflow, Linux, Docker    
                                     </span>
                                 </div>
 
-                                <div className="h-[2.5rem] px-4 mx-2 rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle my-2">
+                                <div className="h-[2.5rem] px-4  rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
                                     <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
                                         React Native, Ionic
                                     </span>
                                 </div>
-
-                                <div className="h-[2.5rem] px-4 mx-2 rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle my-2">
-                                    <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
-                                        Mongoose, Sequilize and Prisma ORM   
-                                    </span>
-                                </div>
-
-
 
                             </div>
                         </div>
