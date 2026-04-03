@@ -48,7 +48,11 @@ const AboutSection = (props) => {
                 <div className="grid sm:grid-cols-6 lg:grid-cols-7 h-full  md:pb-8">
 
                     <div ref={imgZoneRef} className="sm:col-span-3 lg:col-span-3 px-3 md:pe-7 flex flex-col justify-center">
-                        <div className="w-full h-3/4 img-zone  ml-auto"> </div>
+                        <div className="w-full h-3/4 img-zone ml-auto relative">
+                            <div className="w-full h-full overflow-hidden shadow-lg absolute mt-6 ml-6 border-4 border-[var(--logo-bg)] ">
+                                <img src={require('../../../assets/images/image2.png')} alt={t('about.imageAlt')} className=" w-full h-full object-cover" />
+                            </div>
+                        </div>
                     </div>
 
                     <div className="lg:mt-0 sm:col-span-3 lg:col-span-4 flex flex-col justify-center px-4 md:ps-7">

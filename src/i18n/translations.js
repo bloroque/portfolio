@@ -114,7 +114,7 @@ const translations = {
       paragraph1:
         "Développeur Fullstack passionné, avec une solide expérience dans la conception et le développement d'applications web modernes. Je maîtrise les technologies front-end et back-end, ce qui me permet de créer des solutions complètes et performantes.",
       paragraph2:
-        "Mon approche allie rigueur technique et créativité. Je suis constamment à l'affût des nouvelles technologies et des meilleures pratiques pour livrer des projets de haute qualité.",
+        "Mon approche allie rigueur technique et créativité pour créer des outils fluides et robustes, adaptés aux besoins réels des utilisateurs.",
       paragraph3:
         "Autonome et orienté vers le travail d'équipe, j'aime relever des défis complexes et transformer les idées en produits numériques concrets.",
       cta: "Travaillons ensemble !",
@@ -131,7 +131,7 @@ const translations = {
       description2:
         "Je travaille avec des frameworks et outils modernes qui me permettent de construire des applications robustes, évolutives et maintenables.",
       description3:
-        "Je suis toujours en quête de nouvelles technologies et d'amélioration de mes compétences pour rester à la pointe du développement.",
+        "Je suis toujours en quête de nouvelles technologies et d'amélioration de mes compétences pour rester à la pointe du développement.  Je suis constamment à l'affût des nouvelles technologies et des meilleures pratiques pour livrer des projets de haute qualité.",
       cta: "Travaillons ensemble !",
       categories: {
         languagesFrameworks: "Langages & Frameworks",
