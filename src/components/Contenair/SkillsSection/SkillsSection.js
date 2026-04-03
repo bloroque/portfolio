@@ -107,7 +107,9 @@ const SkillsSection = (props) => {
 
                                 <div className="flex flex-col gap-y-2">
                                     <div>
-                                        <h3 className="text-[var(--skill-text)] text-sm ps-2">{t('skills.categories.architectureParadigms')}</h3>
+                                        <h3 className="text-[var(--skill-text)] text-sm ps-2">
+                                            {t('skills.categories.architectureParadigms')}
+                                        </h3>
                                     </div>
                                     <div className="w-full flex flex-wrap gap-2">
     
@@ -142,6 +144,11 @@ const SkillsSection = (props) => {
                                         <div className="h-[2.3rem] px-3 rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
                                             <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
                                                 MySQL, PostgreSQL, MongoDB
+                                            </span>
+                                        </div>
+                                        <div className="h-[2.3rem] px-3 rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
+                                            <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
+                                                Redis
                                             </span>
                                         </div>
                                         <div className="h-[2.3rem] px-3 rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
@@ -191,12 +198,6 @@ const SkillsSection = (props) => {
                                         <div className="h-[2.3rem] px-3  rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
                                             <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
                                                 shadcn/ui
-                                            </span>
-                                        </div>
-    
-                                        <div className="h-[2.3rem] px-3 rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
-                                            <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
-                                                Git/Gitflow, Docker, Linux
                                             </span>
                                         </div>
 

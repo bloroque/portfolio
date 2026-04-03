@@ -71,6 +71,7 @@ const HomeSection = (props) => {
                                 </span>
                             </h1>
                         </div>
+
                         <div ref={roleRef} className="flex  pt-2  md:pt-5">
                             <div className="grow flex flex-col justify-center pe-2">
                                 <h2 className="text-[var(--text-secondary)] flex flex-col">
@@ -78,13 +79,21 @@ const HomeSection = (props) => {
                                     <span></span>
                                 </h2>
                             </div>
-                            <div className="relative">
+                        </div>
 
+                        <div ref={roleRef} className="flex  pt-2  md:pt-5">
+                            <div className="grow flex flex-col justify-center pe-2">
+                                <span className="text-[var(--text-secondary)] ">
+                                    <span>
+                                        4 ans et 5 mois d'expérience (depuis nov. 2021). Basé à Madagascar, 
+                                        spécialisé dans les applications SaaS, plateformes métier et solutions web sur mesure.
+                                    </span>
+                                </span>
                             </div>
                         </div>
+                        
+                        
                         <div ref={btnRef} className="flex flex-col pt-2 md:pt-5">
-
-
 
                             <div className="flex ">
                                 <button className="relative flex text-[var(--btn-bg)]" type="button">
