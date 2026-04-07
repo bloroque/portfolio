@@ -1,67 +1,114 @@
-import React, { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React from "react";
+import { motion } from "framer-motion";
 import HomeCSS from "./HomeSection.module.css";
-import {FaFileDownload } from "react-icons/fa";
+import { FaFileDownload } from "react-icons/fa";
 import { useLanguage } from "../../../context/LanguageContext";
-
-gsap.registerPlugin(ScrollTrigger);
+import KeyboardBackground from "./KeyboardBackground";
 
 const HomeSection = (props) => {
     const classeCSS = props.className;
     const idSection = props.id;
     const { t } = useLanguage();
 
-    const sectionRef = useRef(null);
-    const greetingRef = useRef(null);
-    const nameRef = useRef(null);
-    const roleRef = useRef(null);
-    const btnRef = useRef(null);
-    const imgRef = useRef(null);
+    // Variants d'animation pour le conteneur
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                delayChildren: 0.3,
+                staggerChildren: 0.15
+            }
+        }
+    };
 
-    useEffect(() => {
-        const ctx = gsap.context(() => {
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top 80%",
-                    end: "bottom 20%",
-                    toggleActions: "play none none reverse",
-                }
-            });
+    // Variants pour les éléments qui apparaissent de bas en haut
+    const fadeInUp = {
+        hidden: { opacity: 0, y: 30 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.6,
+                ease: "easeOut"
+            }
+        }
+    };
 
-            tl.from(greetingRef.current, {
-                opacity: 0, y: 30, duration: 0.6, ease: "power3.out"
-            })
-            .from(nameRef.current, {
-                opacity: 0, x: 80, duration: 0.8, ease: "power3.out"
-            }, "-=0.3")
-            .from(roleRef.current, {
-                opacity: 0, y: 20, duration: 0.5, ease: "power2.out"
-            }, "-=0.3")
-            .from(btnRef.current, {
-                opacity: 0, scale: 0.8, duration: 0.5, ease: "back.out(1.7)"
-            }, "-=0.2")
-            .from(imgRef.current, {
-                opacity: 0, x: 60, duration: 0.8, ease: "power3.out"
-            }, "-=0.6");
-        }, sectionRef);
+    // Variants pour les éléments qui apparaissent de droite à gauche
+    const fadeInLeft = {
+        hidden: { opacity: 0, x: 80 },
+        visible: {
+            opacity: 1,
+            x: 0,
+            transition: {
+                duration: 0.8,
+                ease: [0.6, -0.05, 0.01, 0.99]
+            }
+        }
+    };
 
-        return () => ctx.revert();
-    }, []);
+    // Variants pour le bouton avec effet bounce
+    const buttonVariants = {
+        hidden: { opacity: 0, scale: 0.8 },
+        visible: {
+            opacity: 1,
+            scale: 1,
+            transition: {
+                duration: 0.5,
+                ease: "easeOut"
+            }
+        },
+        hover: {
+            scale: 1.05,
+            transition: {
+                duration: 0.3,
+                ease: "easeInOut"
+            }
+        },
+        tap: {
+            scale: 0.95
+        }
+    };
+
+    // Variants pour l'image qui apparait de droite
+    const imageVariants = {
+        hidden: { opacity: 0, x: 60, scale: 0.9 },
+        visible: {
+            opacity: 1,
+            x: 0,
+            scale: 1,
+            transition: {
+                duration: 0.8,
+                ease: "easeOut"
+            }
+        }
+    };
 
     return (
-        <section ref={sectionRef} id={idSection} className={classeCSS}>
-            <div className="mx-auto max-w-screen-lg md:px-4 sm:px-3 md:pb-8 pt-4 md:pt-20 w-full ">
+        <motion.section
+            id={idSection}
+            className={classeCSS}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={containerVariants}
+            style={{ position: "relative", overflow: "hidden" }}
+        >
+            <div className="mx-auto max-w-screen-lg md:px-4 sm:px-3 md:pb-8 pt-4 md:pt-20 w-full relative z-10">
                 <div className="grid sm:grid-cols-6 lg:grid-cols-7 h-full  md:pb-8">
 
-                    <div className="sm:col-span-3 lg:col-span-3 px-3 md:pe-7 flex flex-col justify-center">
-                        <div ref={greetingRef} className="md:pb-6">
+                    <motion.div
+                        className="sm:col-span-3 lg:col-span-3 px-3 md:pe-7 flex flex-col justify-center"
+                        variants={containerVariants}
+                    >
+                        <motion.div variants={fadeInUp} className="md:pb-6">
                             <h2 className="text-[var(--text-secondary)]">
                                 {t('home.greeting')}
                             </h2>
-                        </div>
-                        <div ref={nameRef} className={HomeCSS.homeSectionName}>
+                        </motion.div>
+                        
+                        <motion.div variants={fadeInLeft} className={HomeCSS.homeSectionName}>
                             <h1 className="text-4xl md:text-5xl font-extrabold flex flex-col justify-end text-[var(--text-heading)]">
                                 <span className="uppercase tracking-wide py-1 te">
                                     Loroque Brillant
@@ -70,18 +117,18 @@ const HomeSection = (props) => {
                                     Andriamampiadana
                                 </span>
                             </h1>
-                        </div>
+                        </motion.div>
 
-                        <div ref={roleRef} className="flex  pt-2  md:pt-5">
+                        <motion.div variants={fadeInUp} className="flex  pt-2  md:pt-5">
                             <div className="grow flex flex-col justify-center pe-2">
                                 <h2 className="text-[var(--text-secondary)] flex flex-col">
                                     <span>{t('home.role')}</span>
                                     <span></span>
                                 </h2>
                             </div>
-                        </div>
+                        </motion.div>
 
-                        <div ref={roleRef} className="flex  pt-2  md:pt-5">
+                        <motion.div variants={fadeInUp} className="flex  pt-2  md:pt-5">
                             <div className="grow flex flex-col justify-center pe-2">
                                 <span className="text-[var(--text-secondary)] ">
                                     <span>
@@ -90,34 +137,53 @@ const HomeSection = (props) => {
                                     </span>
                                 </span>
                             </div>
-                        </div>
+                        </motion.div>
                         
                         
-                        <div ref={btnRef} className="flex flex-col pt-2 md:pt-5">
-
+                        <motion.div variants={fadeInUp} className="flex flex-col pt-2 md:pt-5">
                             <div className="flex ">
-                                <button className="relative flex text-[var(--btn-bg)]" type="button">
-                                    <div className="h-full relative w-10 bg-[var(--color-accent)] flex items-center justify-center">
+                                <motion.button
+                                    className="relative flex text-[var(--btn-bg)]"
+                                    type="button"
+                                    variants={buttonVariants}
+                                    whileHover="hover"
+                                    whileTap="tap"
+                                >
+                                    <motion.div
+                                        className="h-full relative w-10 bg-[var(--color-accent)] flex items-center justify-center"
+                                        whileHover={{ rotate: [0, -10, 10, -10, 0] }}
+                                        transition={{ duration: 0.5 }}
+                                    >
                                         <FaFileDownload size="25" className="text-white" />
-                                    </div>
+                                    </motion.div>
                                     <div className="text-md font-bold ps-2 bg-[var(--btn-text)] text-[var(--btn-bg)] flex items-center h-11 pe-4 ms-1">
                                         <span >{t('home.downloadCV')}</span>
                                     </div>
-                                </button>
+                                </motion.button>
                             </div>
+                        </motion.div>
+                    </motion.div>
 
-                        </div>
-                    </div>
-
-                    <div ref={imgRef} className="lg:mt-0 sm:col-span-3 lg:col-span-4 flex flex-col justify-center px-4 md:ps-7">
-                        <div className="w-full h-full img-zone  ml-auto">
+                    <motion.div
+                        variants={imageVariants}
+                        className="lg:mt-0 sm:col-span-3 lg:col-span-4 flex flex-col justify-center px-4 md:ps-7"
+                    >
+                        <motion.div
+                            className="w-full h-full img-zone  ml-auto"
+                            whileHover={{
+                                scale: 1.05,
+                                transition: { duration: 0.3 }
+                            }}
+                        >
                                 
-                        </div>
-                    </div>
+                        </motion.div>
+                    </motion.div>
 
                 </div>
             </div>
-        </section>
+
+            <KeyboardBackground />
+        </motion.section>
     );
 }
 
