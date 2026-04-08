@@ -1,12 +1,10 @@
-import React, { useRef, useEffect } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React, { useRef } from "react";
+import { motion } from "framer-motion";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { useLanguage } from "../../../context/LanguageContext";
-
-gsap.registerPlugin(ScrollTrigger);
+import KeyboardBackground from "../../UI/KeyboardBackground";
 
 const ProjectSection = (props) => {
     const classeCSS = props.className;
@@ -15,10 +13,6 @@ const ProjectSection = (props) => {
 
     // Créer une référence pour Swiper
     const swiperRef = useRef(null);
-    const sectionRef = useRef(null);
-    const introRef = useRef(null);
-    const panelRef = useRef(null);
-    const carouselRef = useRef(null);
 
     const handlePrev = () => {
         if (swiperRef.current) swiperRef.current.slidePrev();
@@ -28,47 +22,50 @@ const ProjectSection = (props) => {
         if (swiperRef.current) swiperRef.current.slideNext();
     };
 
-    useEffect(() => {
-        const ctx = gsap.context(() => {
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top 75%",
-                    end: "bottom 20%",
-                    toggleActions: "play none none reverse",
-                }
-            });
+    const containerVariants = {
+        hidden: {},
+        visible: { transition: { staggerChildren: 0.2 } }
+    };
 
-            tl.from(introRef.current, {
-                opacity: 0, y: 30, duration: 0.6, ease: "power3.out"
-            })
-            .from(panelRef.current, {
-                opacity: 0, x: -60, duration: 0.7, ease: "power3.out"
-            }, "-=0.3")
-            .from(carouselRef.current, {
-                opacity: 0, y: 50, duration: 0.8, ease: "power3.out"
-            }, "-=0.4");
-        }, sectionRef);
+    const introVariants = {
+        hidden: { opacity: 0, y: 30 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+    };
 
-        return () => ctx.revert();
-    }, []);
+    const panelVariants = {
+        hidden: { opacity: 0, x: -60 },
+        visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: "easeOut" } }
+    };
 
+    const carouselVariants = {
+        hidden: { opacity: 0, y: 50 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+    };
 
     return (
-        <section ref={sectionRef} id={idSection} className={classeCSS}>
+        <>
+        <motion.section
+            id={idSection}
+            className={classeCSS}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.25 }}
+            variants={containerVariants}
+             style={{ position: "relative", overflow: "hidden" }}
+        >
             <div className="mx-auto max-w-screen-lg md:px-4 sm:px-3 md:pb-8 pt-4 md:pt-5 w-full ">
 
                 <div className="w-full flex flex-col h-full justify-center px-2">
           
-                    <div ref={introRef} className="py-4 text-[var(--text-primary)]">
+                    <motion.div variants={introVariants} className="py-4 text-[var(--text-primary)]">
                         <p className="pb-4 text-justify text-lg">
                             {t('projects.intro')}
                         </p>
-                    </div>
+                    </motion.div>
 
                     <div className="flex flex-col justify-center sm:grid sm:grid-cols-4  w-full  sm:grid-rows-1  ">
 
-                        <div ref={panelRef} className="col-span-1 flex flex-col justify-center sm:h-full">
+                        <motion.div variants={panelVariants} className="col-span-1 flex flex-col justify-center sm:h-full">
 
                             <div className="flex flex-col justify-center p-4 h-80 bg-[var(--color-accent)]">
                                 <h2 className="text-white font-bold text-xl flex flex-col tracking-wide p-4 pb-2">
@@ -93,8 +90,8 @@ const ProjectSection = (props) => {
                                 </div>
                             </div>
 
-                        </div>
-                        <div ref={carouselRef} className="col-span-3 sm:h-full projet-carousel ">
+                        </motion.div>
+                        <motion.div variants={carouselVariants} className="col-span-3 sm:h-full projet-carousel ">
 
                             <Swiper className="h-full grid-cols-3"
                                 spaceBetween={0}
@@ -154,12 +151,17 @@ const ProjectSection = (props) => {
                                 
                             </Swiper>
 
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
 
             </div>
-        </section>
+
+            {/* <KeyboardBackground/> */}
+
+        </motion.section>
+
+        </>
     );
 }
 

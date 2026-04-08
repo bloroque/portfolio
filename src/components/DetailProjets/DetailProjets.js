@@ -2,8 +2,10 @@ import React from "react";
 import DetailProjetsCSS from "./DetailProjets.module.css";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import { useLanguage } from "../../context/LanguageContext";
 
 const DetailProjets = () => {
+    const { t } = useLanguage();
     const projects = [
         {
             id: 1,
@@ -45,10 +47,10 @@ const DetailProjets = () => {
                 <section className={DetailProjetsCSS.titleSection}>
                 <div className="mx-auto max-w-screen-lg px-4 py-8">
                     <h2 className="text-[var(--text-heading)] font-bold text-4xl text-center">
-                        Détails des Projets
+                        {t('projects.detailTitle')}
                     </h2>
                     <p className="text-[var(--text-primary)] text-center text-lg mt-4">
-                        Découvrez mes réalisations et les technologies utilisées
+                        {t('projects.detailSubtitle')}
                     </p>
                 </div>
             </section>
@@ -82,7 +84,7 @@ const DetailProjets = () => {
                                         ))}
                                     </div>
                                     <button className="mt-4 px-4 py-2 bg-[var(--color-accent)] text-white rounded-lg hover:opacity-90 transition-opacity">
-                                        Voir plus
+                                        {t('projects.viewMore')}
                                     </button>
                                 </div>
                             </div>

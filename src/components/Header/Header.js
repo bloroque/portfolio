@@ -16,7 +16,7 @@ const Header = () => {
   return (
     <header className={headerCSS.stickyHeader + ' sticky top-0 w-full pt-4 pb-2 px-2 z-50'}>
       
-      <div className={headerCSS.menuHeader+' mx-auto flex max-w-screen-lg md:px-4 sm:px-3'}>
+      <div className={headerCSS.menuHeader+' mx-auto flex max-w-screen-lg shadow-md bg-[var(--header-bg)] backdrop-blur-sm transition-colors duration-300'}>
           <div className={headerCSS.divLogo+' px-2 py-2 md:px-6 lg:px-8 lg:py-[.8rem]'}>
             <a href={isDetailPage ? '/' : '#homeSection'} className={headerCSS.myLogo}>
               <div className={headerCSS.ligneLogo}></div>
@@ -32,7 +32,7 @@ const Header = () => {
           <div className="flex-1 flex">
             <div className="relative flex items-center ml-auto">
               <nav className="hidden sm:flex text-sm leading-6 font-semibold uppercase px-2">
-                <ul className="flex sm:space-x-4 md:space-x-8">
+                <ul className="flex sm:space-x-4">
                   <li>
                     <a className="text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href={`${linkPrefix}#aboutSection`}>{t('nav.about')}</a>
                   </li>

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { ReactComponent as KeyboardSvg } from "../../../assets/images/keyboard-azerty.svg";
+import { ReactComponent as KeyboardSvg } from "../../assets/images/keyboard-azerty.svg";
 
 const TYPING_SEQUENCE = [
     "D", "E", "V", "E", "L", "O", "P", "E", "R",
@@ -147,8 +147,7 @@ const KeyboardBackground = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.5, delay: 1, ease: "easeOut" }}
                 style={{
-                    width: "110%",
-                    maxWidth: "1000px",
+                    width: "100vw",
                 }}
             >
                 <KeyboardSvg style={{ width: "100%", height: "auto" }} />

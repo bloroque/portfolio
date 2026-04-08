@@ -2,7 +2,7 @@ const translations = {
   en: {
     // Navigation
     nav: {
-      about: "About",
+      about: "Profile",
       skills: "Skills",
       projects: "Projects",
       contact: "Contact",
@@ -17,17 +17,22 @@ const translations = {
     // Home Section
     home: {
       greeting: "Hi there, I'm",
-      role: "Fullstack Developer",
+      role: "Fullstack PHP & JavaScript Developer",
+      badge: "Open to new challenges",
+      experience: "4+ years of experience (since Nov. 2021). Based in Madagascar, specializing in SaaS applications, business platforms and custom web solutions.",
+      contactBtn: "Contact",
+      cvBtn: "Download CV",
       downloadCV: "Download my CV",
     },
 
     // About Section
     about: {
       title: "― About Me",
+      imageAlt: "Profile photo",
       paragraph1:
         "I am a passionate Fullstack Developer with solid experience in designing and developing modern web applications. I master both front-end and back-end technologies, enabling me to create complete and high-performance solutions.",
       paragraph2:
-        "My approach combines technical rigor and creativity. I am constantly on the lookout for new technologies and best practices to deliver high-quality projects.",
+        "My approach combines technical rigor and creativity to build smooth and robust tools, tailored to users' real needs.",
       paragraph3:
         "Autonomous and team-oriented, I enjoy tackling complex challenges and transforming ideas into tangible digital products.",
       cta: "Let's work together!",
@@ -39,12 +44,13 @@ const translations = {
       subtitle:
         "Always up-to-date with the latest technologies and innovations in web and mobile development",
       whatIKnow: "― What I Master",
+      hardSkillsTitle: "Hard Skills (Stack)",
       description1:
         "My technical expertise covers the entire web application development cycle, from front-end design to back-end implementation and deployment.",
       description2:
         "I work with modern frameworks and tools that enable me to build robust, scalable, and maintainable applications.",
       description3:
-        "I am always seeking to learn new technologies and enhance my skills to stay at the forefront of development.",
+        "I am constantly on the lookout for new technologies and best practices to deliver high-quality projects.",
       cta: "Let's work together!",
       categories: {
         languagesFrameworks: "Languages & Frameworks",
@@ -53,6 +59,20 @@ const translations = {
         apisComm: "APIs & Communication",
         uiDesign: "UI & Design Systems",
         toolsDevops: "Tools & DevOps",
+      },
+      groups: {
+        backend: "Backend",
+        frontend: "Frontend",
+        database: "Database",
+        tools: "Tools & DevOps",
+      },
+      engineering: {
+        title: "Engineering Fundamentals",
+        description: "I design my applications following proven architectural principles: OOP, SOLID, Clean Architecture, DDD and MVC patterns. I structure data flows with DTOs to ensure clear separation of concerns, maintainability and scalability across every project.",
+      },
+      softSkills: {
+        title: "Soft Skills",
+        description: "Technical rigor, clear communication and strong teamwork define my approach. I adapt quickly to new environments, tackle complex problems methodically, and maintain a genuine curiosity that drives continuous learning and professional growth.",
       },
     },
 
@@ -63,6 +83,9 @@ const translations = {
       title: "― Projects",
       subtitle: "and Challenges",
       viewAll: "View All Projects",
+      detailTitle: "Project Details",
+      detailSubtitle: "Discover my work and the technologies used",
+      viewMore: "View more",
     },
 
     // Contact Section
@@ -89,7 +112,7 @@ const translations = {
   fr: {
     // Navigation
     nav: {
-      about: "À propos",
+      about: "Profil",
       skills: "Compétences",
       projects: "Projets",
       contact: "Contact",
@@ -103,14 +126,19 @@ const translations = {
 
     // Home Section
     home: {
-      greeting: "Bonjour, je suis",
-      role: "Développeur Fullstack PHP / JavaScript",
+      greeting: "Hey ! Moi c'est",
+      role: "Développeur Fullstack PHP & JavaScript",
+      badge: "À l'écoute de nouveaux défis",
+      experience: "Plus de 4 ans d'expérience (depuis nov. 2021). Basé à Madagascar, spécialisé dans les applications SaaS, plateformes métier et solutions web sur mesure.",
+      contactBtn: "Contact",
+      cvBtn: "Télécharger le CV",
       downloadCV: "Télécharger mon CV",
     },
 
     // About Section
     about: {
       title: "― À propos de moi",
+      imageAlt: "Photo de profil",
       paragraph1:
         "Développeur Fullstack passionné, avec une solide expérience dans la conception et le développement d'applications web modernes. Je maîtrise les technologies front-end et back-end, ce qui me permet de créer des solutions complètes et performantes.",
       paragraph2:
@@ -126,12 +154,13 @@ const translations = {
       subtitle:
         "Toujours à jour avec les dernières technologies et innovations en développement web et mobile",
       whatIKnow: "― Ce que je maîtrise",
+      hardSkillsTitle: "Hard Skills (Stack)",
       description1:
-        "Mon expertise technique couvre l'ensemble du cycle de développement d'applications web, de la conception front-end à l'implémentation back-end et au déploiement.",
+        "Mon expertise technique couvre l'ensemble du cycle de développement d'applications web, de la conception frontend à l'implémentation back-end et au déploiement.",
       description2:
         "Je travaille avec des frameworks et outils modernes qui me permettent de construire des applications robustes, évolutives et maintenables.",
       description3:
-        "Je suis toujours en quête de nouvelles technologies et d'amélioration de mes compétences pour rester à la pointe du développement.  Je suis constamment à l'affût des nouvelles technologies et des meilleures pratiques pour livrer des projets de haute qualité.",
+        "Je suis constamment à l'affût des nouvelles technologies et des meilleures pratiques pour livrer des projets de haute qualité.",
       cta: "Travaillons ensemble !",
       categories: {
         languagesFrameworks: "Langages & Frameworks",
@@ -140,6 +169,20 @@ const translations = {
         apisComm: "APIs & Communication",
         uiDesign: "UI & Design Systems",
         toolsDevops: "Outils & DevOps",
+      },
+      groups: {
+        backend: "Backend",
+        frontend: "Frontend",
+        database: "Base de données",
+        tools: "Outils & DevOps",
+      },
+      engineering: {
+        title: "Fondamentaux d'ingénierie",
+        description: "Je conçois mes applications selon des principes architecturaux éprouvés : POO, SOLID, Clean Architecture, DDD et le pattern MVC. Je structure les flux de données avec des DTO pour garantir une séparation claire des responsabilités, la maintenabilité et la scalabilité de chaque projet.",
+      },
+      softSkills: {
+        title: "Soft Skills",
+        description: "Rigueur technique, communication claire et esprit d'équipe définissent mon approche. Je m'adapte rapidement à de nouveaux environnements, résous les problèmes de manière méthodique, et entretiens une curiosité constante qui alimente mon apprentissage continu et ma progression professionnelle.",
       },
     },
 
@@ -150,6 +193,9 @@ const translations = {
       title: "― Projets",
       subtitle: "et Défis",
       viewAll: "Voir tous les projets",
+      detailTitle: "Détails des projets",
+      detailSubtitle: "Découvrez mes réalisations et les technologies utilisées",
+      viewMore: "Voir plus",
     },
 
     // Contact Section

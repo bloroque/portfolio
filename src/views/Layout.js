@@ -21,7 +21,10 @@ const Layout = () => {
 
     return (
         <div className="bg-body min-h-screen transition-colors duration-300">
-            <Header/>
+            <div className="fixed w-full z-50">   
+                <Header/>
+            </div>
+            
             <Contenair/>
             <Footer/>
         </div>
