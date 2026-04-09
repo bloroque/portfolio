@@ -1,243 +1,205 @@
-import React, { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React from "react";
+import { motion } from "framer-motion";
 import SkillsCSS from "./SkillsSection.module.css";
 import { useLanguage } from "../../../context/LanguageContext";
+import { FaPhp, FaReact, FaDocker, FaGitAlt, FaLinux, FaNodeJs, FaGithub, FaNpm } from "react-icons/fa";
+import {
+    SiLaravel, SiSymfony, SiCodeigniter, SiJavascript, SiTypescript,
+    SiVuedotjs, SiMysql, SiPostgresql, SiMongodb, SiRedis, SiGraphql,
+    SiTailwindcss, SiBootstrap, SiJira, SiTrello, SiJsonwebtokens,
+    SiNextdotjs, SiVite, SiFramer, SiVisualstudiocode
+} from "react-icons/si";
+import { TbComponents } from "react-icons/tb";
+import { MdDataObject } from "react-icons/md";
 
-gsap.registerPlugin(ScrollTrigger);
+const skillGroups = [
+    {
+        key: "backend",
+        skills: [
+            { name: "PHP", icon: FaPhp, color: "#777BB4" },
+            { name: "Laravel", icon: SiLaravel, color: "#FF2D20" },
+            { name: "Symfony", icon: SiSymfony, color: "#000000" },
+            { name: "CodeIgniter", icon: SiCodeigniter, color: "#EF4223" },
+            { name: "Node.js", icon: FaNodeJs, color: "#339933" },
+            { name: "Next.js", icon: SiNextdotjs, color: "#000000" },
+            { name: "REST APIs", icon: MdDataObject, color: "#009688" },
+            { name: "GraphQL", icon: SiGraphql, color: "#E10098" },
+            { name: "JWT", icon: SiJsonwebtokens, color: "#000000" },
+        ],
+    },
+    {
+        key: "frontend",
+        skills: [
+            { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
+            { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
+            { name: "React", icon: FaReact, color: "#61DAFB" },
+            { name: "Vue.js", icon: SiVuedotjs, color: "#4FC08D" },
+            { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
+            { name: "Bootstrap", icon: SiBootstrap, color: "#7952B3" },
+            { name: "shadcn/ui", icon: TbComponents, color: "#000000" },
+            { name: "Framer Motion", icon: SiFramer, color: "#0055FF" },
+        ],
+    },
+    {
+        key: "database",
+        skills: [
+            { name: "MySQL", icon: SiMysql, color: "#4479A1" },
+            { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
+            { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
+            { name: "Redis", icon: SiRedis, color: "#DC382D" },
+        ],
+    },
+    {
+        key: "tools",
+        skills: [
+            { name: "Git", icon: FaGitAlt, color: "#F05032" },
+            { name: "GitHub", icon: FaGithub, color: "#181717" },
+            { name: "npm", icon: FaNpm, color: "#CB3837" },
+            { name: "Vite", icon: SiVite, color: "#646CFF" },
+            { name: "Docker", icon: FaDocker, color: "#2496ED" },
+            { name: "Linux", icon: FaLinux, color: "#FCC624" },
+            { name: "VS Code", icon: SiVisualstudiocode, color: "#007ACC" },
+            { name: "Jira", icon: SiJira, color: "#0052CC" },
+            { name: "Trello", icon: SiTrello, color: "#0052CC" },
+        ],
+    },
+];
 
 const SkillsSection = (props) => {
     const classeCSS = props.className;
     const idSection = props.id;
     const { t } = useLanguage();
 
-    const sectionRef = useRef(null);
-    const titleRef = useRef(null);
-    const textRef = useRef(null);
-    const pillsRef = useRef(null);
+    const containerVariants = {
+        hidden: {},
+        visible: { transition: { staggerChildren: 0.15 } }
+    };
 
-    useEffect(() => {
-        const ctx = gsap.context(() => {
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top 75%",
-                    end: "bottom 20%",
-                    toggleActions: "play none none reverse",
-                }
-            });
+    const titleVariants = {
+        hidden: { opacity: 0, x: -60 },
+        visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: "easeOut" } }
+    };
 
-            tl.from(titleRef.current, {
-                opacity: 0, y: -40, duration: 0.6, ease: "power3.out"
-            })
-            .from(textRef.current.children, {
-                opacity: 0, x: -30, duration: 0.5, stagger: 0.12, ease: "power2.out"
-            }, "-=0.2")
-            .from(pillsRef.current.children, {
-                opacity: 0, scale: 0.5, duration: 0.4, stagger: 0.07, ease: "back.out(1.7)"
-            }, "-=0.3");
-        }, sectionRef);
+    const cardVariants = {
+        hidden: { opacity: 0, y: 30 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+    };
 
-        return () => ctx.revert();
-    }, []);
+    const pillVariants = {
+        hidden: { opacity: 0, scale: 0.5 },
+        visible: { opacity: 1, scale: 1, transition: { duration: 0.4, type: "spring", bounce: 0.4 } }
+    };
+
+    const pillsContainerVariants = {
+        hidden: {},
+        visible: { transition: { delayChildren: 0.3, staggerChildren: 0.04 } }
+    };
 
     return (
-        <section ref={sectionRef} id={idSection} className={`${classeCSS} ${SkillsCSS.Skills} items-center justify-center`}>
-            <div className="mx-auto max-w-screen-lg md:px-3 sm:px-3 md:pb-5 pt-4 md:pt-5 w-full h-full justify-center py-10">
+        <motion.section
+            id={idSection}
+            className={`${classeCSS} ${SkillsCSS.Skills} items-center justify-center`}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.15 }}
+            variants={containerVariants}
+        >
 
-                <div className="flex flex-col space-y-5 h-full md:pb-8">
-                    
-                    <div ref={titleRef} className={`${SkillsCSS.skillsSectionTitle} flex flex-col py-4`}>
-                        <h2 className="title-section text-[var(--text-heading)] font-bold text-4xl flex flex-col tracking-wide">
-                            <span>{t('skills.title')}</span>
+            <div className="mx-auto max-w-screen-lg md:px-4 sm:px-3 md:pb-8 pt-4 md:pt-5 w-full">
+
+                <div className="flex flex-col gap-8 px-2">
+
+                    {/* Title */}
+                    <motion.div variants={titleVariants}>
+                        <h2 className="title-section text-[var(--text-heading)] font-bold text-4xl tracking-wide">
+                            {t('skills.title')}
                         </h2>
+                    </motion.div>
+
+                    {/* Engineering + Soft Skills : 2 cards side by side */}
+                    <div className="grid md:grid-cols-2 gap-4">
+                        <motion.div
+                            variants={cardVariants}
+                            className="p-5 rounded-xl border border-[var(--border-theme)] bg-[var(--bg-card)] relative overflow-hidden"
+                        >
+                            <div className="absolute top-0 right-0 w-24 h-24 bg-[var(--color-accent)] opacity-5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+                            <div className="flex items-center gap-3 mb-3">
+                                <div className="w-8 h-8 rounded-lg bg-[var(--color-accent)] flex items-center justify-center">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" />
+                                    </svg>
+                                </div>
+                                <h3 className="text-[var(--text-heading)] font-bold text-base">
+                                    {t('skills.engineering.title')}
+                                </h3>
+                            </div>
+                            <p className="text-[var(--text-primary)] text-sm leading-relaxed text-justify">
+                                {t('skills.engineering.description')}
+                            </p>
+                        </motion.div>
+
+                        <motion.div
+                            variants={cardVariants}
+                            className="p-5 rounded-xl border border-[var(--border-theme)] bg-[var(--bg-card)] relative overflow-hidden"
+                        >
+                            <div className="absolute top-0 right-0 w-24 h-24 bg-[var(--color-accent)] opacity-5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+                            <div className="flex items-center gap-3 mb-3">
+                                <div className="w-8 h-8 rounded-lg bg-[var(--color-accent)] flex items-center justify-center">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                                    </svg>
+                                </div>
+                                <h3 className="text-[var(--text-heading)] font-bold text-base">
+                                    {t('skills.softSkills.title')}
+                                </h3>
+                            </div>
+                            <p className="text-[var(--text-primary)] text-sm leading-relaxed text-justify">
+                                {t('skills.softSkills.description')}
+                            </p>
+                        </motion.div>
                     </div>
 
-                    <div className="grow grid sm:grid-cols-10 lg:grid-cols-12 md:pb-8 gap-x-6">
+                    {/* Hard Skills — all groups in one view */}
+                    <motion.div variants={cardVariants}>
+                        <h3 className="text-[var(--text-heading)] font-bold text-lg mb-4">
+                            {t('skills.hardSkillsTitle')}
+                        </h3>
 
-                        <div ref={textRef} className="lg:mt-0 sm:col-span-4 lg:col-span-5 flex flex-col justify-start px-3">
-
-                            <div className="">
-                                    <h2 className="title-section text-[var(--text-heading)] font-bold text-xl flex flex-col tracking-wide">
-                                        <span>{t('skills.whatIKnow')}</span>
-                                        <span></span>
-                                    </h2>
-                                </div>
-                                <div className="py-4 text-[var(--text-primary)]">
-
-                                    <p className="pb-4 text-justify">
-                                        {t('skills.description1')}
-                                    </p>
-
-                                    <p className="pb-4 text-justify">
-                                        {t('skills.description2')}
-                                    </p>
-
-                                    <p className="pb-4 text-justify">
-                                        {t('skills.description3')}
-                                    </p>
-                                   
-                                </div>
-                            </div>
-
-                        <div className="sm:col-span-6 lg:col-span-7 px-3 md:pe-7 flex flex-col justify-center">
-
-                            <div ref={pillsRef} className="w-full flex flex-col gap-y-4">
-                                
-                                <div className="flex flex-col gap-y-2">
-                                    <div>
-                                        <h3 className="text-[var(--skill-text)] text-sm ps-2">{t('skills.categories.languagesFrameworks')}</h3>
+                        <motion.div variants={pillsContainerVariants} className="flex flex-col gap-2">
+                            {skillGroups.map((group) => (
+                                <div key={group.key}>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <div className="w-1 h-5 rounded-full bg-[var(--color-accent)]"></div>
+                                        <span className="text-[var(--text-heading)] text-sm font-bold uppercase tracking-wider">
+                                            {t(`skills.groups.${group.key}`)}
+                                        </span>
+                                        <span className="text-[10px] text-[var(--text-secondary)] font-medium px-2 py-0.5 rounded-full border border-[var(--border-theme)]">
+                                            {group.skills.length}
+                                        </span>
                                     </div>
-                                    <div className="w-full flex flex-wrap gap-2">
-    
-                                        <div className="h-[2.3rem] px-3 rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
-                                            <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
-                                                PHP (Laravel, Symfony, CodeIgniter)
-                                            </span>
-                                        </div>
-
-                                        <div className="h-[2.3rem] px-3 rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
-                                            <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
-                                                JS/TS (Vanilla.js, React, Vue.js)
-                                            </span>
-                                        </div>
-
+                                    <div className="flex flex-wrap gap-2">
+                                        {group.skills.map((skill, i) => (
+                                            <motion.div
+                                                key={`${group.key}-${i}`}
+                                                variants={pillVariants}
+                                                whileHover={{ y: -3 }}
+                                                className="flex items-center gap-2.5 px-2 py-1.5 rounded-md border border-[var(--border-theme)] bg-[var(--bg-card)] hover:border-[var(--color-accent)] hover:shadow-md transition-all duration-300 cursor-default"
+                                            >
+                                                <skill.icon className="text-lg flex-shrink-0" style={{ color: skill.color }} />
+                                                <span className="text-[var(--text-primary)] text-sm font-medium whitespace-nowrap">
+                                                    {skill.name}
+                                                </span>
+                                            </motion.div>
+                                        ))}
                                     </div>
                                 </div>
+                            ))}
+                        </motion.div>
+                    </motion.div>
 
-                                <div className="flex flex-col gap-y-2">
-                                    <div>
-                                        <h3 className="text-[var(--skill-text)] text-sm ps-2">
-                                            {t('skills.categories.architectureParadigms')}
-                                        </h3>
-                                    </div>
-                                    <div className="w-full flex flex-wrap gap-2">
-    
-
-                                        <div className="h-[2.3rem] px-3  rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
-                                            <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
-                                                Clean Architecture, MVC
-                                            </span>
-                                        </div>
-
-                                        <div className="h-[2.3rem] px-3  rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
-                                            <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
-                                                POO, DDD, DTO
-                                            </span>
-                                        </div>
-
-                                        <div className="h-[2.3rem] px-3  rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
-                                            <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
-                                                SOLID
-                                            </span>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div className="flex flex-col gap-y-2">
-                                    <div>
-                                        <h3 className="text-[var(--skill-text)] text-sm ps-2">{t('skills.categories.databases')}</h3>
-                                    </div>
-                                    <div className="w-full flex flex-wrap gap-2">
-    
-                                        <div className="h-[2.3rem] px-3 rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
-                                            <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
-                                                MySQL, PostgreSQL, MongoDB
-                                            </span>
-                                        </div>
-                                        <div className="h-[2.3rem] px-3 rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
-                                            <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
-                                                Redis
-                                            </span>
-                                        </div>
-                                        <div className="h-[2.3rem] px-3 rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
-                                            <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
-                                                ORM
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="flex flex-col gap-y-2">
-                                    <div>
-                                        <h3 className="text-[var(--skill-text)] text-sm ps-2">{t('skills.categories.apisComm')}</h3>
-                                    </div>
-                                    <div className="w-full flex flex-wrap gap-2">
-    
-                                        <div className="h-[2.3rem] px-3 rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
-                                            <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
-                                                REST API, GraphQL, WebSocket
-                                            </span>
-                                        </div>
-                                        <div className="h-[2.3rem] px-3 rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
-                                            <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
-                                                JWT
-                                            </span>
-                                        </div>
-                                        <div className="h-[2.3rem] px-3 rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
-                                            <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
-                                                Cron scheduling
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="flex flex-col gap-y-2">
-                                    <div>
-                                        <h3 className="text-[var(--skill-text)] text-sm ps-2">{t('skills.categories.uiDesign')}</h3>
-                                    </div>
-                                    <div className="w-full flex flex-wrap gap-2">
-
-                                        <div className="h-[2.3rem] px-3  rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
-                                            <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
-                                                Tailwind, Bootstrap
-                                            </span>
-                                        </div>
-
-                                        <div className="h-[2.3rem] px-3  rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
-                                            <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
-                                                shadcn/ui
-                                            </span>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div className="flex flex-col gap-y-2">
-                                    <div>
-                                        <h3 className="text-[var(--skill-text)] text-sm ps-2">{t('skills.categories.toolsDevops')}</h3>
-                                    </div>
-                                    <div className="w-full flex flex-wrap gap-2">
-
-                                        <div className="h-[2.3rem] px-3  rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
-                                            <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
-                                                Agile/Scrum, UML
-                                            </span>
-                                        </div>
-
-                                        <div className="h-[2.3rem] px-3  rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
-                                            <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
-                                                Jira, Trello 
-                                            </span>
-                                        </div>
-    
-                                        <div className="h-[2.3rem] px-3 rounded-3xl border border-[var(--skill-border)] flex flex-col justify-center align-middle ">
-                                            <span className="text-[var(--skill-text)] font-bold text-sm flex flex-col tracking-wide">
-                                                Git/Gitflow, Docker, Linux
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        
-                    </div>
                 </div>
-
             </div>
-        </section>
+        </motion.section>
     );
 }
 

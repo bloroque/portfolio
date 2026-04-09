@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import HomeCSS from "./HomeSection.module.css";
 import { FaFileDownload } from "react-icons/fa";
 import { useLanguage } from "../../../context/LanguageContext";
-import KeyboardBackground from "./KeyboardBackground";
 
 const HomeSection = (props) => {
     const classeCSS = props.className;
@@ -86,104 +85,105 @@ const HomeSection = (props) => {
     };
 
     return (
-        <motion.section
-            id={idSection}
-            className={classeCSS}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={containerVariants}
-            style={{ position: "relative", overflow: "hidden" }}
-        >
-            <div className="mx-auto max-w-screen-lg md:px-4 sm:px-3 md:pb-8 pt-4 md:pt-20 w-full relative z-10">
-                <div className="grid sm:grid-cols-6 lg:grid-cols-7 h-full  md:pb-8">
+        <>
+            <motion.section
+                id={idSection}
+                className={classeCSS}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={containerVariants}
+                style={{ position: "relative", overflow: "hidden" }}
+            >
+                <div className="mx-auto max-w-screen-lg md:px-4 sm:px-3 md:pb-8 pt-4 md:pt-20 w-full relative z-10">
+                    <div className="grid sm:grid-cols-6 lg:grid-cols-7 h-full  md:pb-8">
 
-                    <motion.div
-                        className="sm:col-span-3 lg:col-span-3 px-3 md:pe-7 flex flex-col justify-center"
-                        variants={containerVariants}
-                    >
-                        <motion.div variants={fadeInUp} className="md:pb-6">
-                            <h2 className="text-[var(--text-secondary)]">
-                                {t('home.greeting')}
-                            </h2>
-                        </motion.div>
-                        
-                        <motion.div variants={fadeInLeft} className={HomeCSS.homeSectionName}>
-                            <h1 className="text-4xl md:text-5xl font-extrabold flex flex-col justify-end text-[var(--text-heading)]">
-                                <span className="uppercase tracking-wide py-1 te">
-                                    Loroque Brillant
-                                </span>
-                                <span className="uppercase tracking-wide py-1 whitespace-nowrap">
-                                    Andriamampiadana
-                                </span>
-                            </h1>
-                        </motion.div>
-
-                        <motion.div variants={fadeInUp} className="flex  pt-2  md:pt-5">
-                            <div className="grow flex flex-col justify-center pe-2">
-                                <h2 className="text-[var(--text-secondary)] flex flex-col">
-                                    <span>{t('home.role')}</span>
-                                    <span></span>
-                                </h2>
-                            </div>
-                        </motion.div>
-
-                        <motion.div variants={fadeInUp} className="flex  pt-2  md:pt-5">
-                            <div className="grow flex flex-col justify-center pe-2">
-                                <span className="text-[var(--text-secondary)] ">
-                                    <span>
-                                        4 ans et 5 mois d'expérience (depuis nov. 2021). Basé à Madagascar, 
-                                        spécialisé dans les applications SaaS, plateformes métier et solutions web sur mesure.
-                                    </span>
-                                </span>
-                            </div>
-                        </motion.div>
-                        
-                        
-                        <motion.div variants={fadeInUp} className="flex flex-col pt-2 md:pt-5">
-                            <div className="flex ">
-                                <motion.button
-                                    className="relative flex text-[var(--btn-bg)]"
-                                    type="button"
-                                    variants={buttonVariants}
-                                    whileHover="hover"
-                                    whileTap="tap"
-                                >
-                                    <motion.div
-                                        className="h-full relative w-10 bg-[var(--color-accent)] flex items-center justify-center"
-                                        whileHover={{ rotate: [0, -10, 10, -10, 0] }}
-                                        transition={{ duration: 0.5 }}
-                                    >
-                                        <FaFileDownload size="25" className="text-white" />
-                                    </motion.div>
-                                    <div className="text-md font-bold ps-2 bg-[var(--btn-text)] text-[var(--btn-bg)] flex items-center h-11 pe-4 ms-1">
-                                        <span >{t('home.downloadCV')}</span>
-                                    </div>
-                                </motion.button>
-                            </div>
-                        </motion.div>
-                    </motion.div>
-
-                    <motion.div
-                        variants={imageVariants}
-                        className="lg:mt-0 sm:col-span-3 lg:col-span-4 flex flex-col justify-center px-4 md:ps-7"
-                    >
                         <motion.div
-                            className="w-full h-full img-zone  ml-auto"
-                            whileHover={{
-                                scale: 1.05,
-                                transition: { duration: 0.3 }
-                            }}
+                            className="sm:col-span-3 lg:col-span-3 px-3 md:pe-7 flex flex-col justify-center"
+                            variants={containerVariants}
                         >
-                                
+                            <motion.div variants={fadeInUp} className="md:pb-6">
+                                <h2 className="text-[var(--text-secondary)]">
+                                    {t('home.greeting')}
+                                </h2>
+                            </motion.div>
+                            
+                            <motion.div variants={fadeInLeft} className={HomeCSS.homeSectionName}>
+                                <h1 className="text-4xl md:text-5xl font-extrabold flex flex-col justify-end text-[var(--text-heading)]">
+                                    <span className="uppercase tracking-wide py-1 te">
+                                        Loroque Brillant
+                                    </span>
+                                    <span className="uppercase tracking-wide py-1 whitespace-nowrap">
+                                        Andriamampiadana
+                                    </span>
+                                </h1>
+                            </motion.div>
+
+                            <motion.div variants={fadeInUp} className="flex  pt-2  md:pt-5">
+                                <div className="grow flex flex-col justify-center pe-2">
+                                    <h2 className="text-[var(--text-secondary)] flex flex-col">
+                                        <span>{t('home.role')}</span>
+                                        <span></span>
+                                    </h2>
+                                </div>
+                            </motion.div>
+
+                            <motion.div variants={fadeInUp} className="flex  pt-2  md:pt-5">
+                                <div className="grow flex flex-col justify-center pe-2">
+                                    <span className="text-[var(--text-secondary)] ">
+                                        <span>
+                                            {t('home.experience')}
+                                        </span>
+                                    </span>
+                                </div>
+                            </motion.div>
+                            
+                            
+                            <motion.div variants={fadeInUp} className="flex flex-col pt-2 md:pt-5">
+                                <div className="flex ">
+                                    <motion.button
+                                        className="relative flex text-[var(--btn-bg)]"
+                                        type="button"
+                                        variants={buttonVariants}
+                                        whileHover="hover"
+                                        whileTap="tap"
+                                    >
+                                        <motion.div
+                                            className="h-full relative w-10 bg-[var(--color-accent)] flex items-center justify-center"
+                                            whileHover={{ rotate: [0, -10, 10, -10, 0] }}
+                                            transition={{ duration: 0.5 }}
+                                        >
+                                            <FaFileDownload size="25" className="text-white" />
+                                        </motion.div>
+                                        <div className="text-md font-bold ps-2 bg-[var(--btn-text)] text-[var(--btn-bg)] flex items-center h-11 pe-4 ms-1">
+                                            <span >{t('home.downloadCV')}</span>
+                                        </div>
+                                    </motion.button>
+                                </div>
+                            </motion.div>
                         </motion.div>
-                    </motion.div>
 
+                        <motion.div
+                            variants={imageVariants}
+                            className="lg:mt-0 sm:col-span-3 lg:col-span-4 flex flex-col justify-center px-4 md:ps-7"
+                        >
+                            <motion.div
+                                className="w-full h-full img-zone  ml-auto"
+                                whileHover={{
+                                    scale: 1.05,
+                                    transition: { duration: 0.3 }
+                                }}
+                            >
+                                    
+                            </motion.div>
+                        </motion.div>
+
+                    </div>
                 </div>
-            </div>
 
-            <KeyboardBackground />
-        </motion.section>
+                
+            </motion.section>
+        </>
     );
 }
 

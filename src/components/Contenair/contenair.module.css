@@ -1,12 +1,13 @@
 .mainPage{}
 
 .mainPage>.section {
-    min-height: 90vh;
+    min-height: 100vh;
     display: flex;
     /* padding-top: 1rem; */
 }
 .mainPage>.section:first-child {
-    min-height: calc(100vh - 85.59px);
+    /* min-height: calc(100vh - 85.59px); */
+    min-height: 100vh;
 }
 
 .mainPage > .section:last-child{

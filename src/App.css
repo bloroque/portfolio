@@ -14,7 +14,7 @@
 
 /* ===== LIGHT THEME (default) ===== */
 :root {
-    --font-family-Anton: Anton;
+    --font-family-Anton: 'Inter', sans-serif;
 --bg-body: #eef2ff;
     --bg-card: #ffffff;
     --color-theme-base: #2445A6;
@@ -91,10 +91,15 @@
 html{
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-family-Anton);
+    font-family: 'Inter', sans-serif;
 }
 
 .img-zone {
@@ -148,7 +153,7 @@ h1, h2, h3, h4, h5, h6 {
     border: 2px solid var(--icon-color);
     background-color: transparent;
     color: var(--icon-color);
-    font-family: Ubuntu, sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 0.65rem;
     font-weight: 700;
     letter-spacing: 0.5px;

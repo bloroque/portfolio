@@ -17,4 +17,4 @@ En utilisant React, j'ai cherché à créer une interface utilisateur réactive 
 
 - React 
 - Tailwind
-- Gsap
+- Framer Motion
