@@ -23,6 +23,11 @@ const translations = {
       contactBtn: "Contact",
       cvBtn: "Download CV",
       downloadCV: "Download my CV",
+      stats: {
+        years: "Years exp.",
+        projects: "Projects",
+        technologies: "Technologies"
+      }
     },
 
     // About Section
@@ -36,6 +41,11 @@ const translations = {
       paragraph3:
         "Autonomous and team-oriented, I enjoy tackling complex challenges and transforming ideas into tangible digital products.",
       cta: "Let's work together!",
+      highlightTech: "Full-Stack",
+      highlightCreative: "Creative Problem Solver",
+      highlightTeam: "Team Player",
+      animTitle1: "Passionate",
+      animTitle2: "about Code",
     },
 
     // Skills Section
@@ -86,6 +96,65 @@ const translations = {
       detailTitle: "Project Details",
       detailSubtitle: "Discover my work and the technologies used",
       viewMore: "View more",
+      detail: "Detail",
+      backHome: "Back to home",
+      filterAll: "All",
+      techUsed: "Technologies used",
+      liveDemo: "Live Demo",
+      sourceCode: "Source Code",
+      noResults: "No projects match this filter.",
+      statusLabels: {
+        completed: "Completed",
+        inProgress: "In Progress",
+        standby: "Standby",
+      },
+      items: {
+        p1: {
+          title: "SaaS Platform",
+          desc: "A complete SaaS management application with authentication, dashboards, and real-time data analytics.",
+          role: "Fullstack Developer",
+          duration: "6 months",
+          client: "Startup client",
+          features: ["User authentication & roles", "Real-time dashboards", "Data analytics & reports", "REST API", "Responsive design"],
+          challenge: "Building a scalable multi-tenant architecture capable of handling thousands of concurrent users while maintaining real-time data synchronization across dashboards."
+        },
+        p2: {
+          title: "Business Portal",
+          desc: "Custom business portal with role-based access, reporting modules, and API integrations.",
+          role: "Backend Lead",
+          duration: "4 months",
+          client: "Enterprise client",
+          features: ["Role-based access control", "Dynamic reporting", "Third-party API integration", "Data export (CSV/PDF)", "Activity logging"],
+          challenge: "Integrating multiple third-party APIs with different authentication schemes while ensuring data consistency and implementing a flexible role-based permission system."
+        },
+        p3: {
+          title: "Portfolio Website",
+          desc: "Modern portfolio website with animations, dark mode, and multilingual support.",
+          role: "Frontend Developer",
+          duration: "2 months",
+          client: "Personal project",
+          features: ["Framer Motion animations", "Dark/light theme", "EN/FR multilingual", "Responsive layout", "Contact form & scheduler"],
+          challenge: "Creating smooth, performant animations across all sections while maintaining accessibility and ensuring consistent rendering in both light and dark themes."
+        },
+        p4: {
+          title: "E-commerce Solution",
+          desc: "Full-featured e-commerce platform with payment gateway, inventory management, and order tracking.",
+          role: "Fullstack Developer",
+          duration: "8 months",
+          client: "Retail client",
+          features: ["Payment gateway integration", "Inventory management", "Order tracking system", "Admin dashboard", "Email notifications"],
+          challenge: "Implementing a secure payment pipeline with multiple providers and building a real-time inventory system that prevents overselling during high-traffic periods."
+        },
+      },
+      sectionLabels: {
+        role: "My Role",
+        duration: "Duration",
+        client: "Client",
+        features: "Key Features",
+        challenge: "Main Challenge",
+        techStack: "Tech Stack",
+        links: "Links",
+      },
     },
 
     // Contact Section
@@ -93,6 +162,10 @@ const translations = {
       title: "― Contact Me",
       description:
         "Have a project in mind or want to collaborate? Feel free to reach out!",
+      tabs: {
+        form: "Contact Form",
+        scheduler: "Schedule a Meeting",
+      },
       nameLabel: "Full Name",
       emailLabel: "Email",
       messageLabel: "Message",
@@ -100,6 +173,27 @@ const translations = {
       namePlaceholder: "Your name",
       emailPlaceholder: "your@email.com",
       messagePlaceholder: "Your message...",
+      infoTitle: "Get in Touch",
+      availableStatus: "Available for new projects",
+      responseTime: "I typically respond within 24 hours. Feel free to use either the form or schedule a meeting directly.",
+      scheduler: {
+        noDateSelected: "No date selected",
+        selectDatePrompt: "Select a date on the calendar to see available time slots.",
+        confirmButton: "Confirm Appointment",
+        modal: {
+          title: "Confirm your details",
+          nameLabel: "Full Name",
+          namePlaceholder: "Your name",
+          emailLabel: "Email address",
+          emailPlaceholder: "your@email.com",
+          phoneLabel: "Phone number",
+          phonePlaceholder: "+261 00 000 00",
+          notesLabel: "Additional notes",
+          notesPlaceholder: "Please provide any information that will help prepare our meeting.",
+          cancelButton: "Cancel",
+          confirmButton: "Confirm appointment",
+        },
+      },
     },
 
     // Footer
@@ -133,6 +227,11 @@ const translations = {
       contactBtn: "Contact",
       cvBtn: "Télécharger le CV",
       downloadCV: "Télécharger mon CV",
+      stats: {
+        years: "Ans d'exp.",
+        projects: "Projets",
+        technologies: "Technologies"
+      }
     },
 
     // About Section
@@ -146,11 +245,16 @@ const translations = {
       paragraph3:
         "Autonome et orienté vers le travail d'équipe, j'aime relever des défis complexes et transformer les idées en produits numériques concrets.",
       cta: "Travaillons ensemble !",
+      highlightTech: "Full-Stack",
+      highlightCreative: "Résolveur Créatif",
+      highlightTeam: "Esprit d'Équipe",
+      animTitle1: "Passionné",
+      animTitle2: "de Code",
     },
 
     // Skills Section
     skills: {
-      title: "― Expertise en Développement ―",
+      title: "― Expertise en Développement",
       subtitle:
         "Toujours à jour avec les dernières technologies et innovations en développement web et mobile",
       whatIKnow: "― Ce que je maîtrise",
@@ -192,10 +296,69 @@ const translations = {
         "J'ai eu l'opportunité de travailler sur plusieurs projets qui m'ont permis de développer mes compétences et de montrer ma créativité. Chaque projet représente une occasion de créer quelque chose de beau, fonctionnel et unique. Dans ce portfolio, je suis heureux de présenter certains de mes meilleurs travaux.",
       title: "― Projets",
       subtitle: "et Défis",
-      viewAll: "Voir tous les projets",
+      viewAll: "Voir tous",
       detailTitle: "Détails des projets",
       detailSubtitle: "Découvrez mes réalisations et les technologies utilisées",
       viewMore: "Voir plus",
+      detail: "Détail",
+      backHome: "Retour à l'accueil",
+      filterAll: "Tout",
+      techUsed: "Technologies utilisées",
+      liveDemo: "Démo en ligne",
+      sourceCode: "Code source",
+      noResults: "Aucun projet ne correspond à ce filtre.",
+      statusLabels: {
+        completed: "Terminé",
+        inProgress: "En cours",
+        standby: "En attente",
+      },
+      items: {
+        p1: {
+          title: "Plateforme SaaS",
+          desc: "Application SaaS complète avec authentification, tableaux de bord et analyse de données en temps réel.",
+          role: "Développeur Fullstack",
+          duration: "6 mois",
+          client: "Client startup",
+          features: ["Authentification & rôles", "Tableaux de bord temps réel", "Analyses & rapports", "API REST", "Design responsive"],
+          challenge: "Construire une architecture multi-tenant évolutive capable de gérer des milliers d'utilisateurs simultanés tout en maintenant la synchronisation des données en temps réel."
+        },
+        p2: {
+          title: "Portail Métier",
+          desc: "Portail métier sur mesure avec gestion des rôles, modules de reporting et intégrations API.",
+          role: "Lead Backend",
+          duration: "4 mois",
+          client: "Client entreprise",
+          features: ["Contrôle d'accès par rôles", "Reporting dynamique", "Intégration API tierces", "Export de données (CSV/PDF)", "Journal d'activités"],
+          challenge: "Intégrer plusieurs API tierces avec différents systèmes d'authentification tout en assurant la cohérence des données et un système de permissions flexible."
+        },
+        p3: {
+          title: "Site Portfolio",
+          desc: "Site portfolio moderne avec animations, mode sombre et support multilingue.",
+          role: "Développeur Frontend",
+          duration: "2 mois",
+          client: "Projet personnel",
+          features: ["Animations Framer Motion", "Thème sombre/clair", "Multilingue EN/FR", "Layout responsive", "Formulaire & planificateur"],
+          challenge: "Créer des animations fluides et performantes sur toutes les sections tout en maintenant l'accessibilité et un rendu cohérent en mode clair et sombre."
+        },
+        p4: {
+          title: "Solution E-commerce",
+          desc: "Plateforme e-commerce complète avec passerelle de paiement, gestion de stock et suivi de commandes.",
+          role: "Développeur Fullstack",
+          duration: "8 mois",
+          client: "Client retail",
+          features: ["Intégration passerelle de paiement", "Gestion de stock", "Suivi de commandes", "Dashboard admin", "Notifications email"],
+          challenge: "Implémenter un pipeline de paiement sécurisé avec plusieurs fournisseurs et un système d'inventaire temps réel empêchant la survente en période de fort trafic."
+        },
+      },
+      sectionLabels: {
+        role: "Mon Rôle",
+        duration: "Durée",
+        client: "Client",
+        features: "Fonctionnalités clés",
+        challenge: "Défi principal",
+        techStack: "Technologies",
+        links: "Liens",
+      },
     },
 
     // Contact Section
@@ -203,6 +366,10 @@ const translations = {
       title: "― Contactez-moi",
       description:
         "Vous avez un projet en tête ou souhaitez collaborer ? N'hésitez pas à me contacter !",
+      tabs: {
+        form: "Formulaire de contact",
+        scheduler: "Planifier un rendez-vous",
+      },
       nameLabel: "Nom complet",
       emailLabel: "E-mail",
       messageLabel: "Message",
@@ -210,6 +377,27 @@ const translations = {
       namePlaceholder: "Votre nom",
       emailPlaceholder: "votre@email.com",
       messagePlaceholder: "Votre message...",
+      infoTitle: "Restons en contact",
+      availableStatus: "Disponible pour de nouveaux projets",
+      responseTime: "Je réponds généralement sous 24 heures. N'hésitez pas à utiliser le formulaire ou à planifier directement un rendez-vous.",
+      scheduler: {
+        noDateSelected: "Aucune date sélectionnée",
+        selectDatePrompt: "Sélectionnez une date sur le calendrier pour voir les créneaux disponibles.",
+        confirmButton: "Confirmer le rendez-vous",
+        modal: {
+          title: "Confirmer vos coordonnées",
+          nameLabel: "Nom complet",
+          namePlaceholder: "Votre nom",
+          emailLabel: "Adresse e-mail",
+          emailPlaceholder: "votre@email.com",
+          phoneLabel: "Numéro de téléphone",
+          phonePlaceholder: "+261 00 000 00",
+          notesLabel: "Notes supplémentaires",
+          notesPlaceholder: "Merci de renseigner tout ce qui aidera à préparer notre rendez-vous.",
+          cancelButton: "Annuler",
+          confirmButton: "Confirmer le rendez-vous",
+        },
+      },
     },
 
     // Footer
