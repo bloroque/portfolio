@@ -115,7 +115,7 @@ const ProjectSection = (props) => {
                         {/* Header: title + intro */}
                         <div className="flex flex-col justify-between gap-4">
                             <motion.div variants={titleVariants} className="flex-1">
-                                <h2 className="title-section text-[var(--text-heading)] font-bold text-4xl tracking-wide">
+                                <h2 className="title-section text-[var(--text-heading)] font-bold text-4xl tracking-wide relative inline-block">
                                     {t('projects.title')}
                                 </h2>
                             </motion.div>
@@ -136,25 +136,21 @@ const ProjectSection = (props) => {
                                     <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-white/10"></div>
                                     <div className="absolute -bottom-6 -left-6 w-20 h-20 rounded-full bg-white/5"></div>
                                     
-                                    <div>
-                                        <h2 className="text-white font-bold text-xl flex flex-col tracking-wide pb-2 relative z-10">
+                                    <div className="relative z-10">
+                                        <h2 className="text-white font-bold text-xl flex flex-col tracking-wide leading-snug">
                                             <span>{t('projects.title')}</span>
-                                            <span className="ps-4 text-white/80">{t('projects.subtitle')}</span>
+                                            <span className="ps-4 text-white/70 text-base font-medium">{t('projects.subtitle')}</span>
                                         </h2>
-                                        <div className="flex flex-col gap-3 mt-3 text-white/60 text-xs">
-                                            <span className="flex items-center gap-1.5">
-                                                <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-                                                {t('projects.statusLabels.completed')}
-                                            </span>
-                                            <span className="flex items-center gap-1.5">
-                                                <span className="w-2 h-2 rounded-full bg-amber-400"></span>
-                                                {t('projects.statusLabels.inProgress')}
-                                            </span>
-                                            <span className="flex items-center gap-1.5">
-                                                <span className="w-2 h-2 rounded-full bg-slate-400"></span>
-                                                {t('projects.statusLabels.standby')}
-                                            </span>
-                                        </div>
+                                        
+                                        <div className="w-10 h-0.5 bg-white/40 rounded-full mt-4 mb-4"></div>
+
+                                        {/* Stats row */}
+                                        <motion.div variants={introVariants} className="flex items-center gap-6">
+                                            <div className="flex flex-col">
+                                                <span className="text-2xl font-bold text-white">20+</span>
+                                                <span className="text-[11px] text-white/60 font-medium">{t('home.stats.projects')}</span>
+                                            </div>
+                                        </motion.div>
                                     </div>
 
                                     <div className="flex flex-col gap-3 relative z-10">

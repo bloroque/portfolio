@@ -11,6 +11,7 @@ import {
 } from "react-icons/si";
 import { TbComponents } from "react-icons/tb";
 import { MdDataObject } from "react-icons/md";
+import DrawingPin from "../../../assets/images/Drawing-Pin.png";
 
 const skillGroups = [
     {
@@ -20,9 +21,9 @@ const skillGroups = [
             { name: "Laravel", icon: SiLaravel, color: "#FF2D20" },
             { name: "Symfony", icon: SiSymfony, color: "#000000" },
             { name: "CodeIgniter", icon: SiCodeigniter, color: "#EF4223" },
-            { name: "Node.js", icon: FaNodeJs, color: "#339933" },
+            // { name: "Node.js", icon: FaNodeJs, color: "#339933" },
             { name: "Next.js", icon: SiNextdotjs, color: "#000000" },
-            { name: "REST APIs", icon: MdDataObject, color: "#009688" },
+            { name: "REST API", icon: MdDataObject, color: "#009688" },
             { name: "GraphQL", icon: SiGraphql, color: "#E10098" },
             { name: "JWT", icon: SiJsonwebtokens, color: "#000000" },
         ],
@@ -110,58 +111,95 @@ const SkillsSection = (props) => {
                 <div className="flex flex-col gap-8 px-2">
 
                     {/* Title */}
-                    <motion.div variants={titleVariants}>
-                        <h2 className="title-section text-[var(--text-heading)] font-bold text-4xl tracking-wide">
+                    <motion.div variants={titleVariants} className="relative inline-block">
+                        <h2 className="title-section text-[var(--text-heading)] font-bold text-4xl tracking-wide relative inline-block">
                             {t('skills.title')}
+                            {/* Sparkle decoration */}
+                            <motion.svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 28 28"
+                                className="absolute -right-8 -top-4 md:-right-10 md:-top-5 w-5 md:w-7 pointer-events-none"
+                                initial={{ opacity: 0, scale: 0 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.6, duration: 0.5, ease: "backOut" }}
+                            >
+                                <motion.path
+                                    d="M 14 0 L 16.5 10.5 L 28 14 L 16.5 17.5 L 14 28 L 11.5 17.5 L 0 14 L 11.5 10.5 Z"
+                                    stroke="var(--svg-deco-sparkle)"
+                                    strokeWidth="1.5"
+                                    strokeLinejoin="round"
+                                    fill="var(--svg-deco-sparkle)"
+                                    animate={{ scale: [1, 1.2, 1] }}
+                                    transition={{ delay: 1, duration: 2, ease: "easeInOut", repeat: Infinity }}
+                                />
+                            </motion.svg>
                         </h2>
                     </motion.div>
 
-                    {/* Engineering + Soft Skills : 2 cards side by side */}
-                    <div className="grid md:grid-cols-2 gap-4">
+                    {/* Engineering + Soft Skills : Sticky Notes */}
+                    <div className="mx-auto max-w-screen-md grid md:grid-cols-2 gap-8 py-4">
                         <motion.div
                             variants={cardVariants}
-                            className="p-5 rounded-xl border border-[var(--border-theme)] bg-[var(--bg-card)] relative overflow-hidden"
+                            whileHover={{ rotate: 0, scale: 1.03 }}
+                            className="relative p-5 rounded-lg bg-[#fef9c3] dark:bg-[#fef08a]"
+                            style={{
+                                rotate: "-2deg",
+                                boxShadow: "2px 4px 12px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.08)",
+                            }}
                         >
-                            <div className="absolute top-0 right-0 w-24 h-24 bg-[var(--color-accent)] opacity-5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
-                            <div className="flex items-center gap-3 mb-3">
-                                <div className="w-8 h-8 rounded-lg bg-[var(--color-accent)] flex items-center justify-center">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            {/* Push pin */}
+                            <img src={DrawingPin} alt="pin" className="absolute -top-1 left-1/2 w-10 h-10 drop-shadow-lg z-20 object-contain" style={{ transform: "translateX(-50%) rotate(-100deg)" }} />
+                            
+                            <div className="flex items-center gap-3 px-2">
+                                <div className="w-7 h-7 rounded-full bg-[var(--color-accent)] flex items-center justify-center shadow-sm">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                         <path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" />
                                     </svg>
                                 </div>
-                                <h3 className="text-[var(--text-heading)] font-bold text-base">
+                                <h3 className="text-gray-800 font-bold text-base font-mono tracking-wide">
                                     {t('skills.engineering.title')}
                                 </h3>
                             </div>
-                            <p className="text-[var(--text-primary)] text-sm leading-relaxed text-justify">
+                            <p className="text-gray-700 text-sm leading-snug italic font-mono p-2 pb-0">
                                 {t('skills.engineering.description')}
                             </p>
                         </motion.div>
 
                         <motion.div
                             variants={cardVariants}
-                            className="p-5 rounded-xl border border-[var(--border-theme)] bg-[var(--bg-card)] relative overflow-hidden"
+                            whileHover={{ rotate: 0, scale: 1.03 }}
+                            className="relative p-5 rounded-lg bg-[#dbeafe] dark:bg-[#93c5fd]"
+                            style={{
+                                rotate: "1.5deg",
+                                boxShadow: "2px 4px 12px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.08)"
+                            }}
                         >
-                            <div className="absolute top-0 right-0 w-24 h-24 bg-[var(--color-accent)] opacity-5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
-                            <div className="flex items-center gap-3 mb-3">
-                                <div className="w-8 h-8 rounded-lg bg-[var(--color-accent)] flex items-center justify-center">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            {/* Push pin */}
+                            <img src={DrawingPin} alt="pin" className="absolute -top-2 left-1/2 w-10 h-10 drop-shadow-lg z-20 object-contain" style={{ transform: "translateX(-50%) rotate(-8deg)" }} />
+                            
+                            <div className="flex items-center gap-3 px-2">
+                                <div className="w-7 h-7 rounded-full bg-[var(--color-accent)] flex items-center justify-center shadow-sm">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" />
                                     </svg>
                                 </div>
-                                <h3 className="text-[var(--text-heading)] font-bold text-base">
+                                <h3 className="text-gray-800 font-bold text-base font-mono tracking-wide">
                                     {t('skills.softSkills.title')}
                                 </h3>
                             </div>
-                            <p className="text-[var(--text-primary)] text-sm leading-relaxed text-justify">
+                            <p className="text-gray-700 text-sm leading-snug italic font-mono p-2 pb-0">
                                 {t('skills.softSkills.description')}
                             </p>
                         </motion.div>
                     </div>
 
                     {/* Hard Skills — all groups in one view */}
-                    <motion.div variants={cardVariants}>
-                        <h3 className="text-[var(--text-heading)] font-bold text-lg mb-4">
+                    <motion.div 
+                        variants={cardVariants}
+                        className="px-3 ">
+                        
+                        <h3 className="text-[var(--text-heading)] font-bold text-lg mb-3">
                             {t('skills.hardSkillsTitle')}
                         </h3>
 
@@ -170,12 +208,14 @@ const SkillsSection = (props) => {
                                 <div key={group.key}>
                                     <div className="flex items-center gap-2 mb-2">
                                         <div className="w-1 h-5 rounded-full bg-[var(--color-accent)]"></div>
-                                        <span className="text-[var(--text-heading)] text-sm font-bold uppercase tracking-wider">
+                                        <span className="text-[var(--text-heading)] text-sm font-bold tracking-wider">
                                             {t(`skills.groups.${group.key}`)}
                                         </span>
-                                        <span className="text-[10px] text-[var(--text-secondary)] font-medium px-2 py-0.5 rounded-full border border-[var(--border-theme)]">
-                                            {group.skills.length}
-                                        </span>
+                                        {/* 
+                                            <span className="text-[10px] text-[var(--text-secondary)] font-medium px-2 py-0.5 rounded-full border border-[var(--border-theme)]">
+                                                {group.skills.length}
+                                            </span> 
+                                        */}
                                     </div>
                                     <div className="flex flex-wrap gap-2">
                                         {group.skills.map((skill, i) => (
@@ -183,7 +223,7 @@ const SkillsSection = (props) => {
                                                 key={`${group.key}-${i}`}
                                                 variants={pillVariants}
                                                 whileHover={{ y: -3 }}
-                                                className="flex items-center gap-2.5 px-2 py-1.5 rounded-md border border-[var(--border-theme)] bg-[var(--bg-card)] hover:border-[var(--color-accent)] hover:shadow-md transition-all duration-300 cursor-default"
+                                                className="flex items-center gap-1.5 px-2 py-2 rounded-md border border-[var(--border-theme)] bg-[var(--bg-card)] hover:border-[var(--color-accent)] hover:shadow-md transition-all duration-300 cursor-default"
                                             >
                                                 <skill.icon className="text-lg flex-shrink-0" style={{ color: skill.color }} />
                                                 <span className="text-[var(--text-primary)] text-sm font-medium whitespace-nowrap">

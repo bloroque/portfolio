@@ -1,9 +1,29 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "../../../context/LanguageContext";
+import useGoogleCalendar from "./agendaConnexion/useGoogleCalendar";
 
-const AVAILABLE_SLOTS = [
-    "13:00", "13:45", "19:00", "19:45", "20:30", "21:15"
+const FALLBACK_SLOT_GROUPS = [
+    {
+        key: "morning",
+        label: "Matin",
+        slots: [
+            { time: "09:00", available: true },
+            { time: "09:45", available: true },
+            { time: "10:30", available: true },
+            { time: "11:15", available: true },
+        ],
+    },
+    {
+        key: "afternoon",
+        label: "Après-midi",
+        slots: [
+            { time: "14:00", available: true },
+            { time: "14:45", available: true },
+            { time: "15:30", available: true },
+            { time: "16:15", available: true },
+        ],
+    },
 ];
 
 const SchedulerPicker = () => {
@@ -18,6 +38,60 @@ const SchedulerPicker = () => {
     const [selectedSlot, setSelectedSlot] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [is24h, setIs24h] = useState(true);
+    const [bookingStatus, setBookingStatus] = useState(null); // "success" | "error" | null
+    const [now, setNow] = useState(() => new Date());
+
+    // Update current time every minute
+    useEffect(() => {
+        const interval = setInterval(() => setNow(new Date()), 60 * 1000);
+        return () => clearInterval(interval);
+    }, []);
+
+    // Form refs
+    const nameRef = useRef(null);
+    const emailRef = useRef(null);
+    const phoneRef = useRef(null);
+    const notesRef = useRef(null);
+
+    // Google Calendar hook
+    const calendar = useGoogleCalendar(lang);
+    const { ready, loadMonth, loadDaySlots } = calendar;
+
+    // Load month data when month/year changes or after ready
+    useEffect(() => {
+        if (ready) {
+            loadMonth(currentYear, currentMonth);
+        }
+    }, [currentMonth, currentYear, ready, loadMonth]);
+
+    // Load day slots when selected date changes or time ticks
+    useEffect(() => {
+        if (selectedDate && ready) {
+            loadDaySlots(selectedDate.year, selectedDate.month, selectedDate.day);
+        }
+    }, [selectedDate, ready, loadDaySlots, now]);
+
+    // Dynamic slot groups: use Google Calendar data if available, else fallback
+    const slotGroups = useMemo(() => {
+        if (ready) {
+            const grouped = calendar.getGroupedSlots();
+            if (grouped) return grouped;
+        }
+        // Fallback: static slots with past check
+        return FALLBACK_SLOT_GROUPS.map((g) => ({
+            ...g,
+            label: g.key === "morning"
+                ? (lang === "fr" ? "Matin" : "Morning")
+                : (lang === "fr" ? "Après-midi" : "Afternoon"),
+            slots: g.slots.map((s) => {
+                if (!selectedDate) return s;
+                const [h, m] = s.time.split(":").map(Number);
+                const slotTime = new Date(selectedDate.year, selectedDate.month, selectedDate.day, h, m, 0);
+                const isPast = slotTime < now;
+                return { ...s, available: s.available && !isPast, reason: isPast ? "past" : null };
+            }),
+        }));
+    }, [calendar, lang, ready, selectedDate, now]);
 
     const dayNames = lang === "fr"
         ? ["LUN", "MAR", "MER", "JEU", "VEN", "SAM", "DIM"]
@@ -79,7 +153,7 @@ const SchedulerPicker = () => {
     };
 
     const isDayDisabled = (day) => {
-        return isDayPast(day) || isWeekend(day);
+        return isDayPast(day) || isWeekend(day) || (ready && calendar.checkHoliday(day, currentMonth, currentYear));
     };
 
     const selectDate = (day) => {
@@ -101,6 +175,33 @@ const SchedulerPicker = () => {
     const closeModal = () => {
         setShowModal(false);
         setSelectedSlot(null);
+        setBookingStatus(null);
+    };
+
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+        const formData = {
+            date: selectedDate,
+            slot: selectedSlot,
+            name: nameRef.current?.value || "",
+            email: emailRef.current?.value || "",
+            phone: phoneRef.current?.value || "",
+            notes: notesRef.current?.value || "",
+        };
+
+        if (calendar.ready) {
+            try {
+                await calendar.bookAppointment(formData);
+                setBookingStatus("success");
+                setTimeout(() => closeModal(), 2000);
+            } catch {
+                setBookingStatus("error");
+            }
+        } else {
+            // Pas encore connecté — juste fermer
+            setBookingStatus("success");
+            setTimeout(() => closeModal(), 1500);
+        }
     };
 
     const getFullDateLabel = () => {
@@ -161,12 +262,36 @@ const SchedulerPicker = () => {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="flex flex-col lg:flex-row gap-6 w-full "
+            className="flex flex-col gap-2 w-full min-h-[430px]"
         >
+            {/* Status bar */}
+            <motion.div variants={childVariants} className="flex items-center gap-2 px-1 py-1">
+                <div className={`w-2 h-2 rounded-full ${calendar.ready ? 'bg-emerald-500' : 'bg-amber-400 animate-pulse'}`}></div>
+                <span className="text-xs text-[var(--text-secondary)] font-medium">
+                    {calendar.ready
+                        ? (lang === "fr" ? "Calendrier synchronisé" : "Calendar synced")
+                        : (lang === "fr" ? "Chargement du calendrier..." : "Loading calendar...")
+                    }
+                </span>
+                {calendar.loading && (
+                    <svg className="animate-spin w-3.5 h-3.5 text-[var(--color-accent)]" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" className="opacity-25" />
+                        <path d="M4 12a8 8 0 018-8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="opacity-75" />
+                    </svg>
+                )}
+            </motion.div>
+
+            {calendar.error && (
+                <div className="text-xs text-red-500 bg-red-50 border border-red-200 rounded px-3 py-2">
+                    {calendar.error}
+                </div>
+            )}
+
+            <div className="flex flex-col lg:flex-row gap-2 w-full">
             {/* Calendar */}
             <motion.div
                 variants={childVariants}
-                className="flex-1 bg-[var(--bg-card)] border border-[var(--border-theme)] rounded-lg p-4"
+                className="flex-1 bg-[var(--bg-card)] border border-[var(--border-theme)] rounded p-4"
             >
                 {/* Month navigation */}
                 <div className="flex items-center justify-between mb-4">
@@ -179,7 +304,7 @@ const SchedulerPicker = () => {
                             <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </button>
-                    <span className="text-[var(--text-heading)] font-bold text-lg">
+                    <span className="text-[var(--text-heading)] font-bold text-sm md:text-base">
                         {monthNames[currentMonth]} {currentYear}
                     </span>
                     <button
@@ -210,9 +335,12 @@ const SchedulerPicker = () => {
                                 <button
                                     onClick={() => selectDate(day)}
                                     disabled={isDayDisabled(day)}
-                                    className={`w-full h-full rounded-md text-sm font-medium transition-all duration-200
+                                    title={ready ? (calendar.holidayName(day, currentMonth, currentYear) || "") : ""}
+                                    className={`w-full h-full rounded text-sm font-medium transition-all duration-200 relative
                                         ${isDayDisabled(day)
-                                            ? "text-[var(--text-secondary)] opacity-30 cursor-not-allowed"
+                                            ? (ready && calendar.checkHoliday(day, currentMonth, currentYear)
+                                                ? "text-red-400 opacity-60 cursor-not-allowed"
+                                                : "text-[var(--text-secondary)] opacity-30 cursor-not-allowed")
                                             : isDaySelected(day)
                                                 ? "bg-[var(--color-accent)] text-white shadow-md"
                                                 : isToday(day)
@@ -231,14 +359,14 @@ const SchedulerPicker = () => {
             {/* Time slots */}
             <motion.div
                 variants={childVariants}
-                className="flex-1 bg-[var(--bg-card)] border border-[var(--border-theme)] rounded-lg p-4 flex flex-col"
+                className="flex-1 bg-[var(--bg-card)] border border-[var(--border-theme)] rounded p-4 flex flex-col"
             >
                 {/* Header */}
                 <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
                     <span className="text-[var(--text-heading)] font-bold text-sm md:text-base">
                         {getDateLabel()}
                     </span>
-                    <div className="flex items-center bg-[var(--bg-secondary)] rounded-full p-0.5">
+                    <div className="flex items-center bg-[var(--bg-secondary)] border rounded-full p-0.5">
                         <button
                             onClick={() => setIs24h(false)}
                             className={`px-3 py-1 text-xs font-semibold rounded-full transition-all duration-200 ${!is24h
@@ -270,23 +398,52 @@ const SchedulerPicker = () => {
                         <div className="text-center text-xs font-bold text-[var(--text-heading)] border-b border-[var(--border-theme)] pb-2 mb-3 uppercase">
                             {formatDateHeader(selectedDate)}
                         </div>
-                        <div className="flex flex-col gap-1.5">
-                            {AVAILABLE_SLOTS.map((slot) => {
-                                const isSelected = selectedSlot === slot;
-                                return (
-                                    <button
-                                        key={slot}
-                                        onClick={() => selectSlot(slot)}
-                                        className={`py-2 px-2 rounded-md text-sm font-medium transition-all duration-200 border
-                                            ${isSelected
-                                                ? "bg-[var(--color-accent)] text-white border-[var(--color-accent)] shadow-md"
-                                                : "border-[var(--border-theme)] text-[var(--text-primary)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
-                                            }`}
-                                    >
-                                        {formatTime(slot)}
-                                    </button>
-                                );
-                            })}
+                        <div className="grid grid-cols-2 gap-3">
+                            {slotGroups.map((group) => (
+                                <div key={group.key} className="flex flex-col gap-1.5">
+                                    <span className="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider text-center mb-1">
+                                        {group.label}
+                                    </span>
+                                    {group.slots.length === 0 ? (
+                                        <p className="text-xs text-[var(--text-secondary)] italic text-center py-3">
+                                            {lang === "fr" ? "Aucun créneau" : "No slots"}
+                                        </p>
+                                    ) : (
+                                        group.slots.map((slot) => {
+                                        const isSelected = selectedSlot === slot.time;
+                                        const isUnavailable = !slot.available;
+                                        const isPast = slot.reason === "past";
+                                        return (
+                                            <button
+                                                key={slot.time}
+                                                onClick={() => !isUnavailable && selectSlot(slot.time)}
+                                                disabled={isUnavailable}
+                                                className={`py-2 px-2 rounded text-sm font-medium transition-all duration-200 border
+                                                    ${isUnavailable
+                                                        ? isPast
+                                                            ? "border-gray-200 bg-gray-50 text-gray-400 line-through cursor-not-allowed opacity-50"
+                                                            : "border-red-200 bg-red-50 text-red-400 line-through cursor-not-allowed opacity-60"
+                                                        : isSelected
+                                                            ? "bg-[var(--color-accent)] text-white border-[var(--color-accent)] shadow-md"
+                                                            : "border-[var(--border-theme)] text-[var(--text-primary)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+                                                    }`}
+                                            >
+                                                {formatTime(slot.time)}
+                                                {isUnavailable && !isPast && (
+                                                    <>
+                                                        {!isPast && (
+                                                            <span className="ml-1 text-[10px] no-underline">
+                                                                {(lang === "fr" ? "• Occupé" : "• Taken")}
+                                                            </span>
+                                                        )}
+                                                    </>
+                                                )}
+                                            </button>
+                                        );
+                                    })
+                                    )}
+                                </div>
+                            ))}
                         </div>
                     </div>
                 )}
@@ -311,11 +468,11 @@ const SchedulerPicker = () => {
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.95, y: 20 }}
                             transition={{ duration: 0.25, ease: "easeOut" }}
-                            className="relative w-full max-w-md bg-[var(--bg-card)] border border-[var(--border-theme)] rounded-xl shadow-2xl p-6"
+                            className="relative w-full max-w-md bg-white border border-white rounded space-y-3 p-6"
                             onClick={(e) => e.stopPropagation()}
                         >
                             {/* Header */}
-                            <h3 className="text-[var(--text-heading)] font-bold text-lg mb-1">
+                            <h3 className="text-theme-base font-bold text-lg">
                                 {t("contact.scheduler.modal.title")}
                             </h3>
                             <p className="text-[var(--color-accent)] font-semibold text-sm mb-5">
@@ -323,64 +480,87 @@ const SchedulerPicker = () => {
                             </p>
 
                             {/* Form */}
-                            <form onSubmit={(e) => { e.preventDefault(); closeModal(); }} className="flex flex-col gap-3">
+                            <form onSubmit={handleFormSubmit} className="flex flex-col gap-3">
                                 <div className="flex flex-col gap-1">
-                                    <label className="text-[var(--text-secondary)] text-xs font-semibold">
+                                    <label className="text-slate-700 text-xs font-semibold">
                                         {t("contact.scheduler.modal.nameLabel")} <span className="text-red-500">*</span>
                                     </label>
                                     <input
+                                        ref={nameRef}
                                         type="text"
                                         required
                                         placeholder={t("contact.scheduler.modal.namePlaceholder")}
-                                        className="px-4 py-2.5 rounded border border-[var(--border-theme)] bg-[var(--bg-secondary)] text-[var(--text-primary)] text-sm outline-none focus:border-[var(--color-accent)] transition-colors"
+                                        className="px-4 py-2.5 rounded border border-[var(--border-theme)] bg-[var(--bg-secondary)] text-slate-800 text-sm outline-none focus:border-[var(--color-accent)] transition-colors"
                                     />
                                 </div>
                                 <div className="flex flex-col gap-1">
-                                    <label className="text-[var(--text-secondary)] text-xs font-semibold">
+                                    <label className="text-slate-700 text-xs font-semibold">
                                         {t("contact.scheduler.modal.emailLabel")} <span className="text-red-500">*</span>
                                     </label>
                                     <input
+                                        ref={emailRef}
                                         type="email"
                                         required
                                         placeholder={t("contact.scheduler.modal.emailPlaceholder")}
-                                        className="px-4 py-2.5 rounded border border-[var(--border-theme)] bg-[var(--bg-secondary)] text-[var(--text-primary)] text-sm outline-none focus:border-[var(--color-accent)] transition-colors"
+                                        className="px-4 py-2.5 rounded border border-[var(--border-theme)] bg-[var(--bg-secondary)] text-slate-800 text-sm outline-none focus:border-[var(--color-accent)] transition-colors"
                                     />
                                 </div>
                                 <div className="flex flex-col gap-1">
-                                    <label className="text-[var(--text-secondary)] text-xs font-semibold">
+                                    <label className="text-slate-700 text-xs font-semibold">
                                         {t("contact.scheduler.modal.phoneLabel")} <span className="text-red-500">*</span>
                                     </label>
                                     <input
+                                        ref={phoneRef}
                                         type="tel"
                                         required
                                         placeholder={t("contact.scheduler.modal.phonePlaceholder")}
-                                        className="px-4 py-2.5 rounded border border-[var(--border-theme)] bg-[var(--bg-secondary)] text-[var(--text-primary)] text-sm outline-none focus:border-[var(--color-accent)] transition-colors"
+                                        className="px-4 py-2.5 rounded border border-[var(--border-theme)] bg-[var(--bg-secondary)] text-slate-800 text-sm outline-none focus:border-[var(--color-accent)] transition-colors"
                                     />
                                 </div>
                                 <div className="flex flex-col gap-1">
-                                    <label className="text-[var(--text-secondary)] text-xs font-semibold">
+                                    <label className="text-slate-700 text-xs font-semibold">
                                         {t("contact.scheduler.modal.notesLabel")}
                                     </label>
                                     <textarea
+                                        ref={notesRef}
                                         rows="3"
                                         placeholder={t("contact.scheduler.modal.notesPlaceholder")}
-                                        className="px-4 py-2.5 rounded border border-[var(--border-theme)] bg-[var(--bg-secondary)] text-[var(--text-primary)] text-sm outline-none focus:border-[var(--color-accent)] transition-colors resize-none"
+                                        className="px-4 py-2.5 rounded border border-[var(--border-theme)] bg-[var(--bg-secondary)] text-slate-800 text-sm outline-none focus:border-[var(--color-accent)] transition-colors resize-none"
                                     />
                                 </div>
+
+                                {/* Booking status */}
+                                {bookingStatus === "success" && (
+                                    <div className="text-xs text-emerald-600 bg-emerald-50 border border-emerald-200 rounded px-3 py-2 text-center font-semibold">
+                                        {lang === "fr" ? "Rendez-vous confirmé !" : "Appointment confirmed!"}
+                                    </div>
+                                )}
+                                {bookingStatus === "error" && (
+                                    <div className="text-xs text-red-500 bg-red-50 border border-red-200 rounded px-3 py-2 text-center font-semibold">
+                                        {lang === "fr" ? "Erreur lors de la réservation" : "Error creating appointment"}
+                                    </div>
+                                )}
 
                                 {/* Buttons */}
                                 <div className="flex gap-3 justify-end mt-2">
                                     <button
                                         type="button"
                                         onClick={closeModal}
-                                        className="px-5 py-2.5 rounded border border-[var(--border-theme)] text-[var(--text-secondary)] font-semibold text-sm hover:bg-[var(--bg-secondary)] transition-colors"
+                                        className="px-5 py-2.5 rounded border border-[var(--border-theme)] text-slate-800 font-semibold text-sm hover:bg-[var(--bg-secondary)] transition-colors"
                                     >
                                         {t("contact.scheduler.modal.cancelButton")}
                                     </button>
                                     <button
                                         type="submit"
-                                        className="px-5 py-2.5 rounded bg-[var(--color-accent)] text-white font-semibold text-sm hover:opacity-90 transition-opacity"
+                                        disabled={calendar.loading || bookingStatus === "success"}
+                                        className="px-5 py-2.5 rounded bg-[var(--color-accent)] text-white font-semibold text-sm hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center gap-2"
                                     >
+                                        {calendar.loading && (
+                                            <svg className="animate-spin w-3.5 h-3.5" viewBox="0 0 24 24" fill="none">
+                                                <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" className="opacity-25" />
+                                                <path d="M4 12a8 8 0 018-8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="opacity-75" />
+                                            </svg>
+                                        )}
                                         {t("contact.scheduler.modal.confirmButton")}
                                     </button>
                                 </div>
@@ -389,6 +569,7 @@ const SchedulerPicker = () => {
                     </motion.div>
                 )}
             </AnimatePresence>
+            </div>
         </motion.div>
     );
 };

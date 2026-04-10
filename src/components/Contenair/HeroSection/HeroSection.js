@@ -65,7 +65,7 @@ const HeroSection = (props) => {
                         >
                             {/* Badge + Greeting */}
                             <motion.div variants={fadeInUp} className="flex flex-col items-center gap-3">
-                                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--border-theme)] bg-[var(--bg-card)] text-sm text-[var(--text-secondary)] shadow-sm">
+                                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--border-theme)] bg-white text-sm text-[var(--color-accent)] shadow-sm">
                                     <span className="relative flex h-2.5 w-2.5">
                                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                                         <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
@@ -73,7 +73,8 @@ const HeroSection = (props) => {
                                     {t('home.badge')}
                                 </span>
                                 <p className="text-[var(--text-secondary)] tracking-wide text-lg">
-                                    {t('home.greeting')} Loroque Brillant 👋
+                                    {t('home.greeting')} Loroque Brillant 
+                                    <span className="text-2xl ml-1">👋</span>
                                 </p>
                             </motion.div>
 
@@ -91,7 +92,7 @@ const HeroSection = (props) => {
                                         >
                                             <motion.path
                                                 d="M 55.596 34.687 C 55.336 25.196 53.949 6.285 50.479 6.568 C 46.142 6.922 42.415 26.1 43.251 30.723 C 44.087 35.347 35.934 6.426 29.358 2.936 C 22.781 -0.554 31.338 29.876 33.851 33.242 C 36.365 36.608 10.681 20.463 3.841 23.508 C -2.999 26.553 30.4 51.941 43.502 45.198"
-                                                stroke="var(--color-accent)"
+                                                stroke="var(--svg-deco-scribble)"
                                                 strokeWidth="5"
                                                 strokeLinecap="round"
                                                 fill="transparent"
@@ -100,6 +101,7 @@ const HeroSection = (props) => {
                                                 transition={{ delay: 1, duration: 1.2, ease: "easeInOut", repeat: Infinity, repeatType: "reverse", repeatDelay: 0.5 }}
                                             />
                                         </motion.svg>
+                                        
                                         {t('home.role')}
                                     </span>
                                 </h1>
@@ -113,7 +115,7 @@ const HeroSection = (props) => {
                                 >
                                     <motion.path
                                         d="M 3 8.397 C 32.76 5.575 121.068 0.779 236.228 4.165 M 67.503 16.663 C 88.654 13.471 151.95 6.537 235.928 4.341 M 68.203 16.605 C 96.815 15.061 181.196 13.876 289.83 21.484"
-                                        stroke="var(--color-accent)"
+                                        stroke="var(--svg-deco-underline)"
                                         strokeWidth="5"
                                         strokeLinecap="round"
                                         fill="transparent"
@@ -158,7 +160,7 @@ const HeroSection = (props) => {
 
                             {/* Stats row */}
                             <motion.div variants={fadeInUp} className="flex items-center gap-8 pt-6">
-                                <div className="flex flex-col items-center">
+                                <div className="flex flex-col items-center relative">
                                     <span className="text-2xl font-bold text-[var(--text-heading)]">4+</span>
                                     <span className="text-xs text-[var(--text-secondary)]">{t('home.stats.years')}</span>
                                 </div>

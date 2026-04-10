@@ -114,7 +114,7 @@ const AboutSection = (props) => {
                             >
                                 <motion.path
                                     d="M 3 8.397 C 32.76 5.575 121.068 0.779 236.228 4.165 M 67.503 16.663 C 88.654 13.471 151.95 6.537 235.928 4.341 M 68.203 16.605 C 96.815 15.061 181.196 13.876 289.83 21.484"
-                                    stroke="var(--color-accent)"
+                                    stroke="var(--svg-deco-underline)"
                                     strokeWidth="5"
                                     strokeLinecap="round"
                                     fill="transparent"

@@ -48,6 +48,12 @@
 
     --img-zone-color: #3767D2;
     --slide-bg: #3767D2;
+
+    --svg-deco-scribble: #2445A6;
+    --svg-deco-underline: #e6a817;
+    --svg-deco-sparkle: #e63946;
+    --svg-deco-arrow: #059669;
+    --svg-deco-circle: #7c3aed;
 }
 
 /* ===== DARK THEME ===== */
@@ -86,11 +92,17 @@
 
     --img-zone-color: #3767D2;
     --slide-bg: #3767D2;
+
+    --svg-deco-scribble: #ffffff;
+    --svg-deco-underline: #fbbf24;
+    --svg-deco-sparkle: #fb7185;
+    --svg-deco-arrow: #34d399;
+    --svg-deco-circle: #a78bfa;
 }
 
 html{
     scroll-behavior: smooth;
-    scroll-padding-top: 80px;
+    scroll-padding-top: 1px;
     font-family: 'Inter', sans-serif;
 }
 
@@ -111,64 +123,6 @@ h1, h2, h3, h4, h5, h6 {
 .swiper-slide {
     display: flex !important;
 }
-/* Theme toggle button */
-.theme-toggle {
-    position: relative;
-    width: 44px;
-    height: 24px;
-    border-radius: 12px;
-    background-color: rgba(255, 255, 255, 0.2);
-    border: 2px solid var(--icon-color);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    padding: 2px;
-}
-
-.dark .theme-toggle {
-    background-color: rgba(255, 255, 255, 0.15);
-}
-
-.theme-toggle-knob {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background-color: var(--icon-color);
-    transition: transform 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.theme-toggle-knob.dark-active {
-    transform: translateX(20px);
-}
-
-/* Language toggle button */
-.lang-toggle {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border: 2px solid var(--icon-color);
-    background-color: transparent;
-    color: var(--icon-color);
-    font-family: 'Inter', sans-serif;
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-.lang-toggle:hover {
-    background-color: var(--icon-color);
-    color: var(--bg-body);
-}
-
 /* Custom utility classes */
 .bg-body {
     background-color: var(--bg-body);

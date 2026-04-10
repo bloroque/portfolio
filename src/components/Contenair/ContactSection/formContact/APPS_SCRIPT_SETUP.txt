@@ -1,0 +1,60 @@
+============================================================
+  Google Apps Script — Formulaire de Contact
+  Envoie un email à brillantloroque@gmail.com
+============================================================
+
+1. Aller sur https://script.google.com
+2. Créer un nouveau projet → nommer "Portfolio Contact Form"
+3. Remplacer le contenu de Code.gs par :
+
+------------------------------------------------------------
+
+function doPost(e) {
+  try {
+    var data = JSON.parse(e.postData.contents);
+
+    var recipientEmail = "brillantloroque@gmail.com";
+
+    var subject = "Portfolio Contact — " + data.name;
+
+    var body = "Nouveau message depuis votre portfolio :\n\n" +
+               "Nom : " + data.name + "\n" +
+               "Email : " + data.email + "\n\n" +
+               "Message :\n" + data.message + "\n\n" +
+               "---\nEnvoyé depuis le formulaire de contact du portfolio.";
+
+    MailApp.sendEmail({
+      to: recipientEmail,
+      subject: subject,
+      body: body,
+      replyTo: data.email
+    });
+
+    return ContentService
+      .createTextOutput(JSON.stringify({ success: true }))
+      .setMimeType(ContentService.MimeType.JSON);
+
+  } catch (error) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ success: false, error: error.message }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+function doGet() {
+  return ContentService
+    .createTextOutput(JSON.stringify({ status: "ok" }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+------------------------------------------------------------
+
+4. Déployer → Nouveau déploiement
+   - Type : Application Web
+   - Exécuter en tant que : Moi
+   - Qui a accès : Tout le monde
+5. Copier l'URL de déploiement
+6. Ajouter dans .env :
+   REACT_APP_CONTACT_SCRIPT_URL=https://script.google.com/macros/s/VOTRE_ID/exec
+
+7. Redémarrer npm start
