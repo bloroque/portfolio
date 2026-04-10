@@ -1,0 +1,92 @@
+========================================================
+  Google Apps Script — Pour créer des RDV dans ton agenda
+========================================================
+
+Ce script agit comme un mini-backend gratuit pour écrire 
+dans ton Google Calendar depuis le portfolio.
+
+ÉTAPES :
+--------
+
+1. Va sur https://script.google.com
+   (connecté avec brillantloroque@gmail.com)
+
+2. Clique "Nouveau projet"
+
+3. Remplace tout le code par ceci :
+
+------- COPIER À PARTIR D'ICI -------
+
+function doPost(e) {
+  try {
+    var data = JSON.parse(e.postData.contents);
+    
+    var calendar = CalendarApp.getDefaultCalendar();
+    
+    var start = new Date(data.startTime);
+    var end = new Date(data.endTime);
+    
+    var event = calendar.createEvent(
+      data.summary,
+      start,
+      end,
+      { description: data.description }
+    );
+    
+    // Envoyer email de notification
+    if (data.attendeeEmail) {
+      MailApp.sendEmail({
+        to: data.attendeeEmail,
+        subject: "Confirmation RDV — Loroque Brillant",
+        body: "Votre rendez-vous est confirmé :\n\n" +
+              data.summary + "\n" +
+              "Date : " + start.toLocaleString("fr-FR") + "\n" +
+              "Durée : 45 minutes\n\n" +
+              "À bientôt !"
+      });
+    }
+    
+    return ContentService
+      .createTextOutput(JSON.stringify({ 
+        success: true, 
+        eventId: event.getId() 
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
+      
+  } catch (error) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ 
+        success: false, 
+        error: error.message 
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+// Test GET pour vérifier que le déploiement fonctionne
+function doGet() {
+  return ContentService
+    .createTextOutput(JSON.stringify({ status: "ok" }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+------- FIN DU CODE -------
+
+4. Clique "Déployer" > "Nouveau déploiement"
+
+5. Paramètres :
+   - Type : "Application Web"
+   - Exécuter en tant que : "Moi" (brillantloroque@gmail.com)
+   - Accès : "Tout le monde" (Toute personne)
+
+6. Clique "Déployer" et autorise les permissions
+
+7. Copie l'URL du déploiement (elle ressemble à) :
+   https://script.google.com/macros/s/AKfyc.../exec
+
+8. Colle cette URL dans ton fichier .env :
+   REACT_APP_APPS_SCRIPT_URL=https://script.google.com/macros/s/AKfyc.../exec
+
+9. Redémarre le serveur (npm start)
+
+========================================================

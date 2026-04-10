@@ -1,5 +1,3 @@
-.mainPage{}
-
 .mainPage>.section {
     min-height: 100vh;
     display: flex;

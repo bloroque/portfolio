@@ -1,0 +1,117 @@
+.Experience {
+    position: relative;
+}
+
+/* Timeline vertical line */
+.timelineLine {
+    position: absolute;
+    left: calc(1.25rem + 12px); /* pl-10 = 2.5rem, center of dot */
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border-theme);
+}
+
+/* 
+@media (min-width: 768px) {
+    .timelineLine {
+        left: calc(1.75rem + 12px); pl-14 = 3.5rem
+    }
+} 
+*/
+
+/* Timeline dot */
+.timelineDot {
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    border: 3px solid var(--bg-card);
+}
+
+@media (min-width: 768px) {
+    .timelineDot {
+        left: 0.5rem;
+    }
+}
+
+.dotCurrent {
+    background: var(--color-accent);
+    box-shadow: 0 0 0 4px rgba(var(--color-accent-rgb, 99, 102, 241), 0.15);
+}
+
+.dotPast {
+    background: var(--border-theme);
+}
+
+.dotPing {
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid var(--color-accent);
+    animation: dotPingAnim 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes dotPingAnim {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    75%, 100% {
+        transform: scale(1.8);
+        opacity: 0;
+    }
+}
+
+/* Card */
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-theme);
+    border-radius: 0.5rem;
+    padding: 1rem 1.25rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    position: relative;
+}
+
+.card:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.cardCurrent {
+    border-left: 3px solid var(--color-accent);
+}
+
+/* Company logo placeholder */
+.logoWrap {
+    width: 48px;
+    height: 48px;
+    border-radius: 0.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-theme);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Current badge */
+.currentBadge {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-accent);
+    background: rgba(var(--color-accent-rgb, 99, 102, 241), 0.1);
+    padding: 0.2rem 0.5rem;
+    border-radius: 9999px;
+}

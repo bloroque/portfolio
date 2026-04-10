@@ -31,13 +31,16 @@ const Header = () => {
           </div>
           <div className="flex-1 flex">
             <div className="relative flex items-center ml-auto">
-              <nav className="hidden sm:flex text-sm leading-6 font-semibold uppercase px-2">
+              <nav className="hidden sm:flex text-sm leading-6 font-semibold  px-2">
                 <ul className="flex sm:space-x-4">
                   <li>
                     <a className="text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href={`${linkPrefix}#aboutSection`}>{t('nav.about')}</a>
                   </li>
                   <li>
                     <a className="text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href={`${linkPrefix}#skillsSection`}>{t('nav.skills')}</a>
+                  </li>
+                  <li>
+                    <a className="text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href={`${linkPrefix}#experienceSection`}>{t('nav.experience')}</a>
                   </li>
                   <li>
                     <a className="text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href={`${linkPrefix}#projectsSection`}>{t('nav.projects')}</a>
@@ -58,27 +61,32 @@ const Header = () => {
                         <FaGithub className="text-[var(--icon-color)]" size="25"/>
                     </span>
                 </a>
-                <button
-                  onClick={toggleTheme}
-                  className="theme-toggle ml-4 sm:ml-6"
-                  aria-label={isDark ? t('header.lightMode') : t('header.darkMode')}
-                  title={isDark ? t('header.lightMode') : t('header.darkMode')}
-                >
-                  <div className={`theme-toggle-knob ${isDark ? 'dark-active' : ''}`}>
-                    {isDark ? <FaMoon size="10" className="text-[#2445A6]"/> : <FaSun size="10" className="text-white"/>}
-                  </div>
-                </button>
-                <button
-                  onClick={toggleLang}
-                  className="lang-toggle ml-4 sm:ml-6"
-                  aria-label={lang === 'en' ? 'Passer en français' : 'Switch to English'}
-                  title={lang === 'en' ? 'Français' : 'English'}
-                >
-                  <span>{lang === 'en' ? 'FR' : 'EN'}</span>
-                </button>
               </div>
             </div>
           </div>
+      </div>
+
+      {/* Floating buttons — fixed right */}
+      <div className="fixed right-4 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-2.5">
+        <button
+          onClick={toggleTheme}
+          className="group w-9 h-9 rounded-xl bg-[var(--bg-card)]/80 backdrop-blur-md border-[var(--border-theme)] border-2 dark:border-white shadow-md flex items-center justify-center hover:border-[var(--color-accent)] hover:shadow-lg hover:shadow-[var(--color-accent)]/10 transition-all duration-300"
+          aria-label={isDark ? t('header.lightMode') : t('header.darkMode')}
+          title={isDark ? t('header.lightMode') : t('header.darkMode')}
+        >
+          {isDark
+            ? <FaMoon size="14" className="text-white group-hover:text-[var(--color-accent)] transition-colors" />
+            : <FaSun size="14" className="text-yellow-500 group-hover:text-yellow-400 transition-colors" />
+          }
+        </button>
+        <button
+          onClick={toggleLang}
+          className="group w-9 h-9 rounded-xl bg-[var(--bg-card)]/80 backdrop-blur-md  border-[var(--border-theme)] border-2 dark:border-white shadow-md flex items-center justify-center hover:border-[var(--color-accent)] hover:shadow-lg hover:shadow-[var(--color-accent)]/10 transition-all duration-300"
+          aria-label={lang === 'en' ? 'Passer en français' : 'Switch to English'}
+          title={lang === 'en' ? 'Français' : 'English'}
+        >
+          <span className="text-[11px] font-bold tracking-wide text-[var(--text-secondary)] group-hover:text-[var(--color-accent)] transition-colors">{lang === 'en' ? 'FR' : 'EN'}</span>
+        </button>
       </div>
     </header>
   );

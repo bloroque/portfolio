@@ -4,6 +4,7 @@ const translations = {
     nav: {
       about: "Profile",
       skills: "Skills",
+      experience: "Experience",
       projects: "Projects",
       contact: "Contact",
     },
@@ -50,7 +51,7 @@ const translations = {
 
     // Skills Section
     skills: {
-      title: "― Development Expertise ―",
+      title: "― Development Expertise",
       subtitle:
         "Always up-to-date with the latest technologies and innovations in web and mobile development",
       whatIKnow: "― What I Master",
@@ -157,6 +158,48 @@ const translations = {
       },
     },
 
+    // Experience Section
+    experience: {
+      title: "― Experience",
+      subtitle: "My professional journey and career path.",
+      jobs: [
+        {
+          role: "Fullstack Developer",
+          company: "Freelance",
+          type: "Self-employed",
+          period: "Jan 2024 – Present",
+          duration: "2 yrs+",
+          location: "Fianarantsoa, Madagascar",
+          remote: "Remote",
+          current: true,
+          description: "Design and development of modern web applications for various clients. Complete management from requirements gathering through deployment.",
+          achievements: [
+            "Built responsive portfolio and SaaS platforms with React & Node.js",
+            "Integrated third-party APIs (Google Calendar, payment gateways)",
+            "Delivered 5+ projects end-to-end with high client satisfaction",
+          ],
+          skills: ["React", "Node.js", "Tailwind CSS", "MongoDB", "REST API", "Git"],
+        },
+        {
+          role: "Frontend Developer",
+          company: "Tech Company",
+          type: "Full-time",
+          period: "Nov 2021 – Dec 2023",
+          duration: "2 yrs 2 mos",
+          location: "Fianarantsoa, Madagascar",
+          remote: "Hybrid",
+          current: false,
+          description: "Developed user interfaces and interactive features for web applications in an agile team.",
+          achievements: [
+            "Migrated legacy jQuery codebase to React, improving performance by 40%",
+            "Implemented responsive designs following Figma mockups pixel-perfect",
+            "Collaborated with backend team on REST API integration",
+          ],
+          skills: ["React", "JavaScript", "CSS3", "Figma", "jQuery", "Agile"],
+        },
+      ],
+    },
+
     // Contact Section
     contact: {
       title: "― Contact Me",
@@ -208,6 +251,7 @@ const translations = {
     nav: {
       about: "Profil",
       skills: "Compétences",
+      experience: "Expériences",
       projects: "Projets",
       contact: "Contact",
     },
@@ -239,7 +283,7 @@ const translations = {
       title: "― À propos de moi",
       imageAlt: "Photo de profil",
       paragraph1:
-        "Développeur Fullstack passionné, avec une solide expérience dans la conception et le développement d'applications web modernes. Je maîtrise les technologies front-end et back-end, ce qui me permet de créer des solutions complètes et performantes.",
+        "Développeur Fullstack PHP & JavaScript, avec une solide expérience dans la conception et le développement d'applications web modernes. Je maîtrise les technologies front-end et back-end, ce qui me permet de créer des solutions complètes et performantes.",
       paragraph2:
         "Mon approche allie rigueur technique et créativité pour créer des outils fluides et robustes, adaptés aux besoins réels des utilisateurs.",
       paragraph3:
@@ -258,7 +302,7 @@ const translations = {
       subtitle:
         "Toujours à jour avec les dernières technologies et innovations en développement web et mobile",
       whatIKnow: "― Ce que je maîtrise",
-      hardSkillsTitle: "Hard Skills (Stack)",
+      hardSkillsTitle: "Hard Skills (Stack technique)",
       description1:
         "Mon expertise technique couvre l'ensemble du cycle de développement d'applications web, de la conception frontend à l'implémentation back-end et au déploiement.",
       description2:
@@ -359,6 +403,48 @@ const translations = {
         techStack: "Technologies",
         links: "Liens",
       },
+    },
+
+    // Experience Section
+    experience: {
+      title: "― Expériences",
+      subtitle: "Mon parcours professionnel et mes réalisations.",
+      jobs: [
+        {
+          role: "Développeur Fullstack",
+          company: "Freelance",
+          type: "Indépendant",
+          period: "Jan 2024 – Présent",
+          duration: "2 ans+",
+          location: "Fianarantsoa, Madagascar",
+          remote: "À distance",
+          current: true,
+          description: "Conception et développement d'applications web modernes pour divers clients. Gestion complète du recueil des besoins jusqu'au déploiement.",
+          achievements: [
+            "Création de portfolios et plateformes SaaS avec React & Node.js",
+            "Intégration d'APIs tierces (Google Calendar, passerelles de paiement)",
+            "Livraison de 5+ projets de bout en bout avec satisfaction client élevée",
+          ],
+          skills: ["React", "Node.js", "Tailwind CSS", "MongoDB", "REST API", "Git"],
+        },
+        {
+          role: "Développeur Frontend",
+          company: "Entreprise Tech",
+          type: "CDI",
+          period: "Nov 2021 – Déc 2023",
+          duration: "2 ans 2 mois",
+          location: "Fianarantsoa, Madagascar",
+          remote: "Hybride",
+          current: false,
+          description: "Développement d'interfaces utilisateur et de fonctionnalités interactives pour des applications web au sein d'une équipe agile.",
+          achievements: [
+            "Migration d'une base jQuery vers React, améliorant les performances de 40%",
+            "Intégration pixel-perfect de maquettes Figma en responsive",
+            "Collaboration avec l'équipe backend sur l'intégration d'API REST",
+          ],
+          skills: ["React", "JavaScript", "CSS3", "Figma", "jQuery", "Agile"],
+        },
+      ],
     },
 
     // Contact Section
