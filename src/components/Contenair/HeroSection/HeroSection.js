@@ -1,13 +1,42 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import HomeCSS from "./HeroSection.module.css";
-import { FaArrowRight, FaFileDownload } from "react-icons/fa";
+import { FaArrowRight, FaFileDownload, FaGlobe, FaLayerGroup, FaCloud, FaServer, FaPaintBrush, FaTools } from "react-icons/fa";
 import { useLanguage } from "../../../context/LanguageContext";
 
 const HeroSection = (props) => {
     const classeCSS = props.className;
     const idSection = props.id;
     const { t } = useLanguage();
+    const canvasRef = useRef(null);
+    const [zOrder, setZOrder] = useState({});
+    const zCounterRef = useRef(10);
+
+    const bringToFront = (key) => {
+        zCounterRef.current += 1;
+        setZOrder(prev => ({ ...prev, [key]: zCounterRef.current }));
+    };
+
+    const services = [
+        { icon: FaGlobe, key: 'website', color: '#3b82f6' },
+        { icon: FaLayerGroup, key: 'fullstack', color: '#8b5cf6' },
+        { icon: FaCloud, key: 'saas', color: '#06b6d4' },
+        { icon: FaServer, key: 'api', color: '#f59e0b' },
+        { icon: FaPaintBrush, key: 'ui', color: '#ec4899' },
+        { icon: FaTools, key: 'maintenance', color: '#10b981' },
+    ];
+
+    // Fan layout like cards in hand
+    const totalCards = services.length;
+    const fanAngle = 40; // total arc degrees
+    const fanRadius = 30; // vertical offset for arc
+    const getCardFan = (index) => {
+        const mid = (totalCards - 1) / 2;
+        const offset = index - mid;
+        const rotate = (offset / mid) * (fanAngle / 2);
+        const translateY = Math.abs(offset) * (fanRadius / mid) * Math.abs(offset) * 0.5;
+        return { rotate, translateY };
+    };
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -158,21 +187,80 @@ const HeroSection = (props) => {
                                 </motion.a>
                             </motion.div>
 
-                            {/* Stats row */}
-                            <motion.div variants={fadeInUp} className="flex items-center gap-8 pt-6">
-                                <div className="flex flex-col items-center relative">
-                                    <span className="text-2xl font-bold text-[var(--text-heading)]">4+</span>
-                                    <span className="text-xs text-[var(--text-secondary)]">{t('home.stats.years')}</span>
-                                </div>
-                                <div className="w-px h-10 bg-[var(--border-theme)]"></div>
-                                <div className="flex flex-col items-center">
-                                    <span className="text-2xl font-bold text-[var(--text-heading)]">20+</span>
-                                    <span className="text-xs text-[var(--text-secondary)]">{t('home.stats.projects')}</span>
-                                </div>
-                                <div className="w-px h-10 bg-[var(--border-theme)]"></div>
-                                <div className="flex flex-col items-center">
-                                    <span className="text-2xl font-bold text-[var(--text-heading)]">10+</span>
-                                    <span className="text-xs text-[var(--text-secondary)]">{t('home.stats.technologies')}</span>
+                            {/* Services Canvas */}
+                            <motion.div
+                                variants={fadeInUp}
+                                ref={canvasRef}
+                                className="relative w-full max-w-2xl pt-6"
+                                style={{ minHeight: 200 }}
+                            >
+                                <div className="flex items-end justify-center" style={{ minHeight: 180 }}>
+                                    {services.map(({ icon: Icon, key, color }, index) => {
+                                        const { rotate, translateY } = getCardFan(index);
+                                        return (
+                                            <motion.div
+                                                key={key}
+                                                drag
+                                                dragConstraints={canvasRef}
+                                                dragElastic={0.15}
+                                                dragMomentum={false}
+                                                initial={{ rotate: rotate + 15, y: 60, opacity: 0, scale: 0.5 }}
+                                                animate={{
+                                                    rotate,
+                                                    y: [translateY - 6, translateY + 4, translateY],
+                                                    opacity: 1,
+                                                    scale: 1,
+                                                }}
+                                                transition={{
+                                                    delay: 0.3 + index * 0.12,
+                                                    duration: 0.7,
+                                                    ease: [0.34, 1.56, 0.64, 1],
+                                                    y: {
+                                                        delay: 0.3 + index * 0.12,
+                                                        duration: 0.9,
+                                                        times: [0, 0.6, 1],
+                                                        ease: "easeOut",
+                                                    },
+                                                }}
+                                                whileHover={{
+                                                    y: translateY - 20,
+                                                    scale: 1.12,
+                                                    rotate: 0,
+                                                    zIndex: 40,
+                                                    boxShadow: `0 14px 36px ${color}35`,
+                                                    transition: { type: "spring", stiffness: 300, damping: 18 },
+                                                }}
+                                                onDragStart={() => bringToFront(key)}
+                                                onPointerDown={() => bringToFront(key)}
+                                                whileDrag={{
+                                                    scale: 1.15,
+                                                    rotate: 0,
+                                                    boxShadow: `0 20px 48px ${color}45`,
+                                                }}
+                                                whileTap={{ scale: 0.95 }}
+                                                style={{ transformOrigin: "bottom center", zIndex: zOrder[key] ?? index }}
+                                                className={`${HomeCSS.serviceCard} group flex flex-col items-center gap-2.5 p-5 w-28 sm:w-32 -mx-2 sm:-mx-1 rounded-2xl border border-[var(--border-theme)] backdrop-blur-sm shadow-lg cursor-grab active:cursor-grabbing select-none transition-colors duration-300`}
+                                            >
+                                                <motion.div
+                                                    className="flex items-center justify-center w-10 h-10 rounded-xl"
+                                                    style={{ backgroundColor: `${color}18` }}
+                                                    whileHover={{ rotate: [0, -10, 10, -5, 0], transition: { duration: 0.5 } }}
+                                                >
+                                                    <Icon className="text-lg pointer-events-none" style={{ color }} />
+                                                </motion.div>
+                                                <span className="text-[11px] font-semibold text-[var(--text-heading)] text-center leading-tight pointer-events-none">
+                                                    {t(`home.services.${key}`)}
+                                                </span>
+                                                <motion.div
+                                                    className="h-0.5 rounded-full opacity-60"
+                                                    style={{ backgroundColor: color }}
+                                                    initial={{ width: 0 }}
+                                                    animate={{ width: 32 }}
+                                                    transition={{ delay: 0.8 + index * 0.12, duration: 0.4, ease: "easeOut" }}
+                                                />
+                                            </motion.div>
+                                        );
+                                    })}
                                 </div>
                             </motion.div>
 

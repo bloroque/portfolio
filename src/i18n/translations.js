@@ -24,10 +24,20 @@ const translations = {
       contactBtn: "Contact",
       cvBtn: "Download CV",
       downloadCV: "Download my CV",
-      stats: {
-        years: "Years exp.",
-        projects: "Projects",
-        technologies: "Technologies"
+      services: {
+        title: "My Services",
+        website: "Website Development",
+        websiteDesc: "Custom showcase & e-commerce websites, optimized for SEO and performance.",
+        fullstack: "Full-Stack Development",
+        fullstackDesc: "Complete web applications with modern front-end and robust back-end.",
+        saas: "SaaS Applications",
+        saasDesc: "Scalable multi-tenant platforms with subscription management.",
+        api: "API & Backend",
+        apiDesc: "RESTful APIs, microservices architectures and third-party integrations.",
+        ui: "UI/UX Integration",
+        uiDesc: "Pixel-perfect integration of mockups into responsive, accessible interfaces.",
+        maintenance: "Maintenance & Support",
+        maintenanceDesc: "Monitoring, bug fixes, updates and continuous improvement."
       }
     },
 
@@ -271,10 +281,20 @@ const translations = {
       contactBtn: "Contact",
       cvBtn: "Télécharger le CV",
       downloadCV: "Télécharger mon CV",
-      stats: {
-        years: "Ans d'exp.",
-        projects: "Projets",
-        technologies: "Technologies"
+      services: {
+        title: "Mes Services",
+        website: "Développement Site Internet",
+        websiteDesc: "Sites vitrines & e-commerce sur mesure, optimisés pour le SEO et la performance.",
+        fullstack: "Développement Full-Stack",
+        fullstackDesc: "Applications web complètes avec front-end moderne et back-end robuste.",
+        saas: "Applications SaaS",
+        saasDesc: "Plateformes multi-tenants évolutives avec gestion d'abonnements.",
+        api: "API & Backend",
+        apiDesc: "APIs RESTful, architectures microservices et intégrations tierces.",
+        ui: "Intégration UI/UX",
+        uiDesc: "Intégration pixel-perfect des maquettes en interfaces responsives et accessibles.",
+        maintenance: "Maintenance & Support",
+        maintenanceDesc: "Surveillance, correctifs, mises à jour et amélioration continue."
       }
     },
 
@@ -421,28 +441,11 @@ const translations = {
           current: true,
           description: "Conception et développement d'applications web modernes pour divers clients. Gestion complète du recueil des besoins jusqu'au déploiement.",
           achievements: [
-            "Création de portfolios et plateformes SaaS avec React & Node.js",
+            "Création de portfolios et plateformes SaaS avec PHP & Laravel",
             "Intégration d'APIs tierces (Google Calendar, passerelles de paiement)",
             "Livraison de 5+ projets de bout en bout avec satisfaction client élevée",
           ],
-          skills: ["React", "Node.js", "Tailwind CSS", "MongoDB", "REST API", "Git"],
-        },
-        {
-          role: "Développeur Frontend",
-          company: "Entreprise Tech",
-          type: "CDI",
-          period: "Nov 2021 – Déc 2023",
-          duration: "2 ans 2 mois",
-          location: "Fianarantsoa, Madagascar",
-          remote: "Hybride",
-          current: false,
-          description: "Développement d'interfaces utilisateur et de fonctionnalités interactives pour des applications web au sein d'une équipe agile.",
-          achievements: [
-            "Migration d'une base jQuery vers React, améliorant les performances de 40%",
-            "Intégration pixel-perfect de maquettes Figma en responsive",
-            "Collaboration avec l'équipe backend sur l'intégration d'API REST",
-          ],
-          skills: ["React", "JavaScript", "CSS3", "Figma", "jQuery", "Agile"],
+          skills: ["PHP", "CodeIgniter", "Laravel/Lumen", "Symfony", "Vue.js", "jQuery", "Wordpress"],
         },
       ],
     },
