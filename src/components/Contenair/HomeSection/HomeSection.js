@@ -9,6 +9,25 @@ const HomeSection = (props) => {
     const idSection = props.id;
     const { t } = useLanguage();
 
+    // Calculate experience years dynamically from jobs data
+    const getExperienceYears = () => {
+        const jobs = t('experience.jobs');
+        if (!Array.isArray(jobs) || jobs.length === 0) return 0;
+        let earliest = null;
+        jobs.forEach(job => {
+            if (job.dateStart) {
+                const [m, y] = job.dateStart.split('-').map(Number);
+                const d = new Date(y, m - 1);
+                if (!earliest || d < earliest) earliest = d;
+            }
+        });
+        if (!earliest) return 0;
+        const now = new Date();
+        return Math.floor((now - earliest) / (1000 * 60 * 60 * 24 * 365.25));
+    };
+
+    const experienceText = (t('home.experience') || '').replace('{{years}}', getExperienceYears());
+
     // Variants d'animation pour le conteneur
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -132,7 +151,7 @@ const HomeSection = (props) => {
                                 <div className="grow flex flex-col justify-center pe-2">
                                     <span className="text-[var(--text-secondary)] ">
                                         <span>
-                                            {t('home.experience')}
+                                            {experienceText}
                                         </span>
                                     </span>
                                 </div>

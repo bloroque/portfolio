@@ -20,24 +20,67 @@ const translations = {
       greeting: "Hi there, I'm",
       role: "Fullstack PHP & JavaScript Developer",
       badge: "Open to new challenges",
-      experience: "4+ years of experience (since Nov. 2021). Based in Madagascar, specializing in SaaS applications, business platforms and custom web solutions.",
+      experience: "{{years}}+ years of experience. Based in Madagascar, specializing in SaaS applications, business platforms and custom web solutions.",
       contactBtn: "Contact",
       cvBtn: "Download CV",
       downloadCV: "Download my CV",
       services: {
         title: "My Services",
-        website: "Website Development",
-        websiteDesc: "Custom showcase & e-commerce websites, optimized for SEO and performance.",
-        fullstack: "Full-Stack Development",
-        fullstackDesc: "Complete web applications with modern front-end and robust back-end.",
-        saas: "SaaS Applications",
-        saasDesc: "Scalable multi-tenant platforms with subscription management.",
-        api: "API & Backend",
-        apiDesc: "RESTful APIs, microservices architectures and third-party integrations.",
-        ui: "UI/UX Integration",
-        uiDesc: "Pixel-perfect integration of mockups into responsive, accessible interfaces.",
-        maintenance: "Maintenance & Support",
-        maintenanceDesc: "Monitoring, bug fixes, updates and continuous improvement."
+        website: {
+          title: "Website Development",
+          detail: {
+            desc: "Modern and high-performance web development:",
+            specification: [
+              "Custom websites or Landing pages",
+              "Responsive & mobile-first design",
+              "UI/UX integration"
+            ]
+          }
+        },
+        webapp: {
+          title: "Web Application Development",
+          detail: {
+            desc: "Custom web application design and development:",
+            specification: [
+              "Robust backend development",
+              "Interactive frontend",
+              "Business/SaaS apps (CRM, ERP, ...)"
+            ]
+          }
+        },
+        api: {
+          title: "API Design & Integration",
+          detail: {
+            desc: "Creation and integration of robust APIs:",
+            specification: [
+              "Secure REST APIs (JWT, auth)",
+              "Third-party integrations (payment, SMS, email)",
+              "API documentation (Swagger / OpenAPI)"
+            ]
+          }
+        },
+        consulting: {
+          title: "System Architecture Consulting",
+          detail: {
+            desc: "Technical consulting and structuring:",
+            specification: [
+              "Architecture choice (Clean, MVC, Microservices)",
+              "Backend/frontend structuring",
+              "Development best practices"
+            ]
+          }
+        },
+        maintenance: {
+          title: "Maintenance & Optimization",
+          detail: {
+            desc: "Improvement and support of existing applications:",
+            specification: [
+              "Refactoring (Clean Architecture, SOLID)",
+              "Performance optimization",
+              "Bug fixes & technical updates"
+            ]
+          }
+        }
       }
     },
 
@@ -177,8 +220,8 @@ const translations = {
           role: "Fullstack Developer",
           company: "Freelance",
           type: "Self-employed",
-          period: "Jan 2024 – Present",
-          duration: "2 yrs+",
+          dateStart: "08-2020",
+          dateFinish: null,
           location: "Fianarantsoa, Madagascar",
           remote: "Remote",
           current: true,
@@ -194,8 +237,8 @@ const translations = {
           role: "Frontend Developer",
           company: "Tech Company",
           type: "Full-time",
-          period: "Nov 2021 – Dec 2023",
-          duration: "2 yrs 2 mos",
+          dateStart: "11-2021",
+          dateFinish: "12-2023",
           location: "Fianarantsoa, Madagascar",
           remote: "Hybrid",
           current: false,
@@ -277,24 +320,67 @@ const translations = {
       greeting: "Hey ! Moi c'est",
       role: "Développeur Fullstack PHP & JavaScript",
       badge: "À l'écoute de nouveaux défis",
-      experience: "Plus de 4 ans d'expérience (depuis nov. 2021). Basé à Madagascar, spécialisé dans les applications SaaS, plateformes métier et solutions web sur mesure.",
+      experience: "Plus de {{years}} ans d'expérience. Basé à Madagascar, spécialisé dans la conception de applications SaaS, plateformes métier et solutions web sur mesure.",
       contactBtn: "Contact",
       cvBtn: "Télécharger le CV",
       downloadCV: "Télécharger mon CV",
       services: {
         title: "Mes Services",
-        website: "Développement Site Internet",
-        websiteDesc: "Sites vitrines & e-commerce sur mesure, optimisés pour le SEO et la performance.",
-        fullstack: "Développement Full-Stack",
-        fullstackDesc: "Applications web complètes avec front-end moderne et back-end robuste.",
-        saas: "Applications SaaS",
-        saasDesc: "Plateformes multi-tenants évolutives avec gestion d'abonnements.",
-        api: "API & Backend",
-        apiDesc: "APIs RESTful, architectures microservices et intégrations tierces.",
-        ui: "Intégration UI/UX",
-        uiDesc: "Intégration pixel-perfect des maquettes en interfaces responsives et accessibles.",
-        maintenance: "Maintenance & Support",
-        maintenanceDesc: "Surveillance, correctifs, mises à jour et amélioration continue."
+        website: {
+          title: "Développement Site Web",
+          detail: {
+            desc: "Développement de sites web modernes et performants :",
+            specification: [
+              "Sites sur mesure / Landing pages",
+              "Responsive & Design mobile-first",
+              "Intégration UI/UX"
+            ]
+          }
+        },
+        webapp: {
+          title: "Développement d'Applications Web",
+          detail: {
+            desc: "Conception et développement d'applications web sur mesure :",
+            specification: [
+              "Développement Backend robuste",
+              "Frontend interactif",
+              "Applications métier (CRM, ERP, ...)"
+            ]
+          }
+        },
+        api: {
+          title: "Conception & Intégration d'API",
+          detail: {
+            desc: "Création et intégration d'API robustes :",
+            specification: [
+              "API REST sécurisées (JWT, auth)",
+              "Intégrations tierces (paiement, SMS, ...)",
+              "Documentation API (Swagger / OpenAPI)"
+            ]
+          }
+        },
+        consulting: {
+          title: "Conseil en Architecture Système",
+          detail: {
+            desc: "Conseil technique et structuration :",
+            specification: [
+              "Architecture (Clean, MVC, Microservices)",
+              "Structuration backend/frontend",
+              "Bonnes pratiques de développement"
+            ]
+          }
+        },
+        maintenance: {
+          title: "Maintenance & Optimisation",
+          detail: {
+            desc: "Amélioration et support d'applications existantes :",
+            specification: [
+              "Refactoring (Clean Architecture, SOLID)",
+              "Optimisation des performances",
+              "Correction de bugs & mises à jour"
+            ]
+          }
+        }
       }
     },
 
@@ -434,8 +520,8 @@ const translations = {
           role: "Développeur Fullstack",
           company: "Freelance",
           type: "Indépendant",
-          period: "Jan 2024 – Présent",
-          duration: "2 ans+",
+          dateStart: "08-2020",
+          dateFinish: null,
           location: "Fianarantsoa, Madagascar",
           remote: "À distance",
           current: true,

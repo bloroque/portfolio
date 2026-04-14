@@ -15,6 +15,41 @@ const ExperienceSection = (props) => {
 
     const experiences = t("experience.jobs");
 
+    // --- Date formatting helpers ---
+    const monthNamesEn = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const monthNamesFr = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+
+    const parseDate = (str) => {
+        if (!str) return null;
+        const [month, year] = str.split("-").map(Number);
+        return { month, year };
+    };
+
+    const formatDate = (str) => {
+        const d = parseDate(str);
+        if (!d) return lang === "fr" ? "Présent" : "Present";
+        const names = lang === "fr" ? monthNamesFr : monthNamesEn;
+        return `${names[d.month - 1]} ${d.year}`;
+    };
+
+    const calcDuration = (startStr, finishStr) => {
+        const start = parseDate(startStr);
+        if (!start) return "";
+        const end = finishStr ? parseDate(finishStr) : { month: new Date().getMonth() + 1, year: new Date().getFullYear() };
+        let totalMonths = (end.year - start.year) * 12 + (end.month - start.month);
+        if (totalMonths < 0) totalMonths = 0;
+        const years = Math.floor(totalMonths / 12);
+        const months = totalMonths % 12;
+        if (lang === "fr") {
+            if (years === 0) return `${months} mois`;
+            if (months === 0) return `${years} an${years > 1 ? "s" : ""}`;
+            return `${years} an${years > 1 ? "s" : ""} ${months} mois`;
+        }
+        if (years === 0) return `${months} mo${months > 1 ? "s" : ""}`;
+        if (months === 0) return `${years} yr${years > 1 ? "s" : ""}`;
+        return `${years} yr${years > 1 ? "s" : ""} ${months} mo${months > 1 ? "s" : ""}`;
+    };
+
     // --- Framer Motion variants ---
     const containerVariants = {
         hidden: {},
@@ -119,13 +154,9 @@ const ExperienceSection = (props) => {
                                                     )}
                                                 </p>
                                                 <p className="text-[var(--text-secondary)] text-xs mt-0.5 flex items-center gap-1.5 flex-wrap">
-                                                    <span>{job.period}</span>
-                                                    {job.duration && (
-                                                        <>
-                                                            <span className="text-[var(--text-secondary)]/40">·</span>
-                                                            <span>{job.duration}</span>
-                                                        </>
-                                                    )}
+                                                    <span>{formatDate(job.dateStart)} – {formatDate(job.dateFinish)}</span>
+                                                    <span className="text-[var(--text-secondary)]/40">·</span>
+                                                    <span>{calcDuration(job.dateStart, job.dateFinish)}</span>
                                                 </p>
                                                 {job.location && (
                                                     <p className="text-[var(--text-secondary)] text-xs mt-0.5 flex items-center gap-1">
