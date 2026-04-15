@@ -109,57 +109,97 @@ const ExperienceSection = (props) => {
                     </p>
                 </motion.div>
 
-                {/* Timeline */}
+                {/* Timeline - centered with alternating sides */}
                 <div className="relative px-3">
-                    {/* Vertical line */}
-                    <div className={ExperienceCSS.timelineLine} />
+                    {/* Vertical center line */}
+                    <div className={ExperienceCSS.timelineCenterLine} />
 
                     <div className="flex flex-col gap-0">
                         {experiences.map((job, index) => {
                             const isCurrent = job.current;
+                            const isLooking = job.isLooking;
+                            // For alternating: skip the "looking" entry in the count
+                            const realIndex = isLooking ? 0 : index;
+                            const isLeft = realIndex % 2 === 0;
+
+                            // Dynamic current month/year for "looking" entry
+                            const now = new Date();
+                            const currentMonthYear = lang === "fr"
+                                ? `${monthNamesFr[now.getMonth()]} ${now.getFullYear()}`
+                                : `${monthNamesEn[now.getMonth()]} ${now.getFullYear()}`;
+
+                            // Special "looking for opportunities" card
+                            if (isLooking) {
+                                return (
+                                    <motion.div
+                                        key={index}
+                                        variants={itemVariants}
+                                        className={`relative pb-12 ${ExperienceCSS.timelineItem}`}
+                                    >
+                                        <div className={`${ExperienceCSS.timelineDotCenter} ${ExperienceCSS.dotCurrent}`}>
+                                            <span className={ExperienceCSS.dotPing} />
+                                        </div>
+
+                                        <div className={ExperienceCSS.cardLeft}>
+                                            <div className={`${ExperienceCSS.card} ${ExperienceCSS.cardLooking}`}>
+                                                <p className="text-[var(--text-secondary)] text-xs mb-1">
+                                                    {currentMonthYear}
+                                                </p>
+                                                <h3 className="text-[var(--color-accent)] font-bold text-base leading-tight mb-1">
+                                                    {job.role}
+                                                </h3>
+                                                <div className="flex justify-center gap-x-3 text-xs text-[var(--text-secondary)]">
+                                                    {job.type && <span>{job.type}</span>}
+                                                    {job.location && (
+                                                        <span className="flex items-center text-center gap-1">
+                                                            <FaMapMarkerAlt className="text-[10px] shrink-0" />
+                                                            {job.location}
+                                                        </span>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                );
+                            }
 
                             return (
                                 <motion.div
                                     key={index}
                                     variants={itemVariants}
-                                    className="relative pl-10 md:pl-14 pb-8 last:pb-0"
+                                    className={`relative pb-12 last:pb-0 ${ExperienceCSS.timelineItem}`}
                                 >
-                                    {/* Timeline dot */}
-                                    <div className={`${ExperienceCSS.timelineDot} ${isCurrent ? ExperienceCSS.dotCurrent : ExperienceCSS.dotPast}`}>
+                                    {/* Timeline dot at center */}
+                                    <div className={`${ExperienceCSS.timelineDotCenter} ${isCurrent ? ExperienceCSS.dotCurrent : ExperienceCSS.dotPast}`}>
                                         {isCurrent && <span className={ExperienceCSS.dotPing} />}
+                                        <FaBriefcase className="text-white text-[16px]" />
                                     </div>
 
-                                    {/* Card */}
-                                    <div className={`${ExperienceCSS.card} ${isCurrent ? ExperienceCSS.cardCurrent : ""}`}>
-                                        {/* Card header — LinkedIn style */}
-                                        <div className="flex items-start gap-3.5">
-                                            {/* Company logo */}
-                                            <div className={ExperienceCSS.logoWrap}>
-                                                {job.logo ? (
-                                                    <img src={job.logo} alt={job.company} className="w-full h-full object-contain rounded" />
-                                                ) : (
-                                                    <FaBriefcase className="text-[var(--color-accent)] text-lg" />
-                                                )}
-                                            </div>
+                                    {/* Card - positioned left or right */}
+                                    <div className={`${isLeft ? ExperienceCSS.cardLeft : ExperienceCSS.cardRight}`}>
+                                        <div className={`${ExperienceCSS.card} ${isCurrent ? ExperienceCSS.cardCurrent : ""}`}>
+                                            {/* Period (top, normal text) */}
+                                            <p className="text-[var(--text-secondary)] text-xs mb-3 flex items-center gap-1.5 flex-wrap">
+                                                <span>{formatDate(job.dateStart)} – {formatDate(job.dateFinish)}</span>
+                                                <span className="text-[var(--text-secondary)]/40">·</span>
+                                                <span>{calcDuration(job.dateStart, job.dateFinish)}</span>
+                                            </p>
 
-                                            {/* Info */}
-                                            <div className="flex-1 min-w-0">
-                                                <h3 className="text-[var(--text-heading)] font-bold text-sm md:text-base leading-tight">
-                                                    {job.role}
-                                                </h3>
-                                                <p className="text-[var(--text-primary)] text-sm font-medium mt-0.5">
+                                            {/* Job title */}
+                                            <h3 className="text-[var(--text-heading)] font-bold text-base md:text-lg leading-tight mb-2">
+                                                {job.role}
+                                            </h3>
+
+                                            {/* Company + work mode */}
+                                            <div className="mb-3 space-y-1">
+                                                <p className="text-[var(--text-primary)] text-sm font-semibold">
                                                     {job.company}
                                                     {job.type && (
                                                         <span className="text-[var(--text-secondary)] font-normal"> · {job.type}</span>
                                                     )}
                                                 </p>
-                                                <p className="text-[var(--text-secondary)] text-xs mt-0.5 flex items-center gap-1.5 flex-wrap">
-                                                    <span>{formatDate(job.dateStart)} – {formatDate(job.dateFinish)}</span>
-                                                    <span className="text-[var(--text-secondary)]/40">·</span>
-                                                    <span>{calcDuration(job.dateStart, job.dateFinish)}</span>
-                                                </p>
                                                 {job.location && (
-                                                    <p className="text-[var(--text-secondary)] text-xs mt-0.5 flex items-center gap-1">
+                                                    <p className="text-[var(--text-secondary)] text-xs flex items-center gap-1">
                                                         <FaMapMarkerAlt className="text-[10px] shrink-0" />
                                                         <span>{job.location}</span>
                                                         {job.remote && (
@@ -168,29 +208,19 @@ const ExperienceSection = (props) => {
                                                     </p>
                                                 )}
                                             </div>
-                                        </div>
 
-                                        {/* Current badge */}
-                                        {isCurrent && (
-                                            <span className={ExperienceCSS.currentBadge}>
-                                                {lang === "fr" ? "Poste actuel" : "Current"}
-                                            </span>
-                                        )}
-
-                                        {/* Details — always visible */}
-                                        <div className="pt-3 mt-3 border-t border-[var(--border-theme)]">
                                             {/* Description */}
                                             {job.description && (
-                                                <p className="text-[var(--text-primary)] text-sm leading-relaxed mb-3">
+                                                <p className="text-[var(--text-primary)] text-xs leading-relaxed mb-2">
                                                     {job.description}
                                                 </p>
                                             )}
 
                                             {/* Achievements */}
                                             {job.achievements && job.achievements.length > 0 && (
-                                                <ul className="space-y-1.5 mb-3">
+                                                <ul className="space-y-2 mb-4">
                                                     {job.achievements.map((item, i) => (
-                                                        <li key={i} className="flex items-start gap-2 text-sm text-[var(--text-primary)]">
+                                                        <li key={i} className="flex items-start gap-2.5 text-xs text-[var(--text-primary)]">
                                                             <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] shrink-0" />
                                                             <span>{item}</span>
                                                         </li>
@@ -200,7 +230,7 @@ const ExperienceSection = (props) => {
 
                                             {/* Skills/Tech */}
                                             {job.skills && job.skills.length > 0 && (
-                                                <div className="flex flex-wrap gap-1.5 mb-3">
+                                                <div className="flex flex-wrap gap-1.5">
                                                     {job.skills.map((skill, i) => (
                                                         <span
                                                             key={i}
@@ -210,19 +240,6 @@ const ExperienceSection = (props) => {
                                                         </span>
                                                     ))}
                                                 </div>
-                                            )}
-
-                                            {/* Link */}
-                                            {job.link && (
-                                                <a
-                                                    href={job.link}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="inline-flex items-center gap-1.5 text-xs text-[var(--color-accent)] font-semibold hover:underline"
-                                                >
-                                                    <FaExternalLinkAlt className="text-[10px]" />
-                                                    {lang === "fr" ? "Voir l'entreprise" : "View company"}
-                                                </a>
                                             )}
                                         </div>
                                     </div>

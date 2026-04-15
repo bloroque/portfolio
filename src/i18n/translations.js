@@ -20,16 +20,16 @@ const translations = {
       greeting: "Hi there, I'm",
       role: "Fullstack PHP & JavaScript Developer",
       badge: "Open to new challenges",
-      experience: "{{years}}+ years of experience. Based in Madagascar, specializing in SaaS applications, business platforms and custom web solutions.",
-      contactBtn: "Contact",
-      cvBtn: "Download CV",
-      downloadCV: "Download my CV",
+      experience: "{{years}}+ years of experience. Based in Madagascar, Specialized in SaaS architectures and business applications, I develop robust, maintainable, and performance-oriented solutions.",
+      contactBtn: "Discuss your project",
+      cvBtn: "View my CV",
+      downloadCV: "View my CV",
       services: {
         title: "My Services",
         website: {
           title: "Website Development",
           detail: {
-            desc: "Modern and high-performance web development:",
+            desc: "Design and development of modern, high-performance websites:",
             specification: [
               "Custom websites or Landing pages",
               "Responsive & mobile-first design",
@@ -89,11 +89,13 @@ const translations = {
       title: "― About Me",
       imageAlt: "Profile photo",
       paragraph1:
-        "I am a passionate Fullstack Developer with solid experience in designing and developing modern web applications. I master both front-end and back-end technologies, enabling me to create complete and high-performance solutions.",
+      "I am a Fullstack Developer with strong experience in designing and building modern web applications. I work across both front-end and back-end to deliver complete, high-performance solutions.",
+
       paragraph2:
-        "My approach combines technical rigor and creativity to build smooth and robust tools, tailored to users' real needs.",
+      "My approach combines technical rigor with creativity to build smooth, reliable tools that solve real user problems.",
+
       paragraph3:
-        "Autonomous and team-oriented, I enjoy tackling complex challenges and transforming ideas into tangible digital products.",
+      "Curious, autonomous, and team-oriented, I enjoy tackling complex challenges and turning ideas into concrete digital products.",
       cta: "Let's work together!",
       highlightTech: "Full-Stack",
       highlightCreative: "Creative Problem Solver",
@@ -106,7 +108,7 @@ const translations = {
     skills: {
       title: "― Development Expertise",
       subtitle:
-        "Always up-to-date with the latest technologies and innovations in web and mobile development",
+      "I stay up-to-date with modern technologies and best practices to build scalable, high-quality web applications.",
       whatIKnow: "― What I Master",
       hardSkillsTitle: "Hard Skills (Stack)",
       description1:
@@ -132,18 +134,18 @@ const translations = {
       },
       engineering: {
         title: "Engineering Fundamentals",
-        description: "I design my applications following proven architectural principles: OOP, SOLID, Clean Architecture, DDD and MVC patterns. I structure data flows with DTOs to ensure clear separation of concerns, maintainability and scalability across every project.",
+        description: "I leverage well-established architectural paradigms and patterns (OOP, SOLID, Clean Architecture, DDD, MVC) to design robust, scalable, sustainable applications with a clear and maintainable structure.",
       },
       softSkills: {
         title: "Soft Skills",
-        description: "Technical rigor, clear communication and strong teamwork define my approach. I adapt quickly to new environments, tackle complex problems methodically, and maintain a genuine curiosity that drives continuous learning and professional growth.",
+        description: "Technical rigor and clear communication shape my work. I value collaboration, fast adaptation, structured problem-solving, and continuous curiosity to keep improving."
       },
     },
 
     // Projects Section
     projects: {
       intro:
-        "I have had the opportunity to work on several projects that have allowed me to develop my skills and showcase my creativity. Each project represents an opportunity to create something beautiful, functional, and unique. In this portfolio, I am happy to present some of my best work.",
+      "I have worked on a variety of projects that strengthened both my technical and problem-solving skills. Each project focuses on delivering reliable, scalable, and user-centered solutions.",
       title: "― Projects",
       subtitle: "and Challenges",
       viewAll: "View All Projects",
@@ -217,14 +219,21 @@ const translations = {
       subtitle: "My professional journey and career path.",
       jobs: [
         {
+          role: "Open to New Opportunities",
+          type: "Full-time / Freelance",
+          location: "Remote / Madagascar",
+          isLooking: true,
+          current: true,
+        },
+        {
           role: "Fullstack Developer",
           company: "Freelance",
           type: "Self-employed",
           dateStart: "08-2020",
-          dateFinish: null,
+          dateFinish: "03-2026",
           location: "Fianarantsoa, Madagascar",
           remote: "Remote",
-          current: true,
+          current: false,
           description: "Design and development of modern web applications for various clients. Complete management from requirements gathering through deployment.",
           achievements: [
             "Built responsive portfolio and SaaS platforms with React & Node.js",
@@ -233,23 +242,6 @@ const translations = {
           ],
           skills: ["React", "Node.js", "Tailwind CSS", "MongoDB", "REST API", "Git"],
         },
-        {
-          role: "Frontend Developer",
-          company: "Tech Company",
-          type: "Full-time",
-          dateStart: "11-2021",
-          dateFinish: "12-2023",
-          location: "Fianarantsoa, Madagascar",
-          remote: "Hybrid",
-          current: false,
-          description: "Developed user interfaces and interactive features for web applications in an agile team.",
-          achievements: [
-            "Migrated legacy jQuery codebase to React, improving performance by 40%",
-            "Implemented responsive designs following Figma mockups pixel-perfect",
-            "Collaborated with backend team on REST API integration",
-          ],
-          skills: ["React", "JavaScript", "CSS3", "Figma", "jQuery", "Agile"],
-        },
       ],
     },
 
@@ -257,7 +249,7 @@ const translations = {
     contact: {
       title: "― Contact Me",
       description:
-        "Have a project in mind or want to collaborate? Feel free to reach out!",
+      "Have a project in mind or looking for a developer? Let’s discuss how I can help bring your ideas to life.",
       tabs: {
         form: "Contact Form",
         scheduler: "Schedule a Meeting",
@@ -320,16 +312,16 @@ const translations = {
       greeting: "Hey ! Moi c'est",
       role: "Développeur Fullstack PHP & JavaScript",
       badge: "À l'écoute de nouveaux défis",
-      experience: "Plus de {{years}} ans d'expérience. Basé à Madagascar, spécialisé dans la conception de applications SaaS, plateformes métier et solutions web sur mesure.",
-      contactBtn: "Contact",
-      cvBtn: "Télécharger le CV",
-      downloadCV: "Télécharger mon CV",
+      experience: "+ de {{years}} ans d'expérience. Basé à Madagascar, Spécialisé en architectures SaaS et applications métier, je développe des solutions robustes, maintenables et orientées performance.",
+      contactBtn: "Discuter de votre projet",
+      cvBtn: "Voir mon CV",
+      downloadCV: "Voir mon CV",
       services: {
         title: "Mes Services",
         website: {
           title: "Développement Site Web",
           detail: {
-            desc: "Développement de sites web modernes et performants :",
+            desc: "Conception et développement de sites web modernes, rapides et performants :",
             specification: [
               "Sites sur mesure / Landing pages",
               "Responsive & Design mobile-first",
@@ -389,11 +381,13 @@ const translations = {
       title: "― À propos de moi",
       imageAlt: "Photo de profil",
       paragraph1:
-        "Développeur Fullstack PHP & JavaScript, avec une solide expérience dans la conception et le développement d'applications web modernes. Je maîtrise les technologies front-end et back-end, ce qui me permet de créer des solutions complètes et performantes.",
+      "Développeur Fullstack avec une solide expérience dans la conception et le développement d’applications web modernes. J’interviens aussi bien sur le front-end que le back-end pour créer des solutions complètes et performantes.",
+
       paragraph2:
-        "Mon approche allie rigueur technique et créativité pour créer des outils fluides et robustes, adaptés aux besoins réels des utilisateurs.",
+      "Mon approche allie rigueur technique et créativité pour concevoir des outils fluides, fiables et réellement utiles aux utilisateurs.",
+
       paragraph3:
-        "Autonome et orienté vers le travail d'équipe, j'aime relever des défis complexes et transformer les idées en produits numériques concrets.",
+      "Curieux, autonome et orienté équipe, j’aime relever des défis complexes et transformer des idées en produits digitaux concrets.",
       cta: "Travaillons ensemble !",
       highlightTech: "Full-Stack",
       highlightCreative: "Résolveur Créatif",
@@ -406,9 +400,9 @@ const translations = {
     skills: {
       title: "― Expertise en Développement",
       subtitle:
-        "Toujours à jour avec les dernières technologies et innovations en développement web et mobile",
+        "Je m’appuie sur des technologies modernes et des bonnes pratiques pour concevoir des applications web robustes et évolutives.",
       whatIKnow: "― Ce que je maîtrise",
-      hardSkillsTitle: "Hard Skills (Stack technique)",
+      hardSkillsTitle: "Compétences techniques (Stack)",
       description1:
         "Mon expertise technique couvre l'ensemble du cycle de développement d'applications web, de la conception frontend à l'implémentation back-end et au déploiement.",
       description2:
@@ -431,19 +425,20 @@ const translations = {
         tools: "Outils & DevOps",
       },
       engineering: {
-        title: "Fondamentaux d'ingénierie",
-        description: "Je conçois mes applications selon des principes architecturaux éprouvés : POO, SOLID, Clean Architecture, DDD et le pattern MVC. Je structure les flux de données avec des DTO pour garantir une séparation claire des responsabilités, la maintenabilité et la scalabilité de chaque projet.",
+        title: "Fondamentaux d’ingénierie",
+        description: "Je m’appuie sur des paradigmes et patterns d’architecture reconnus (POO, SOLID, Clean Architecture, DDD, MVC) pour concevoir des applications fiables, évolutives et maintenables, avec une structure claire et durable.",
       },
+
       softSkills: {
         title: "Soft Skills",
-        description: "Rigueur technique, communication claire et esprit d'équipe définissent mon approche. Je m'adapte rapidement à de nouveaux environnements, résous les problèmes de manière méthodique, et entretiens une curiosité constante qui alimente mon apprentissage continu et ma progression professionnelle.",
+        description: "Rigueur technique et communication claire structurent mon travail. J’accorde une forte importance à la collaboration, à l’adaptation rapide et à une analyse méthodique des problèmes, avec une curiosité constante pour progresser."
       },
     },
 
     // Projects Section
     projects: {
       intro:
-        "J'ai eu l'opportunité de travailler sur plusieurs projets qui m'ont permis de développer mes compétences et de montrer ma créativité. Chaque projet représente une occasion de créer quelque chose de beau, fonctionnel et unique. Dans ce portfolio, je suis heureux de présenter certains de mes meilleurs travaux.",
+      "J’ai travaillé sur différents projets qui m’ont permis de renforcer mes compétences techniques et ma capacité à résoudre des problématiques concrètes. Chaque réalisation vise à offrir des solutions fiables, évolutives et centrées sur l’utilisateur.",
       title: "― Projets",
       subtitle: "et Défis",
       viewAll: "Voir tous",
@@ -517,6 +512,13 @@ const translations = {
       subtitle: "Mon parcours professionnel et mes réalisations.",
       jobs: [
         {
+          role: "À la recherche de nouvelles opportunités",
+          type: "Temps plein / Freelance",
+          location: "À distance / Madagascar",
+          isLooking: true,
+          current: true,
+        },
+        {
           role: "Développeur Fullstack",
           company: "Freelance",
           type: "Indépendant",
@@ -524,7 +526,7 @@ const translations = {
           dateFinish: null,
           location: "Fianarantsoa, Madagascar",
           remote: "À distance",
-          current: true,
+          current: false,
           description: "Conception et développement d'applications web modernes pour divers clients. Gestion complète du recueil des besoins jusqu'au déploiement.",
           achievements: [
             "Création de portfolios et plateformes SaaS avec PHP & Laravel",
@@ -540,7 +542,7 @@ const translations = {
     contact: {
       title: "― Contactez-moi",
       description:
-        "Vous avez un projet en tête ou souhaitez collaborer ? N'hésitez pas à me contacter !",
+      "Vous avez un projet ou recherchez un développeur ? Discutons de la manière dont je peux vous aider à concrétiser vos idées.",
       tabs: {
         form: "Formulaire de contact",
         scheduler: "Planifier un rendez-vous",
