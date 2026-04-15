@@ -152,7 +152,7 @@ const AboutSection = (props) => {
                         {/* CTA */}
                         <motion.div variants={paragraphVariants}>
                             <a
-                                href="#contact"
+                                href="#contactsSection"
                                 className="group inline-flex items-center gap-2 text-[var(--color-accent)] font-semibold hover:underline underline-offset-4 transition-all"
                             >
                                 {t('about.cta')}
