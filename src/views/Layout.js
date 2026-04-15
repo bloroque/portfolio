@@ -2,9 +2,12 @@ import React, { useEffect } from 'react'
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import Contenair from '../components/Contenair/Contenair';
+import { useLanguage } from '../context/LanguageContext';
 
 
 const Layout = () => {
+    const { isTransitioning } = useLanguage();
+
     useEffect(() => {
         // Détecte si l'URL contient une ancre et scroll vers cette section
         const hash = window.location.hash;
@@ -25,8 +28,13 @@ const Layout = () => {
                 <Header/>
             </div>
             
-            <Contenair/>
-            <Footer/>
+            <div
+                className="transition-opacity duration-300 ease-in-out"
+                style={{ opacity: isTransitioning ? 0 : 1 }}
+            >
+                <Contenair/>
+                <Footer/>
+            </div>
         </div>
     );
 }

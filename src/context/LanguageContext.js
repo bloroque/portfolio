@@ -13,12 +13,20 @@ export const LanguageProvider = ({ children }) => {
         return translations[browserLang] ? browserLang : "en";
     });
 
+    const [isTransitioning, setIsTransitioning] = useState(false);
+
     useEffect(() => {
         localStorage.setItem("lang", lang);
         document.documentElement.lang = lang;
     }, [lang]);
 
-    const toggleLang = () => setLang((prev) => (prev === "en" ? "fr" : "en"));
+    const toggleLang = () => {
+        setIsTransitioning(true);
+        setTimeout(() => {
+            setLang((prev) => (prev === "en" ? "fr" : "en"));
+            setTimeout(() => setIsTransitioning(false), 300);
+        }, 200);
+    };
 
     const t = useCallback(
         (key) => {
@@ -33,7 +41,7 @@ export const LanguageProvider = ({ children }) => {
     );
 
     return (
-        <LanguageContext.Provider value={{ lang, toggleLang, t }}>
+        <LanguageContext.Provider value={{ lang, toggleLang, t, isTransitioning }}>
             {children}
         </LanguageContext.Provider>
     );
