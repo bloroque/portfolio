@@ -18,7 +18,7 @@ const STATUS_STYLES = {
 };
 
 const DetailProjets = () => {
-    const { t } = useLanguage();
+    const { t, isTransitioning } = useLanguage();
 
     const projects = [
         { id: 1, image: Image1, key: "p1", tags: ["React", "Node.js", "MongoDB"], status: "completed", liveUrl: "#", githubUrl: "#" },
@@ -49,6 +49,10 @@ const DetailProjets = () => {
 
     return (
         <div className="bg-[var(--bg-body)] min-h-screen transition-colors duration-300">
+            <div
+                className="transition-opacity duration-300 ease-in-out"
+                style={{ opacity: isTransitioning ? 0 : 1 }}
+            >
             <div className={DetailProjetsCSS.detailProjetsContainer}>
                 <Header />
 
@@ -283,6 +287,7 @@ const DetailProjets = () => {
                 </div>
 
                 <Footer />
+            </div>
             </div>
         </div>
     );
