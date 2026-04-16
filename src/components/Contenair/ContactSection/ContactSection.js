@@ -69,7 +69,7 @@ const ContactSection = (props) => {
 
                 {/* Section header */}
                 <motion.div variants={titleVariants} className="px-1 sm:px-3 md:pe-7 space-y-1.5 sm:space-y-2 mb-4 sm:mb-6 lg:mb-8 relative">
-                    <h2 className="text-[var(--text-heading)] font-bold text-xl lg:text-2xl xl:text-3xl 2xl:text-5xl tracking-wide relative inline-block">
+                    <h2 className="text-[var(--text-heading)] font-bold text-fluid-3xl tracking-wide relative inline-block">
                         {t('contact.title')}
                         {/* Paper plane decoration - flying animation */}
                         <motion.svg
@@ -162,23 +162,23 @@ const ContactSection = (props) => {
                     <motion.div variants={sideVariants} className="md:col-span-4">
                         <div className="flex flex-col gap-3 sm:gap-4">
 
-                            <p className="text-[var(--text-primary)] text-xs sm:text-sm leading-relaxed">
+                            <p className="text-[var(--text-primary)] text-fluid-sm leading-relaxed">
                                 {t('contact.description')}
                             </p>
 
                             <div className="flex flex-col gap-3 sm:gap-4">
                                 {contactInfoItems.map((item, i) => (
                                     <div key={i} className="flex items-start">
-                                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-[var(--color-accent)]/10 flex items-center justify-center text-[var(--color-accent)] text-xs sm:text-sm shrink-0">
+                                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-[var(--color-accent)]/10 flex items-center justify-center text-[var(--color-accent)] text-fluid-sm shrink-0">
                                             {item.icon}
                                         </div>
                                         <div className="flex flex-col justify-center min-h-[32px] sm:min-h-[40px]">
                                             {item.href ? (
-                                                <a href={item.href} className="text-[var(--text-primary)] text-xs sm:text-sm hover:text-[var(--color-accent)] transition-colors">
+                                                <a href={item.href} className="text-[var(--text-primary)] text-fluid-sm hover:text-[var(--color-accent)] transition-colors">
                                                     {item.label}
                                                 </a>
                                             ) : (
-                                                    <span className="text-[var(--text-primary)] text-xs sm:text-sm">{item.label}</span>
+                                                    <span className="text-[var(--text-primary)] text-fluid-sm">{item.label}</span>
                                             )}
                                         </div>
                                     </div>
@@ -211,7 +211,7 @@ const ContactSection = (props) => {
                         <motion.div variants={titleVariants} className="flex gap-1 mb-2">
                             <button
                                 onClick={() => setActiveTab("form")}
-                                className={`group flex items-center gap-1.5 sm:gap-2.5 px-3 sm:px-4 lg:px-6 py-2 sm:py-3 rounded text-xs sm:text-sm font-semibold transition-all duration-300 border
+                                className={`group flex items-center gap-fluid px-fluid-btn py-fluid-btn rounded text-fluid-sm font-semibold transition-all duration-300 border
                                     ${activeTab === "form"
                                         ? "bg-[var(--color-accent)] text-white border-[var(--color-accent)] shadow-lg shadow-[var(--color-accent)]/20"
                                         : "border-[var(--border-theme)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
@@ -222,7 +222,7 @@ const ContactSection = (props) => {
                             </button>
                             <button
                                 onClick={() => setActiveTab("scheduler")}
-                                className={`group flex items-center gap-1.5 sm:gap-2.5 px-3 sm:px-4 lg:px-6 py-2 sm:py-3 rounded text-xs sm:text-sm font-semibold transition-all duration-300 border
+                                className={`group flex items-center gap-fluid px-fluid-btn py-fluid-btn rounded text-fluid-sm font-semibold transition-all duration-300 border
                                     ${activeTab === "scheduler"
                                         ? "bg-[var(--color-accent)] text-white border-[var(--color-accent)] shadow-lg shadow-[var(--color-accent)]/20"
                                         : "border-[var(--border-theme)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
@@ -243,7 +243,7 @@ const ContactSection = (props) => {
                                     animate="visible"
                                     exit="exit"
                                 >
-                                    <div className="bg-[var(--bg-card)] border border-[var(--border-theme)] rounded p-4 sm:p-6 md:p-8 shadow-sm">
+                                    <div className="bg-[var(--bg-card)] border border-[var(--border-theme)] rounded p-fluid-card shadow-sm">
                                         <motion.form variants={formContainerVariants} initial="hidden" animate="visible" className="flex flex-col gap-2 sm:gap-3 lg:gap-5 xl:gap-8" onSubmit={handleSubmit}>
 
                                             {/* Name + Email row */}
@@ -315,7 +315,7 @@ const ContactSection = (props) => {
                                                 <button
                                                     type="submit"
                                                     disabled={status === "sending" || status === "success"}
-                                                    className="group inline-flex items-center gap-2.5 px-4 py-3 bg-[var(--color-accent)] text-white text-sm font-bold rounded hover:shadow-lg hover:shadow-[var(--color-accent)]/25 transition-all duration-300 disabled:opacity-50"
+                                                    className="group inline-flex items-center gap-2.5 px-fluid-btn py-fluid-btn bg-[var(--color-accent)] text-white text-fluid-sm font-bold rounded hover:shadow-lg hover:shadow-[var(--color-accent)]/25 transition-all duration-300 disabled:opacity-50"
                                                 >
                                                     {status === "sending" ? (
                                                         <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">

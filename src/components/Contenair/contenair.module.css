@@ -1,6 +1,7 @@
 .mainPage>.section {
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
 }
 .mainPage>.section:first-child {
     min-height: 100vh;

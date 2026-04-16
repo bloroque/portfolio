@@ -115,12 +115,12 @@ const ProjectSection = (props) => {
                         {/* Header: title + intro */}
                         <div className="flex flex-col justify-between gap-2 sm:gap-4">
                             <motion.div variants={titleVariants} className="flex-1">
-                                <h2 className="title-section text-[var(--text-heading)] font-bold text-xl lg:text-2xl xl:text-3xl 2xl:text-5xl tracking-wide relative inline-block">
+                                <h2 className="title-section text-[var(--text-heading)] font-bold text-fluid-3xl tracking-wide relative inline-block">
                                     {t('projects.title')}
                                 </h2>
                             </motion.div>
                             <motion.div variants={introVariants} className="flex-1 text-[var(--text-primary)]">
-                                <p className="text-justify text-xs sm:text-sm leading-relaxed">
+                                <p className="text-justify text-fluid-sm leading-relaxed">
                                     {t('projects.intro')}
                                 </p>
                             </motion.div>
@@ -137,9 +137,9 @@ const ProjectSection = (props) => {
                                     <div className="absolute -bottom-6 -left-6 w-20 h-20 rounded-full bg-white/5"></div>
                                     
                                     <div className="relative z-10">
-                                        <h2 className="text-white font-bold text-base sm:text-lg lg:text-xl flex flex-col tracking-wide leading-snug">
+                                        <h2 className="text-white font-bold text-fluid-xl flex flex-col tracking-wide leading-snug">
                                             <span>{t('projects.title')}</span>
-                                            <span className="ps-2 sm:ps-4 text-white/70 text-sm sm:text-base font-medium">{t('projects.subtitle')}</span>
+                                            <span className="ps-2 sm:ps-4 text-white/70 text-fluid-base font-medium">{t('projects.subtitle')}</span>
                                         </h2>
                                         
                                         <div className="w-8 sm:w-10 h-0.5 bg-white/40 rounded-full mt-2 sm:mt-4 mb-2 sm:mb-4"></div>
@@ -250,7 +250,7 @@ const ProjectSection = (props) => {
                         <motion.div variants={btnVariants} className="flex justify-center">
                             <a 
                                 href="/detail-projets" 
-                                className="group/btn inline-flex items-center gap-2 px-8 py-3 rounded-full border-2 border-[var(--color-accent)] text-[var(--color-accent)] font-semibold hover:bg-[var(--color-accent)] hover:text-white transition-all duration-300"
+                                className="group/btn inline-flex items-center gap-2 px-fluid-btn py-fluid-btn rounded-full border-2 border-[var(--color-accent)] text-[var(--color-accent)] font-semibold hover:bg-[var(--color-accent)] hover:text-white transition-all duration-300"
                             >
                                 {t('projects.viewAll')}
                                 <FaArrowRight className="text-xs transition-transform duration-300 group-hover/btn:translate-x-1" />

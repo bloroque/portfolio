@@ -78,7 +78,7 @@ const ExperienceSection = (props) => {
             <div className="mx-auto max-w-screen-lg w-full flex flex-col justify-center px-3 sm:px-4 py-2 sm:py-3">
                 {/* Section Title */}
                 <motion.div variants={titleVariants} className="px-1 sm:px-3 md:pe-7 space-y-1.5 sm:space-y-2 mb-4 sm:mb-6 lg:mb-10 relative">
-                    <h2 className="text-[var(--text-heading)] font-bold text-xl lg:text-2xl xl:text-3xl 2xl:text-5xl tracking-wide relative inline-block">
+                    <h2 className="text-[var(--text-heading)] font-bold text-fluid-3xl tracking-wide relative inline-block">
                         {t("experience.title")}
                         {/* Curved arrow decoration */}
                         <motion.svg
@@ -104,7 +104,7 @@ const ExperienceSection = (props) => {
                             />
                         </motion.svg>
                     </h2>
-                    <p className="text-[var(--text-secondary)] text-xs sm:text-sm leading-relaxed max-w-xl">
+                    <p className="text-[var(--text-secondary)] text-fluid-sm leading-relaxed max-w-xl">
                         {t("experience.subtitle")}
                     </p>
                 </motion.div>
@@ -186,13 +186,13 @@ const ExperienceSection = (props) => {
                                             </p>
 
                                             {/* Job title */}
-                                            <h3 className="text-[var(--text-heading)] font-bold text-sm sm:text-base md:text-lg leading-tight mb-1.5 sm:mb-2">
+                                            <h3 className="text-[var(--text-heading)] font-bold text-fluid-lg leading-tight mb-1.5 sm:mb-2">
                                                 {job.role}
                                             </h3>
 
                                             {/* Company + work mode */}
                                             <div className="mb-2 sm:mb-3 space-y-1">
-                                                <p className="text-[var(--text-primary)] text-xs sm:text-sm font-semibold">
+                                                <p className="text-[var(--text-primary)] text-fluid-sm font-semibold">
                                                     {job.company}
                                                     {job.type && (
                                                         <span className="text-[var(--text-secondary)] font-normal"> · {job.type}</span>

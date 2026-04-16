@@ -17,16 +17,16 @@
 
     @keyframes stickyBg {
         from {
-            padding-top: 2rem;
-            padding-bottom: .75rem;
+            padding-top: 1.5rem;
+            padding-bottom: .5rem;
             background-color: transparent;
             box-shadow: none;
         }
 
         to {
             padding-top: 1rem;
-            padding-bottom: .75rem;
-            background-color: var(--bg-body);
+            padding-bottom: .5rem;
+            /* background-color: var(--bg-body); */
         }
     }
 }

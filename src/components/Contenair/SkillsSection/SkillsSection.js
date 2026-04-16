@@ -112,7 +112,7 @@ const SkillsSection = (props) => {
 
                     {/* Title */}
                     <motion.div variants={titleVariants} className="relative inline-block">
-                        <h2 className="title-section text-[var(--text-heading)] font-bold text-xl lg:text-2xl xl:text-3xl 2xl:text-5xl tracking-wide relative inline-block">
+                        <h2 className="title-section text-[var(--text-heading)] font-bold text-fluid-3xl tracking-wide relative inline-block">
                             {t('skills.title')}
                             {/* Sparkle decoration */}
                             <motion.svg
@@ -142,26 +142,23 @@ const SkillsSection = (props) => {
                         <motion.div
                             variants={cardVariants}
                             whileHover={{ rotate: 0, scale: 1.03 }}
-                            className="relative p-5 rounded-lg bg-[#fef9c3] dark:bg-[#fef08a]"
-                            style={{
-                                rotate: "-2deg",
-                                boxShadow: "2px 4px 12px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.08)",
-                            }}
+                            className={`${SkillsCSS.skillCard} ${SkillsCSS.skillCardBlue} relative p-5 rounded-xl border-2 border-white shadow-xl`}
+                            style={{ rotate: "-2deg" }}
                         >
                             {/* Push pin */}
                             <img src={DrawingPin} alt="pin" className="absolute -top-1 left-1/2 w-10 h-10 drop-shadow-lg z-20 object-contain" style={{ transform: "translateX(-50%) rotate(-100deg)" }} />
                             
                             <div className="flex items-center gap-3 px-2">
-                                <div className="w-7 h-7 rounded-full bg-[var(--color-accent)] flex items-center justify-center shadow-sm">
+                                <div className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center shadow-sm">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                         <path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" />
                                     </svg>
                                 </div>
-                                <h3 className="text-gray-800 font-bold text-sm sm:text-base font-mono tracking-wide">
+                                <h3 className="text-white font-bold text-fluid-base tracking-wide">
                                     {t('skills.engineering.title')}
                                 </h3>
                             </div>
-                            <p className="text-gray-700 text-xs sm:text-sm leading-snug italic font-mono p-1 sm:p-2 pb-0">
+                            <p className="text-white text-fluid-sm leading-snug p-1 sm:p-2 pb-0">
                                 {t('skills.engineering.description')}
                             </p>
                         </motion.div>
@@ -169,26 +166,23 @@ const SkillsSection = (props) => {
                         <motion.div
                             variants={cardVariants}
                             whileHover={{ rotate: 0, scale: 1.03 }}
-                            className="relative p-5 rounded-lg bg-[#dbeafe] dark:bg-[#93c5fd]"
-                            style={{
-                                rotate: "1.5deg",
-                                boxShadow: "2px 4px 12px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.08)"
-                            }}
+                            className={`${SkillsCSS.skillCard} ${SkillsCSS.skillCardDark} relative p-5 rounded-xl border-2 border-white shadow-xl`}
+                            style={{ rotate: "1.5deg" }}
                         >
                             {/* Push pin */}
                             <img src={DrawingPin} alt="pin" className="absolute -top-2 left-1/2 w-10 h-10 drop-shadow-lg z-20 object-contain" style={{ transform: "translateX(-50%) rotate(-8deg)" }} />
                             
                             <div className="flex items-center gap-2 sm:gap-3 px-1 sm:px-2">
-                                <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[var(--color-accent)] flex items-center justify-center shadow-sm">
+                                <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-white/20 flex items-center justify-center shadow-sm">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" />
                                     </svg>
                                 </div>
-                                <h3 className="text-gray-800 font-bold text-sm sm:text-base font-mono tracking-wide">
+                                <h3 className="text-white font-bold text-fluid-base tracking-wide">
                                     {t('skills.softSkills.title')}
                                 </h3>
                             </div>
-                            <p className="text-gray-700 text-xs sm:text-sm leading-snug italic font-mono p-1 sm:p-2 pb-0">
+                            <p className="text-white text-fluid-sm leading-snug p-1 sm:p-2 pb-0">
                                 {t('skills.softSkills.description')}
                             </p>
                         </motion.div>
@@ -199,7 +193,7 @@ const SkillsSection = (props) => {
                         variants={cardVariants}
                         className="px-1 sm:px-3">
                         
-                        <h3 className="text-[var(--text-heading)] font-bold text-base lg:text-lg mb-2 sm:mb-3">
+                        <h3 className="text-[var(--text-heading)] font-bold text-fluid-lg mb-2 sm:mb-3">
                             {t('skills.hardSkillsTitle')}
                         </h3>
 
@@ -226,7 +220,7 @@ const SkillsSection = (props) => {
                                                 className="flex items-center gap-1 sm:gap-1.5 px-1.5 sm:px-2 py-1.5 sm:py-2 rounded-md border border-[var(--border-theme)] bg-[var(--bg-card)] hover:border-[var(--color-accent)] hover:shadow-md transition-all duration-300 cursor-default"
                                             >
                                                 <skill.icon className="text-base sm:text-lg flex-shrink-0" style={{ color: skill.color }} />
-                                                <span className="text-[var(--text-primary)] text-xs sm:text-sm font-medium whitespace-nowrap">
+                                                <span className="text-[var(--text-primary)] text-fluid-sm font-medium whitespace-nowrap">
                                                     {skill.name}
                                                 </span>
                                             </motion.div>

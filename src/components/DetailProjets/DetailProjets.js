@@ -85,7 +85,7 @@ const DetailProjets = () => {
                             transition={{ duration: 0.6 }}
                             className="text-center"
                         >
-                                <h1 className="text-[var(--text-heading)] font-bold text-xl lg:text-2xl xl:text-3xl 2xl:text-5xl tracking-wide mb-4">
+                                <h1 className="text-[var(--text-heading)] font-bold text-fluid-3xl tracking-wide mb-4">
                                 {t('projects.detailTitle')}
                             </h1>
                             <div className="flex items-center justify-center gap-3 mb-4">
@@ -93,7 +93,7 @@ const DetailProjets = () => {
                                 <div className="w-2 h-2 rounded-full bg-[var(--color-accent)]"></div>
                                 <div className="w-12 h-0.5 bg-[var(--color-accent)] rounded-full"></div>
                             </div>
-                                <p className="text-[var(--text-secondary)] text-xs sm:text-sm 2xl:text-base max-w-xl mx-auto leading-relaxed">
+                                <p className="text-[var(--text-secondary)] text-fluid-base max-w-xl mx-auto leading-relaxed">
                                 {t('projects.detailSubtitle')}
                             </p>
                         </motion.div>
@@ -125,7 +125,7 @@ const DetailProjets = () => {
                                             {String(index + 1).padStart(2, '0')}
                                         </span>
                                         <div>
-                                            <h2 className="text-[var(--text-heading)] font-bold text-xl lg:text-2xl xl:text-3xl 2xl:text-5xl">
+                                            <h2 className="text-[var(--text-heading)] font-bold text-fluid-3xl">
                                                 {t(`${p}.title`)}
                                             </h2>
                                             <div className="flex items-center gap-3 mt-2">
@@ -161,7 +161,7 @@ const DetailProjets = () => {
                                             className={`flex flex-col justify-center ${!isEven ? 'md:order-1' : ''}`}
                                         >
                                             {/* Description */}
-                                            <p className="text-[var(--text-primary)] text-xs sm:text-sm 2xl:text-base leading-relaxed mb-4 sm:mb-6">
+                                            <p className="text-[var(--text-primary)] text-fluid-base leading-relaxed mb-4 sm:mb-6">
                                                 {t(`${p}.desc`)}
                                             </p>
 
@@ -205,7 +205,7 @@ const DetailProjets = () => {
                                                     {project.tags.map((tag, i) => (
                                                         <span
                                                             key={i}
-                                                            className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium rounded-lg bg-[var(--color-accent)]/10 text-[var(--color-accent)] border border-[var(--color-accent)]/15"
+                                                            className="px-2 sm:px-3 py-1 sm:py-1.5 text-fluid-sm font-medium rounded-lg bg-[var(--color-accent)]/10 text-[var(--color-accent)] border border-[var(--color-accent)]/15"
                                                         >
                                                             {tag}
                                                         </span>
@@ -219,7 +219,7 @@ const DetailProjets = () => {
                                                     href={project.liveUrl}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-[var(--color-accent)] text-white font-semibold text-xs sm:text-sm hover:shadow-lg hover:shadow-[var(--color-accent)]/25 transition-all duration-300"
+                                                    className="inline-flex items-center gap-fluid px-fluid-btn py-fluid-btn rounded-xl bg-[var(--color-accent)] text-white font-semibold text-fluid-sm hover:shadow-lg hover:shadow-[var(--color-accent)]/25 transition-all duration-300"
                                                 >
                                                     <FaExternalLinkAlt className="text-xs" />
                                                     {t('projects.liveDemo')}
@@ -228,7 +228,7 @@ const DetailProjets = () => {
                                                     href={project.githubUrl}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl border-2 border-[var(--border-theme)] text-[var(--text-primary)] font-semibold text-xs sm:text-sm hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-all duration-300"
+                                                    className="inline-flex items-center gap-fluid px-fluid-btn py-fluid-btn rounded-xl border-2 border-[var(--border-theme)] text-[var(--text-primary)] font-semibold text-fluid-sm hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-all duration-300"
                                                 >
                                                     <FaGithub />
                                                     {t('projects.sourceCode')}
@@ -249,7 +249,7 @@ const DetailProjets = () => {
                                             </div>
                                             <ul className="space-y-2 sm:space-y-2.5">
                                                 {Array.isArray(features) && features.map((feat, i) => (
-                                                    <li key={i} className="flex items-start gap-2 sm:gap-2.5 text-[var(--text-primary)] text-xs sm:text-sm">
+                                                    <li key={i} className="flex items-start gap-2 sm:gap-2.5 text-[var(--text-primary)] text-fluid-sm">
                                                         <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] mt-1.5 shrink-0"></span>
                                                         {feat}
                                                     </li>
@@ -265,7 +265,7 @@ const DetailProjets = () => {
                                                     {t('projects.sectionLabels.challenge')}
                                                 </h4>
                                             </div>
-                                            <p className="text-[var(--text-primary)] text-xs sm:text-sm leading-relaxed">
+                                            <p className="text-[var(--text-primary)] text-fluid-sm leading-relaxed">
                                                 {t(`${p}.challenge`)}
                                             </p>
                                         </div>
