@@ -11,3 +11,15 @@
 .skillsSectionTitle >  h2{
     font-family: 'Inter', sans-serif;
 }
+
+.skillCard {
+    transition: box-shadow 0.3s ease;
+}
+
+.skillCardBlue {
+    background: linear-gradient(145deg, #3470f1, #2459ec);
+}
+
+.skillCardDark {
+    background: linear-gradient(145deg, #daba6b, #a1812f);
+}

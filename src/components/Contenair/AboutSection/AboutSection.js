@@ -49,14 +49,14 @@ const AboutSection = (props) => {
             viewport={{ once: false, amount: 0.25 }}
             variants={containerVariants}
         >
-            <div className="mx-auto max-w-screen-lg md:px-4 sm:px-3 md:pb-5 pt-4 md:pt-5 w-full">
+            <div className="mx-auto max-w-screen-lg px-3 sm:px-4 pb-4 sm:pb-5 pt-4 md:pt-5 w-full">
 
-                <div className="grid sm:grid-cols-6 lg:grid-cols-12 h-full md:pb-8 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-6 lg:grid-cols-12 h-full md:pb-6 lg:pb-8 gap-2 sm:gap-3 lg:gap-5 xl:gap-8">
 
                     {/* Image side */}
                     <motion.div variants={imgVariants} className="sm:col-span-3 lg:col-span-5 px-3 md:pe-4 flex flex-col justify-center">
 
-                        <div className="relative w-full aspect-[3/4] max-w-sm mx-auto">
+                        <div className="relative w-full aspect-[3/4] max-w-[16rem] sm:max-w-xs lg:max-w-sm mx-auto">
                             {/* Decorative accent frame */}
                             <div className="absolute -top-3 -left-3 w-full h-full border-2 border-[var(--color-accent)] rounded-2xl opacity-30"></div>
                             {/* Decorative dots */}
@@ -78,13 +78,13 @@ const AboutSection = (props) => {
                     </motion.div>
 
                     {/* Text side */}
-                    <div className="lg:mt-0 sm:col-span-3 lg:col-span-7 flex flex-col justify-center px-4 md:ps-4">
+                    <div className="lg:mt-0 sm:col-span-3 lg:col-span-7 flex flex-col justify-center px-3 sm:px-4 md:ps-4">
 
                         {/* Section title - animated */}
                         <motion.div variants={titleVariants} className={AboutCSS.homeSectionTitle}>
                             <div className="flex flex-wrap items-baseline gap-x-3">
                                 <motion.span
-                                    className="text-3xl md:text-4xl font-black text-[var(--text-heading)] leading-tight"
+                                    className="text-fluid-3xl font-black text-[var(--text-heading)] leading-tight"
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
@@ -93,7 +93,7 @@ const AboutSection = (props) => {
                                     {t('about.animTitle1')}
                                 </motion.span>
                                 <motion.span
-                                    className="text-3xl md:text-4xl font-black leading-tight"
+                                    className="text-fluid-3xl font-black leading-tight"
                                     style={{ color: 'var(--color-accent)' }}
                                     initial={{ opacity: 0, x: -30 }}
                                     whileInView={{ opacity: 1, x: 0 }}
@@ -127,22 +127,22 @@ const AboutSection = (props) => {
                         </motion.div>
 
                         {/* Paragraphs */}
-                        <motion.div variants={paragraphsContainerVariants} className="py-5 text-[var(--text-primary)] space-y-4">
-                            <motion.p variants={paragraphVariants} className="text-justify leading-relaxed">
+                        <motion.div variants={paragraphsContainerVariants} className="py-3 sm:py-4 lg:py-5 text-[var(--text-primary)] space-y-2 sm:space-y-3 lg:space-y-4">
+                            <motion.p variants={paragraphVariants} className="text-justify text-fluid-base leading-relaxed">
                                 {t('about.paragraph1')}
                             </motion.p>
-                            <motion.p variants={paragraphVariants} className="text-justify leading-relaxed">
+                            <motion.p variants={paragraphVariants} className="text-justify text-fluid-base leading-relaxed">
                                 {t('about.paragraph2')}
                             </motion.p>
-                            <motion.p variants={paragraphVariants} className="text-justify leading-relaxed">
+                            <motion.p variants={paragraphVariants} className="text-justify text-fluid-base leading-relaxed">
                                 {t('about.paragraph3')}
                             </motion.p>
                         </motion.div>
 
                         {/* Highlight pills */}
-                        <motion.div variants={paragraphVariants} className="flex flex-wrap gap-3 pb-5">
+                        <motion.div variants={paragraphVariants} className="flex flex-wrap gap-2 sm:gap-3 pb-3 sm:pb-5">
                             {highlights.map((h, i) => (
-                                <span key={i} className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--border-theme)] bg-[var(--bg-card)] text-sm text-[var(--text-secondary)] shadow-sm">
+                                <span key={i} className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-[var(--border-theme)] bg-[var(--bg-card)] text-fluid-sm text-[var(--text-secondary)] shadow-sm">
                                     <span className="text-[var(--color-accent)]">{h.icon}</span>
                                     {t(h.labelKey)}
                                 </span>

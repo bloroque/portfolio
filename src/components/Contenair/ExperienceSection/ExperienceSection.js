@@ -75,16 +75,16 @@ const ExperienceSection = (props) => {
             viewport={{ once: false, amount: 0.1 }}
             variants={containerVariants}
         >
-            <div className="mx-auto max-w-screen-lg w-full flex flex-col justify-center p-3 md:px-4">
+            <div className="mx-auto max-w-screen-lg w-full flex flex-col justify-center px-3 sm:px-4 py-2 sm:py-3">
                 {/* Section Title */}
-                <motion.div variants={titleVariants} className="px-3 md:pe-7 space-y-2 mb-10 relative">
-                    <h2 className="text-[var(--text-heading)] font-bold text-4xl tracking-wide relative inline-block">
+                <motion.div variants={titleVariants} className="px-1 sm:px-3 md:pe-7 space-y-1.5 sm:space-y-2 mb-4 sm:mb-6 lg:mb-10 relative">
+                    <h2 className="text-[var(--text-heading)] font-bold text-fluid-3xl tracking-wide relative inline-block">
                         {t("experience.title")}
                         {/* Curved arrow decoration */}
                         <motion.svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 50 30"
-                            className="absolute -right-14 top-0 w-12 md:w-14 pointer-events-none"
+                            className="absolute -right-10 sm:-right-14 top-0 w-8 sm:w-12 md:w-14 pointer-events-none"
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
@@ -104,13 +104,13 @@ const ExperienceSection = (props) => {
                             />
                         </motion.svg>
                     </h2>
-                    <p className="text-[var(--text-secondary)] text-sm leading-relaxed max-w-xl">
+                    <p className="text-[var(--text-secondary)] text-fluid-sm leading-relaxed max-w-xl">
                         {t("experience.subtitle")}
                     </p>
                 </motion.div>
 
                 {/* Timeline - centered with alternating sides */}
-                <div className="relative px-3">
+                <div className="relative px-1 sm:px-3">
                     {/* Vertical center line */}
                     <div className={ExperienceCSS.timelineCenterLine} />
 
@@ -179,20 +179,20 @@ const ExperienceSection = (props) => {
                                     <div className={`${isLeft ? ExperienceCSS.cardLeft : ExperienceCSS.cardRight}`}>
                                         <div className={`${ExperienceCSS.card} ${isCurrent ? ExperienceCSS.cardCurrent : ""}`}>
                                             {/* Period (top, normal text) */}
-                                            <p className="text-[var(--text-secondary)] text-xs mb-3 flex items-center gap-1.5 flex-wrap">
+                                            <p className="text-[var(--text-secondary)] text-[10px] sm:text-xs mb-2 sm:mb-3 flex items-center gap-1 sm:gap-1.5 flex-wrap">
                                                 <span>{formatDate(job.dateStart)} – {formatDate(job.dateFinish)}</span>
                                                 <span className="text-[var(--text-secondary)]/40">·</span>
                                                 <span>{calcDuration(job.dateStart, job.dateFinish)}</span>
                                             </p>
 
                                             {/* Job title */}
-                                            <h3 className="text-[var(--text-heading)] font-bold text-base md:text-lg leading-tight mb-2">
+                                            <h3 className="text-[var(--text-heading)] font-bold text-fluid-lg leading-tight mb-1.5 sm:mb-2">
                                                 {job.role}
                                             </h3>
 
                                             {/* Company + work mode */}
-                                            <div className="mb-3 space-y-1">
-                                                <p className="text-[var(--text-primary)] text-sm font-semibold">
+                                            <div className="mb-2 sm:mb-3 space-y-1">
+                                                <p className="text-[var(--text-primary)] text-fluid-sm font-semibold">
                                                     {job.company}
                                                     {job.type && (
                                                         <span className="text-[var(--text-secondary)] font-normal"> · {job.type}</span>

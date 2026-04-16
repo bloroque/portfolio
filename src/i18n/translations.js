@@ -26,6 +26,7 @@ const translations = {
       downloadCV: "View my CV",
       services: {
         title: "My Services",
+        intro: "Here are the services I offer to bring your projects to life.",
         website: {
           title: "Website Development",
           detail: {
@@ -44,7 +45,7 @@ const translations = {
             specification: [
               "Robust backend development",
               "Interactive frontend",
-              "Business/SaaS apps (CRM, ERP, ...)"
+              "Business/SaaS apps (CRM, ERP, email)"
             ]
           }
         },
@@ -75,7 +76,7 @@ const translations = {
           detail: {
             desc: "Improvement and support of existing applications:",
             specification: [
-              "Refactoring (Clean Architecture, SOLID)",
+              "Refactoring (Clean code, SOLID)",
               "Performance optimization",
               "Bug fixes & technical updates"
             ]
@@ -318,8 +319,9 @@ const translations = {
       downloadCV: "Voir mon CV",
       services: {
         title: "Mes Services",
+        intro: "Voici les services que je propose pour donner vie à vos projets.",
         website: {
-          title: "Développement Site Web",
+          title: "Création de Sites Web modernes",
           detail: {
             desc: "Conception et développement de sites web modernes, rapides et performants :",
             specification: [
@@ -330,13 +332,13 @@ const translations = {
           }
         },
         webapp: {
-          title: "Développement d'Applications Web",
+          title: "Développement d’applications web",
           detail: {
             desc: "Conception et développement d'applications web sur mesure :",
             specification: [
               "Développement Backend robuste",
               "Frontend interactif",
-              "Applications métier (CRM, ERP, ...)"
+              "Applications métier (CRM, ERP, etc)"
             ]
           }
         },
@@ -346,7 +348,7 @@ const translations = {
             desc: "Création et intégration d'API robustes :",
             specification: [
               "API REST sécurisées (JWT, auth)",
-              "Intégrations tierces (paiement, SMS, ...)",
+              "Intégrations tierces (paiement, SMS, email)",
               "Documentation API (Swagger / OpenAPI)"
             ]
           }
@@ -367,9 +369,9 @@ const translations = {
           detail: {
             desc: "Amélioration et support d'applications existantes :",
             specification: [
-              "Refactoring (Clean Architecture, SOLID)",
+              "Refactoring (Clean code, SOLID)",
               "Optimisation des performances",
-              "Correction de bugs & mises à jour"
+              "Debugs & mises à jour"
             ]
           }
         }

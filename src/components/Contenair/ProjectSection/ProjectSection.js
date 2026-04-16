@@ -108,47 +108,47 @@ const ProjectSection = (props) => {
                 variants={containerVariants}
                 style={{ position: "relative", overflow: "hidden" }}
             >
-                <div className="mx-auto max-w-screen-lg md:px-4 sm:px-3 md:pb-8 pt-4 md:pt-5 w-full">
+                <div className="mx-auto max-w-screen-lg px-3 sm:px-4 pb-4 sm:pb-6 md:pb-8 pt-4 md:pt-5 w-full">
 
-                    <div className="flex flex-col gap-6 w-full h-full justify-center px-2">
+                    <div className="flex flex-col gap-2 sm:gap-3 lg:gap-5 xl:gap-8 w-full h-full justify-center">
 
                         {/* Header: title + intro */}
-                        <div className="flex flex-col justify-between gap-4">
+                        <div className="flex flex-col justify-between gap-2 sm:gap-4">
                             <motion.div variants={titleVariants} className="flex-1">
-                                <h2 className="title-section text-[var(--text-heading)] font-bold text-4xl tracking-wide relative inline-block">
+                                <h2 className="title-section text-[var(--text-heading)] font-bold text-fluid-3xl tracking-wide relative inline-block">
                                     {t('projects.title')}
                                 </h2>
                             </motion.div>
                             <motion.div variants={introVariants} className="flex-1 text-[var(--text-primary)]">
-                                <p className="text-justify text-sm leading-relaxed">
+                                <p className="text-justify text-fluid-sm leading-relaxed">
                                     {t('projects.intro')}
                                 </p>
                             </motion.div>
                         </div>
 
                         {/* Carousel zone */}
-                        <div className="flex flex-col justify-center sm:grid sm:grid-cols-4 w-full sm:grid-rows-1 gap-1">
+                        <div className="flex flex-col justify-center md:grid md:grid-cols-4 w-full md:grid-rows-1 gap-2 sm:gap-3">
 
                             {/* Side panel */}
-                            <motion.div variants={panelVariants} className="col-span-1 flex flex-col justify-center sm:h-full">
-                                <div className="flex flex-col justify-between p-5 h-80 bg-[var(--color-accent)] rounded-lg relative overflow-hidden">
+                            <motion.div variants={panelVariants} className="col-span-1 flex flex-col justify-center md:h-full">
+                                <div className="flex flex-row md:flex-col justify-between p-3 sm:p-4 lg:p-5 h-auto md:h-72 lg:h-80 bg-[var(--color-accent)] rounded-lg relative overflow-hidden">
                                     {/* Decorative circle */}
                                     <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-white/10"></div>
                                     <div className="absolute -bottom-6 -left-6 w-20 h-20 rounded-full bg-white/5"></div>
                                     
                                     <div className="relative z-10">
-                                        <h2 className="text-white font-bold text-xl flex flex-col tracking-wide leading-snug">
+                                        <h2 className="text-white font-bold text-fluid-xl flex flex-col tracking-wide leading-snug">
                                             <span>{t('projects.title')}</span>
-                                            <span className="ps-4 text-white/70 text-base font-medium">{t('projects.subtitle')}</span>
+                                            <span className="ps-2 sm:ps-4 text-white/70 text-fluid-base font-medium">{t('projects.subtitle')}</span>
                                         </h2>
                                         
-                                        <div className="w-10 h-0.5 bg-white/40 rounded-full mt-4 mb-4"></div>
+                                        <div className="w-8 sm:w-10 h-0.5 bg-white/40 rounded-full mt-2 sm:mt-4 mb-2 sm:mb-4"></div>
 
                                         {/* Stats row */}
-                                        <motion.div variants={introVariants} className="flex items-center gap-6">
+                                        <motion.div variants={introVariants} className="flex items-center gap-4 sm:gap-6">
                                             <div className="flex flex-col">
-                                                <span className="text-2xl font-bold text-white">20+</span>
-                                                <span className="text-[11px] text-white/60 font-medium">{t('home.stats.projects')}</span>
+                                                <span className="text-xl sm:text-2xl font-bold text-white">20+</span>
+                                                <span className="text-[10px] sm:text-[11px] text-white/60 font-medium">{t('home.stats.projects')}</span>
                                             </div>
                                         </motion.div>
                                     </div>
@@ -173,15 +173,16 @@ const ProjectSection = (props) => {
                             </motion.div>
 
                             {/* Cards carousel */}
-                            <motion.div variants={carouselVariants} className="col-span-3 sm:h-full projet-carousel">
+                            <motion.div variants={carouselVariants} className="col-span-3 md:h-full projet-carousel">
 
                                 <Swiper className="h-full"
                                     spaceBetween={8}
-                                    slidesPerView={3}
+                                    slidesPerView={1}
                                     onSwiper={(swiper) => (swiperRef.current = swiper)}
                                     breakpoints={{
+                                        480: { slidesPerView: 1.5 },
                                         640: { slidesPerView: 2 },
-                                        768: { slidesPerView: 3 },
+                                        1024: { slidesPerView: 3 },
                                     }}>
 
                                     {projects.map((project) => {
@@ -189,8 +190,8 @@ const ProjectSection = (props) => {
                                         return (
                                             <SwiperSlide key={project.id} className="m-0 h-full flex flex-col justify-center">
                                                 <div className="flex flex-col">
-                                                    <div className="h-[40px]"></div>
-                                                    <div className="h-80 relative overflow-hidden group cursor-pointer rounded-lg border border-[var(--border-theme)] shadow-sm hover:shadow-xl transition-shadow duration-500">
+                                                    <div className="h-[20px] sm:h-[40px]"></div>
+                                                    <div className="h-60 sm:h-72 lg:h-80 relative overflow-hidden group cursor-pointer rounded-lg border border-[var(--border-theme)] shadow-sm hover:shadow-xl transition-shadow duration-500">
                                                         <img
                                                             src={project.image}
                                                             alt={t(project.titleKey)}
@@ -249,7 +250,7 @@ const ProjectSection = (props) => {
                         <motion.div variants={btnVariants} className="flex justify-center">
                             <a 
                                 href="/detail-projets" 
-                                className="group/btn inline-flex items-center gap-2 px-8 py-3 rounded-full border-2 border-[var(--color-accent)] text-[var(--color-accent)] font-semibold hover:bg-[var(--color-accent)] hover:text-white transition-all duration-300"
+                                className="group/btn inline-flex items-center gap-2 px-fluid-btn py-fluid-btn rounded-full border-2 border-[var(--color-accent)] text-[var(--color-accent)] font-semibold hover:bg-[var(--color-accent)] hover:text-white transition-all duration-300"
                             >
                                 {t('projects.viewAll')}
                                 <FaArrowRight className="text-xs transition-transform duration-300 group-hover/btn:translate-x-1" />

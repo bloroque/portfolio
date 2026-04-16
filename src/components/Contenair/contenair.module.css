@@ -1,10 +1,9 @@
 .mainPage>.section {
     min-height: 100vh;
     display: flex;
-    /* padding-top: 1rem; */
+    flex-direction: column;
 }
 .mainPage>.section:first-child {
-    /* min-height: calc(100vh - 85.59px); */
     min-height: 100vh;
 }
 
@@ -12,4 +11,51 @@
     min-height: calc(100vh - 60px);
 }
 
+/* Mobile: sections auto-height with padding */
+@media (max-width: 639px) {
+    .mainPage>.section {
+        min-height: auto;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .mainPage>.section:first-child {
+        min-height: 100vh;
+        padding-top: 0;
+    }
+
+    .mainPage>.section:last-child {
+        min-height: auto;
+    }
+}
+
+/* Small tablets (sm): reduce min-height */
+@media (min-width: 640px) and (max-width: 767px) {
+    .mainPage>.section {
+        min-height: auto;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    .mainPage>.section:first-child {
+        min-height: 100vh;
+    }
+
+    .mainPage>.section:last-child {
+        min-height: auto;
+    }
+}
+
+/* Tablets / small laptops (md): reduce padding */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .mainPage>.section {
+        min-height: auto;
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+    }
+
+    .mainPage>.section:first-child {
+        min-height: 100vh;
+    }
+}
 
