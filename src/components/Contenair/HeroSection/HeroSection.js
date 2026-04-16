@@ -108,7 +108,7 @@ const HeroSection = (props) => {
                     }}></div>
                 </div>
 
-                <div className="mx-auto max-w-screen-lg md:px-4 sm:px-3 pt-2 w-full relative z-10">
+                <div className="mx-auto max-w-screen-lg px-3 sm:px-4 pt-2 w-full relative z-10">
                     <div className="flex flex-col items-center justify-center h-full">
 
                         <motion.div
@@ -117,22 +117,22 @@ const HeroSection = (props) => {
                         >
                             {/* Badge + Greeting */}
                             <motion.div variants={fadeInUp} className="flex flex-col items-center gap-1">
-                                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--border-theme)] bg-white text-sm text-[var(--color-accent)] shadow-sm">
-                                    <span className="relative flex h-2.5 w-2.5">
+                                <span className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border border-[var(--border-theme)] bg-white text-xs sm:text-sm text-[var(--color-accent)] shadow-sm">
+                                    <span className="relative flex h-2 w-2 sm:h-2.5 sm:w-2.5">
                                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                                        <span className="relative inline-flex rounded-full h-2 w-2 sm:h-2.5 sm:w-2.5 bg-green-500"></span>
                                     </span>
                                     {t('home.badge')}
                                 </span>
-                                <p className="text-[var(--text-secondary)] tracking-wide text-lg">
+                                <p className="text-[var(--text-secondary)] tracking-wide text-xs sm:text-sm 2xl:text-base">
                                     {t('home.greeting')} Loroque Brillant 
-                                    <span className="text-2xl ml-1">👋</span>
+                                    <span className="text-xl sm:text-2xl ml-1">👋</span>
                                 </p>
                             </motion.div>
 
                             {/* Name / Role */}
                             <motion.div variants={fadeInLeft} className={HomeCSS.homeSectionName}>
-                                <h1 className="text-4xl md:text-6xl font-bold tracking-wide text-[var(--text-heading)] leading-snug relative inline-block">
+                                <h1 className="text-xl lg:text-2xl xl:text-3xl 2xl:text-5xl font-bold tracking-wide text-[var(--text-heading)] leading-snug relative inline-block">
                                     <span className="relative">
                                         <motion.svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -160,7 +160,7 @@ const HeroSection = (props) => {
                                 <motion.svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 293 24"
-                                    className="w-64 md:w-80 mx-auto mt-2"
+                                    className="w-48 sm:w-56 md:w-64 lg:w-72 xl:w-80 mx-auto mt-1 sm:mt-2"
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ delay: 1, duration: 0.5 }}
@@ -180,16 +180,16 @@ const HeroSection = (props) => {
 
                             {/* Experience text */}
                             <motion.div variants={fadeInUp} className="max-w-2xl px-4">
-                                <p className="text-[var(--text-secondary)] leading-relaxed">
+                                <p className="text-[var(--text-secondary)] leading-relaxed text-xs sm:text-sm 2xl:text-base">
                                     {experienceText}
                                 </p>
                             </motion.div>
 
                             {/* CTA Buttons */}
-                            <motion.div variants={fadeInUp} className="flex flex-wrap justify-center gap-4 pt-3">
+                            <motion.div variants={fadeInUp} className="flex flex-wrap justify-center gap-2 sm:gap-3 lg:gap-5 xl:gap-8 pt-2 sm:pt-3 px-2">
                                 <motion.a
                                     href="#cv"
-                                    className="group inline-flex items-center justify-center gap-2 px-7 py-2 min-w-[200px] rounded-full border-2 border-[var(--btn-bg)] text-[var(--btn-bg)] font-semibold hover:bg-[var(--btn-bg)] hover:text-[var(--btn-text)] duration-300 shadow-lg hover:shadow-xl transition-shadow"
+                                    className="group inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-5 md:px-6 lg:px-7 py-1.5 sm:py-2 min-w-[130px] sm:min-w-[160px] md:min-w-[180px] text-xs sm:text-sm 2xl:text-base rounded-full border-2 border-[var(--btn-bg)] text-[var(--btn-bg)] font-semibold hover:bg-[var(--btn-bg)] hover:text-[var(--btn-text)] duration-300 shadow-lg hover:shadow-xl transition-shadow"
                                     variants={buttonVariants}
                                     whileHover="hover"
                                     whileTap="tap"
@@ -200,7 +200,7 @@ const HeroSection = (props) => {
 
                                 <motion.a
                                     href="#contactsSection"
-                                    className="group inline-flex items-center justify-center gap-2 px-7 py-2 min-w-[200px] rounded-full bg-[var(--btn-bg)] text-[var(--btn-text)] font-semibold shadow-lg hover:shadow-xl transition-shadow"
+                                    className="group inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-5 md:px-6 lg:px-7 py-1.5 sm:py-2 min-w-[130px] sm:min-w-[160px] md:min-w-[180px] text-xs sm:text-sm 2xl:text-base rounded-full bg-[var(--btn-bg)] text-[var(--btn-text)] font-semibold shadow-lg hover:shadow-xl transition-shadow"
                                     variants={buttonVariants}
                                     whileHover="hover"
                                     whileTap="tap"
@@ -210,11 +210,32 @@ const HeroSection = (props) => {
                                 </motion.a>
                             </motion.div>
 
-                            {/* Services Canvas */}
+                            {/* Services — Mobile grid layout */}
+                            <motion.div variants={fadeInUp} className="md:hidden w-full px-1 pt-4">
+                                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
+                                    {services.map(({ icon: Icon, key }, index) => (
+                                        <motion.div
+                                            key={key}
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ delay: 0.3 + index * 0.1 }}
+                                            className={`${HomeCSS.serviceCard} ${index % 2 === 0 ? HomeCSS.serviceCardBlue : HomeCSS.serviceCardDark}
+                                            flex flex-col items-center justify-between gap-2 p-3 sm:p-4 rounded-xl border-2 border-white shadow-xl`}
+                                        >
+                                            <h3 className="text-[.65rem] sm:text-[.75rem] font-bold text-white text-center leading-snug">
+                                                {t(`home.services.${key}.title`)}
+                                            </h3>
+                                            <Icon className="text-xl sm:text-2xl text-white opacity-90" />
+                                        </motion.div>
+                                    ))}
+                                </div>
+                            </motion.div>
+
+                            {/* Services — Desktop fan layout */}
                             <motion.div
                                 variants={fadeInUp}
                                 ref={canvasRef}
-                                className="relative w-full h-auto"
+                                className="hidden md:block relative w-full h-auto"
                                 style={{ minHeight: 250, position: 'relative' }}
                             >
                                 {services.map(({ icon: Icon, key, color }, index) => {

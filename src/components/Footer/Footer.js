@@ -10,9 +10,9 @@ const Footer = () => {
     const linkPrefix = isDetailPage ? '/' : '';
 
     return (
-        <footer className="top-0 w-full py-3 px-2 transition-colors duration-300">
+        <footer className="top-0 w-full py-3 px-3 sm:px-2 transition-colors duration-300">
              <div className="w-full">
-                <div className={footerCSS.footerSection+' mx-auto flex max-w-screen-lg md:px-4 sm:px-3 justify-between'}>
+                <div className={footerCSS.footerSection + ' mx-auto flex max-w-screen-lg px-2 sm:px-3 md:px-4 justify-between'}>
                     <div className="">
                         
                     </div>
@@ -20,7 +20,7 @@ const Footer = () => {
             </div>
             
             <div className="w-full">
-                <div className={footerCSS.footerSection+' mx-auto flex max-w-screen-lg md:px-4 sm:px-3 justify-between'}>
+                <div className={footerCSS.footerSection + ' mx-auto flex flex-wrap max-w-screen-lg px-2 sm:px-3 md:px-4 justify-between gap-3 sm:gap-0'}>
                     <div className={footerCSS.divLogo+' px-2 py-2 md:px-6 lg:px-8 lg:py-[.8rem] '}>
                         <a href={isDetailPage ? '/' : '#homeSection'} className={footerCSS.myLogo}>
                             <div className={footerCSS.logoImg}>
@@ -52,7 +52,7 @@ const Footer = () => {
                             </nav>
                         </div>
                     </div>
-                    <div className="flex justify-center flex-col leading-tight text-[var(--footer-text)] text-xs pe-4 sm:pe-6 ml-4 sm:ml-6 uppercase">
+                    <div className="flex justify-center flex-col leading-tight text-[var(--footer-text)] text-[10px] sm:text-xs pe-2 sm:pe-4 md:pe-6 ml-2 sm:ml-4 md:ml-6 uppercase">
                         <span className="text-left">{t('footer.copyright')} © {new Date().getFullYear()}</span>
                         <span className="text-left">{t('footer.rights')}</span>
                     </div>

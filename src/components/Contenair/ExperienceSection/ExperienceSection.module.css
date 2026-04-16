@@ -32,8 +32,8 @@
     left: 50%;
     transform: translateX(-50%);
     top: 4px;
-    width: 34px;
-    height: 34px;
+    width: 28px;
+        height: 28px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -41,6 +41,12 @@
     z-index: 2;
 }
 
+@media (min-width: 768px) {
+    .timelineDotCenter {
+        width: 34px;
+        height: 34px;
+    }
+}
 .dotCurrent {
     background: var(--color-accent);
     box-shadow: 0 0 0 4px rgba(var(--color-accent-rgb, 99, 102, 241), 0.15);
@@ -76,34 +82,50 @@
 /* Card positioned on LEFT side */
 .cardLeft {
     width: 100%;
-    max-width: 520px;
+    max-width: 480px;
     margin-right: auto;
-    padding-right: 80px; /* Space for center dot */
+    padding-right: 55px;
+        /* Space for center dot */
 }
 
 /* Card positioned on RIGHT side */
 .cardRight {
     width: 100%;
-    max-width: 520px;
+    max-width: 480px;
     margin-left: auto;
-    padding-left: 80px; /* Space for center dot */
+    padding-left: 55px;
+        /* Space for center dot */
+    }
+    
+    @media (min-width: 1024px) {
+        .cardLeft {
+            max-width: 520px;
+            padding-right: 80px;
+        }
+    
+        .cardRight {
+            max-width: 520px;
+            padding-left: 80px;
+        }
 }
 
 /* Mobile: Stack vertically, no alternating */
 @media (max-width: 767px) {
     .timelineCenterLine {
-        left: 1.5rem;
+        left: 1rem;
         transform: none;
     }
     
     .timelineDotCenter {
-        left: 1.5rem;
+        left: 1rem;
+            width: 24px;
+            height: 24px;
         transform: translateX(-50%);
     }
     
     .cardLeft,
     .cardRight {
-        padding-left: 3.75rem;
+        padding-left: 2.5rem;
         padding-right: 0;
         margin: 0;
         max-width: 100%;
@@ -118,12 +140,23 @@
     background: var(--bg-card);
     border: 1px solid var(--border-theme);
     border-radius: 0.75rem;
-    padding: 1.25rem 1.5rem;
+    padding: 0.875rem 1rem;
     transition: all 0.3s ease;
     position: relative;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
+@media (min-width: 640px) {
+    .card {
+        padding: 1rem 1.25rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .card {
+        padding: 1.25rem 1.5rem;
+    }
+}
 .card:hover {
     border-color: var(--color-accent);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
