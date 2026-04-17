@@ -22,6 +22,18 @@ export const ThemeProvider = ({ children }) => {
         }
     }, [isDark]);
 
+    // Listen for OS theme changes
+    useEffect(() => {
+        const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+        const handleChange = (e) => {
+            if (!localStorage.getItem("theme")) {
+                setIsDark(e.matches);
+            }
+        };
+        mediaQuery.addEventListener("change", handleChange);
+        return () => mediaQuery.removeEventListener("change", handleChange);
+    }, []);
+
     const toggleTheme = () => setIsDark((prev) => !prev);
 
     return (

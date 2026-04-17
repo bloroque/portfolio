@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import DetailProjetsCSS from "./DetailProjets.module.css";
 import Header from "../Header/Header";
@@ -68,16 +69,19 @@ const DetailProjets = () => {
                     </div>
 
                         <div className="mx-auto max-w-screen-lg px-3 sm:px-4 pt-8 sm:pt-10 pb-6 sm:pb-8 relative z-10">
-                        <motion.a
-                            href="/"
+                        <motion.div
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.4 }}
-                            className="inline-flex items-center gap-2 text-[var(--text-secondary)] hover:text-[var(--color-accent)] text-sm font-medium transition-colors mb-8"
                         >
-                            <FaArrowLeft className="text-xs" />
-                            {t('projects.backHome')}
-                        </motion.a>
+                            <Link
+                                to="/"
+                                className="inline-flex items-center gap-2 text-[var(--text-secondary)] hover:text-[var(--color-accent)] text-sm font-medium transition-colors mb-8"
+                            >
+                                <FaArrowLeft className="text-xs" />
+                                {t('projects.backHome')}
+                            </Link>
+                        </motion.div>
 
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
@@ -149,6 +153,7 @@ const DetailProjets = () => {
                                                 <img
                                                     src={project.image}
                                                     alt={t(`${p}.title`)}
+                                                    loading="lazy"
                                                     className="w-full h-48 sm:h-64 md:h-80 object-cover transition-transform duration-500 group-hover:scale-105"
                                                 />
                                                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
@@ -167,7 +172,7 @@ const DetailProjets = () => {
 
                                             {/* Info cards row */}
                                             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 mb-4 sm:mb-6">
-                                                <div className="bg-[var(--bg-card)] border border-[var(--border-theme)] rounded-xl p-2 sm:p-3 text-center">
+                                                <div className="card-hover-lift bg-[var(--bg-card)] border border-[var(--border-theme)] rounded-xl p-2 sm:p-3 text-center">
                                                     <FaUserTie className="text-[var(--color-accent)] mx-auto mb-1 sm:mb-1.5 text-base sm:text-lg" />
                                                     <span className="text-[var(--text-secondary)] text-[10px] uppercase tracking-wider font-semibold block">
                                                         {t('projects.sectionLabels.role')}
@@ -176,7 +181,7 @@ const DetailProjets = () => {
                                                         {t(`${p}.role`)}
                                                     </span>
                                                 </div>
-                                                <div className="bg-[var(--bg-card)] border border-[var(--border-theme)] rounded-xl p-2 sm:p-3 text-center">
+                                                <div className="card-hover-lift bg-[var(--bg-card)] border border-[var(--border-theme)] rounded-xl p-2 sm:p-3 text-center">
                                                     <FaClock className="text-[var(--color-accent)] mx-auto mb-1 sm:mb-1.5 text-base sm:text-lg" />
                                                     <span className="text-[var(--text-secondary)] text-[10px] uppercase tracking-wider font-semibold block">
                                                         {t('projects.sectionLabels.duration')}
@@ -185,7 +190,7 @@ const DetailProjets = () => {
                                                         {t(`${p}.duration`)}
                                                     </span>
                                                 </div>
-                                                <div className="bg-[var(--bg-card)] border border-[var(--border-theme)] rounded-xl p-2 sm:p-3 text-center">
+                                                <div className="card-hover-lift bg-[var(--bg-card)] border border-[var(--border-theme)] rounded-xl p-2 sm:p-3 text-center">
                                                     <FaBriefcase className="text-[var(--color-accent)] mx-auto mb-1 sm:mb-1.5 text-base sm:text-lg" />
                                                     <span className="text-[var(--text-secondary)] text-[10px] uppercase tracking-wider font-semibold block">
                                                         {t('projects.sectionLabels.client')}
@@ -219,7 +224,7 @@ const DetailProjets = () => {
                                                     href={project.liveUrl}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="inline-flex items-center gap-fluid px-fluid-btn py-fluid-btn rounded-xl bg-[var(--color-accent)] text-white font-semibold text-fluid-sm hover:shadow-lg hover:shadow-[var(--color-accent)]/25 transition-all duration-300"
+                                                    className="btn-glow inline-flex items-center gap-fluid px-fluid-btn py-fluid-btn rounded-xl bg-[var(--color-accent)] text-white font-semibold text-fluid-sm hover:shadow-lg hover:shadow-[var(--color-accent)]/25 transition-all duration-300"
                                                 >
                                                     <FaExternalLinkAlt className="text-xs" />
                                                     {t('projects.liveDemo')}

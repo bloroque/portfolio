@@ -1,12 +1,13 @@
 import React  from "react";
-import footerCSS from './footer.module.css';
+import { useLocation } from "react-router-dom";
+import footerCSS from './Footer.module.css';
 import { useLanguage } from "../../context/LanguageContext";
 
 const Footer = () => {
     const { t } = useLanguage();
     
-    // Détection de la page actuelle pour adapter les liens
-    const isDetailPage = window.location.pathname === '/detail-projets';
+    const location = useLocation();
+    const isDetailPage = location.pathname === '/detail-projets';
     const linkPrefix = isDetailPage ? '/' : '';
 
     return (

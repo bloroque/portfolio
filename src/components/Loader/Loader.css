@@ -1,0 +1,109 @@
+/* ===== LOADER OVERLAY ===== */
+.loader-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-body, #eef2ff);
+    animation: loaderFadeOut 0.6s ease-in-out 2.4s forwards;
+}
+
+.loader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* Rotating ring */
+.loader-ring {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid var(--border-theme, rgba(36, 69, 166, 0.15));
+    border-top-color: var(--color-accent, #3767D2);
+    animation: loaderSpin 1s cubic-bezier(0.6, 0, 0.4, 1) infinite;
+    position: relative;
+}
+
+.loader-ring-inner {
+    position: absolute;
+    inset: 6px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-bottom-color: var(--svg-deco-underline, #e6a817);
+    animation: loaderSpin 1.5s cubic-bezier(0.6, 0, 0.4, 1) infinite reverse;
+}
+
+/* Logo letters */
+.loader-logo {
+    display: flex;
+    gap: 0.25rem;
+    font-family: 'Anton', 'Inter', sans-serif;
+    font-size: 2rem;
+    color: var(--text-heading, #0f172a);
+    letter-spacing: 4px;
+}
+
+.loader-letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: loaderLetterIn 0.5s ease-out forwards;
+}
+
+/* Loading bar */
+.loader-bar-track {
+    width: 120px;
+    height: 3px;
+    background: var(--border-theme, rgba(36, 69, 166, 0.15));
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.loader-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--color-accent, #3767D2), var(--svg-deco-underline, #e6a817));
+    border-radius: 4px;
+    animation: loaderBarGrow 2s ease-in-out forwards;
+}
+
+/* ===== KEYFRAMES ===== */
+@keyframes loaderSpin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes loaderLetterIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes loaderBarGrow {
+    0% { width: 0%; }
+    50% { width: 60%; }
+    100% { width: 100%; }
+}
+
+@keyframes loaderFadeOut {
+    0% { opacity: 1; pointer-events: all; }
+    100% { opacity: 0; pointer-events: none; visibility: hidden; }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .loader-overlay {
+        animation-duration: 0.01ms;
+        animation-delay: 0.3s;
+    }
+    .loader-ring, .loader-ring-inner {
+        animation: none;
+    }
+    .loader-bar-fill {
+        animation-duration: 0.3s;
+    }
+}

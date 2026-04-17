@@ -1,0 +1,137 @@
+/* ===== DOWNLOAD POPUP — Bottom Right ===== */
+.download-popup-container {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 9998;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    pointer-events: none;
+}
+
+.download-popup {
+    pointer-events: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 260px;
+    max-width: 320px;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    background: var(--bg-card, #ffffff);
+    border: 1px solid var(--border-theme, rgba(36, 69, 166, 0.2));
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+    backdrop-filter: blur(12px);
+    animation: downloadSlideIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.download-popup-done {
+    border-color: rgba(16, 185, 129, 0.3);
+    animation: downloadSlideIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+               downloadFadeOut 0.4s ease 1.6s forwards;
+}
+
+.download-popup-error {
+    border-color: rgba(239, 68, 68, 0.3);
+    animation: downloadSlideIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+               downloadFadeOut 0.4s ease 2.6s forwards;
+}
+
+/* Icon area */
+.download-popup-icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent, #3767D2);
+}
+
+/* Circular progress spinner */
+.download-spinner {
+    transform: rotate(-90deg);
+}
+
+.download-spinner-progress {
+    transition: stroke-dasharray 0.25s ease;
+    stroke: var(--color-accent, #3767D2);
+}
+
+/* Text info */
+.download-popup-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+}
+
+.download-popup-filename {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-heading, #0f172a);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.download-popup-status {
+    font-size: 0.625rem;
+    color: var(--text-secondary, #475569);
+    font-weight: 500;
+}
+
+/* Progress bar */
+.download-popup-bar {
+    width: 100%;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--border-theme, rgba(36, 69, 166, 0.15));
+    overflow: hidden;
+    flex-basis: 100%;
+}
+
+.download-popup-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--color-accent, #3767D2), var(--svg-deco-underline, #e6a817));
+    transition: width 0.2s ease;
+}
+
+/* Animations */
+@keyframes downloadSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(40px) scale(0.92);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes downloadFadeOut {
+    0% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(30px) scale(0.95);
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .download-popup {
+        animation: none;
+        opacity: 1;
+    }
+    .download-popup-done,
+    .download-popup-error {
+        animation: none;
+    }
+}

@@ -637,7 +637,8 @@ const HeroSection = (props) => {
                         {/* CTA Buttons */}
                         <motion.div variants={fadeInUp} className="grid grid-cols-2 gap-2 sm:gap-3 pt-2 sm:pt-3 px-2 w-full max-w-lg">
                             <motion.a
-                                href="#cv"
+                                href="/CV_Loroque_Brillant.pdf"
+                                download="CV_Loroque_Brillant.pdf"
                                 className="group flex items-center justify-center gap-2 px-4 py-1.5 text-fluid-sm rounded-full border-2 border-[var(--btn-bg)] text-[var(--btn-bg)] font-semibold hover:bg-[var(--btn-bg)] hover:text-[var(--btn-text)] duration-300 shadow-lg hover:shadow-xl transition-shadow"
                                 variants={buttonVariants}
                                 whileHover="hover"
