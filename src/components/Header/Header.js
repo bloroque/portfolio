@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import headerCSS from './header.module.css';
+import { useLocation } from "react-router-dom";
+import headerCSS from './Header.module.css';
 import { FaGithub, FaLinkedin, FaSun, FaMoon, FaBars, FaTimes } from "react-icons/fa";
 import { useTheme } from "../../context/ThemeContext";
 import { useLanguage } from "../../context/LanguageContext";
@@ -10,8 +11,8 @@ const Header = () => {
   const { lang, toggleLang, t } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
-  // Détection de la page actuelle pour adapter les liens
-  const isDetailPage = window.location.pathname === '/detail-projets';
+  const location = useLocation();
+  const isDetailPage = location.pathname === '/detail-projets';
   const linkPrefix = isDetailPage ? '/' : '';
 
   return (
@@ -35,29 +36,29 @@ const Header = () => {
             <nav className="hidden sm:flex text-fluid-sm leading-6 font-semibold px-1 sm:px-2">
               <ul className="flex sm:space-x-2 md:space-x-4">
                   <li>
-                    <a className="text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href={`${linkPrefix}#aboutSection`}>{t('nav.about')}</a>
+                    <a className="link-underline-grow text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href={`${linkPrefix}#aboutSection`}>{t('nav.about')}</a>
                   </li>
                   <li>
-                    <a className="text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href={`${linkPrefix}#skillsSection`}>{t('nav.skills')}</a>
+                    <a className="link-underline-grow text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href={`${linkPrefix}#skillsSection`}>{t('nav.skills')}</a>
                   </li>
                   <li>
-                    <a className="text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href={`${linkPrefix}#experienceSection`}>{t('nav.experience')}</a>
+                    <a className="link-underline-grow text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href={`${linkPrefix}#experienceSection`}>{t('nav.experience')}</a>
                   </li>
                   <li>
-                    <a className="text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href={`${linkPrefix}#projectsSection`}>{t('nav.projects')}</a>
+                    <a className="link-underline-grow text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href={`${linkPrefix}#projectsSection`}>{t('nav.projects')}</a>
                   </li>
                   <li>
-                    <a className="text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href={`${linkPrefix}#contactsSection`}>{t('nav.contact')}</a>
+                    <a className="link-underline-grow text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href={`${linkPrefix}#contactsSection`}>{t('nav.contact')}</a>
                   </li>
                 </ul>
               </nav>
             <div className="flex items-center pe-2 sm:pe-4 md:pe-6 ml-2 sm:ml-4 md:ml-6 sm:border-l-2 border-[var(--border-theme)]">
-              <a href="https://www.linkedin.com/in/loroquebrillant" className="ml-2 sm:ml-4 md:ml-6">
+              <a href="https://www.linkedin.com/in/loroquebrillant" className="icon-bounce ml-2 sm:ml-4 md:ml-6" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
                     <span>
                   <FaLinkedin className="text-[var(--icon-color)]" size="20" />
                     </span>
                 </a>
-              <a href="https://github.com/bloroque" className="ml-2 sm:ml-4 md:ml-6">
+              <a href="https://github.com/bloroque" className="icon-bounce ml-2 sm:ml-4 md:ml-6" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
                     <span>
                   <FaGithub className="text-[var(--icon-color)]" size="20" />
                     </span>

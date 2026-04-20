@@ -1,18 +1,19 @@
 import React, { useEffect } from 'react'
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
-import Contenair from '../components/Contenair/Contenair';
+import Container from '../components/Container/Container';
 import { useLanguage } from '../context/LanguageContext';
+import CustomCursor from '../components/CustomCursor/CustomCursor';
+import useSmoothScroll from '../hooks/useSmoothScroll';
 
 
 const Layout = () => {
     const { isTransitioning } = useLanguage();
+    const smoothRef = useSmoothScroll(0.08);
 
     useEffect(() => {
-        // Détecte si l'URL contient une ancre et scroll vers cette section
         const hash = window.location.hash;
         if (hash) {
-            // Utilise un setTimeout pour s'assurer que le DOM est complètement chargé
             setTimeout(() => {
                 const element = document.querySelector(hash);
                 if (element) {
@@ -23,17 +24,20 @@ const Layout = () => {
     }, []);
 
     return (
-        <div className="bg-body min-h-screen transition-colors duration-300">
+        <div className="min-h-screen transition-colors duration-300">
+            <CustomCursor />
+            {/* Header stays outside smoothRef so it remains truly fixed */}
             <div className="fixed w-full z-50">   
                 <Header/>
             </div>
-            
-            <div
-                className="transition-opacity duration-300 ease-in-out"
-                style={{ opacity: isTransitioning ? 0 : 1 }}
-            >
-                <Contenair/>
-                <Footer/>
+            <div ref={smoothRef}>
+                <div
+                    className="transition-opacity duration-300 ease-in-out relative z-[1]"
+                    style={{ opacity: isTransitioning ? 0 : 1 }}
+                >
+                    <Container/>
+                    <Footer/>
+                </div>
             </div>
         </div>
     );

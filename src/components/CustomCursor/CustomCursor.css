@@ -1,0 +1,188 @@
+/* Hide default cursor on desktop */
+@media (hover: hover) and (pointer: fine) {
+    body {
+        cursor: none !important;
+    }
+    a, button, input, textarea, [role="button"] {
+        cursor: none !important;
+    }
+}
+
+/* ===== 3D SVG ARROW POINTER ===== */
+.custom-cursor-dot {
+    position: fixed;
+    top: -2px;
+    left: -1px;
+    width: 28px;
+    height: 32px;
+    pointer-events: none;
+    z-index: 99999;
+    opacity: 0;
+    perspective: 400px;
+    transition: opacity 0.3s ease;
+    will-change: transform;
+}
+
+.custom-cursor-dot.visible {
+    opacity: 1;
+}
+
+/* SVG element */
+.cursor-svg {
+    display: block;
+    filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.25));
+    transition: filter 0.3s ease, transform 0.2s ease;
+    transform-style: preserve-3d;
+}
+
+/* === DEFAULT STATE — Teal/grey pointer === */
+.cursor-path-dark {
+    fill: #435D5E;
+    stroke: #435D5E;
+    transition: fill 0.3s ease, stroke 0.3s ease, filter 0.3s ease;
+}
+
+.cursor-path-light {
+    fill: #61838B;
+    stroke: #61838B;
+    transition: fill 0.3s ease, stroke 0.3s ease, filter 0.3s ease;
+}
+
+/* === HOVER STATE — Golden warm === */
+.custom-cursor-dot.hovering .cursor-path-dark {
+    fill: #b8860b;
+    stroke: #b8860b;
+}
+
+.custom-cursor-dot.hovering .cursor-path-light {
+    fill: #e6a817;
+    stroke: #e6a817;
+}
+
+.custom-cursor-dot.hovering .cursor-svg {
+    filter: drop-shadow(1px 2px 6px rgba(230, 168, 23, 0.45))
+            drop-shadow(0 0 10px rgba(230, 168, 23, 0.2));
+    transform: scale(1.15);
+}
+
+/* === CLICK STATE — Bright accent flash === */
+.custom-cursor-dot.clicking .cursor-path-dark {
+    fill: #2445A6;
+    stroke: #1a3580;
+}
+
+.custom-cursor-dot.clicking .cursor-path-light {
+    fill: #3767D2;
+    stroke: #2d5abf;
+}
+
+.custom-cursor-dot.clicking .cursor-svg {
+    filter: drop-shadow(0 0 8px rgba(55, 103, 210, 0.6))
+            drop-shadow(0 0 16px rgba(55, 103, 210, 0.25));
+    transform: scale(0.88);
+}
+
+/* === HOVER + CLICK combo === */
+.custom-cursor-dot.hovering.clicking .cursor-path-dark {
+    fill: #ffffff;
+    stroke: #e6a817;
+}
+
+.custom-cursor-dot.hovering.clicking .cursor-path-light {
+    fill: #fef3c7;
+    stroke: #e6a817;
+}
+
+.custom-cursor-dot.hovering.clicking .cursor-svg {
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.5))
+            drop-shadow(0 0 20px rgba(230, 168, 23, 0.4));
+    transform: scale(0.92);
+}
+
+/* Glow underneath the pointer */
+.cursor-3d-glow {
+    position: absolute;
+    top: 45%;
+    left: 35%;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(67, 93, 94, 0.3) 0%, transparent 70%);
+    filter: blur(3px);
+    pointer-events: none;
+    transition: width 0.3s ease, height 0.3s ease, background 0.3s ease, filter 0.3s ease;
+}
+
+.custom-cursor-dot.hovering .cursor-3d-glow {
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, rgba(230, 168, 23, 0.4) 0%, transparent 70%);
+    filter: blur(5px);
+}
+
+.custom-cursor-dot.clicking .cursor-3d-glow {
+    width: 18px;
+    height: 18px;
+    background: radial-gradient(circle, rgba(55, 103, 210, 0.45) 0%, transparent 70%);
+    filter: blur(4px);
+}
+
+/* Custom cursor ring (outer) */
+.custom-cursor-ring {
+    position: fixed;
+    top: -20px;
+    left: -20px;
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--color-accent, #3767D2);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99998;
+    opacity: 0;
+    transition: opacity 0.3s ease, width 0.3s cubic-bezier(0.4, 0, 0.2, 1), height 0.3s cubic-bezier(0.4, 0, 0.2, 1), top 0.3s ease, left 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+    will-change: transform;
+}
+
+.custom-cursor-ring.visible {
+    opacity: 0.5;
+}
+
+.custom-cursor-ring.hovering {
+    width: 56px;
+    height: 56px;
+    top: -28px;
+    left: -28px;
+    opacity: 0.3;
+    border-color: var(--svg-deco-underline, #e6a817);
+    background: rgba(55, 103, 210, 0.05);
+}
+
+.custom-cursor-ring.clicking {
+    width: 32px;
+    height: 32px;
+    top: -16px;
+    left: -16px;
+    opacity: 0.7;
+}
+
+/* Disable on mobile/touch */
+@media (hover: none), (pointer: coarse) {
+    .custom-cursor-dot,
+    .custom-cursor-ring {
+        display: none !important;
+    }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .custom-cursor-dot,
+    .custom-cursor-ring {
+        display: none !important;
+    }
+    body {
+        cursor: auto !important;
+    }
+    a, button, input, textarea, [role="button"] {
+        cursor: auto !important;
+    }
+}

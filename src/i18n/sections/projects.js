@@ -1,0 +1,146 @@
+const projects = {
+  en: {
+    projects: {
+      intro:
+      "I have worked on a variety of projects that strengthened both my technical and problem-solving skills. Each project focuses on delivering reliable, scalable, and user-centered solutions.",
+      title: "― Projects",
+      subtitle: "and Challenges",
+      viewAll: "View All Projects",
+      detailTitle: "Project Details",
+      detailSubtitle: "Discover my work and the technologies used",
+      viewMore: "View more",
+      detail: "Detail",
+      backHome: "Back to home",
+      filterAll: "All",
+      techUsed: "Technologies used",
+      liveDemo: "Live Demo",
+      sourceCode: "Source Code",
+      noResults: "No projects match this filter.",
+      statusLabels: {
+        completed: "Completed",
+        inProgress: "In Progress",
+        standby: "Standby",
+      },
+      items: {
+        p1: {
+          title: "SaaS Platform",
+          desc: "A complete SaaS management application with authentication, dashboards, and real-time data analytics.",
+          role: "Fullstack Developer",
+          duration: "6 months",
+          client: "Startup client",
+          features: ["User authentication & roles", "Real-time dashboards", "Data analytics & reports", "REST API", "Responsive design"],
+          challenge: "Building a scalable multi-tenant architecture capable of handling thousands of concurrent users while maintaining real-time data synchronization across dashboards."
+        },
+        p2: {
+          title: "Business Portal",
+          desc: "Custom business portal with role-based access, reporting modules, and API integrations.",
+          role: "Backend Lead",
+          duration: "4 months",
+          client: "Enterprise client",
+          features: ["Role-based access control", "Dynamic reporting", "Third-party API integration", "Data export (CSV/PDF)", "Activity logging"],
+          challenge: "Integrating multiple third-party APIs with different authentication schemes while ensuring data consistency and implementing a flexible role-based permission system."
+        },
+        p3: {
+          title: "Portfolio Website",
+          desc: "Modern portfolio website with animations, dark mode, and multilingual support.",
+          role: "Frontend Developer",
+          duration: "2 months",
+          client: "Personal project",
+          features: ["Framer Motion animations", "Dark/light theme", "EN/FR multilingual", "Responsive layout", "Contact form & scheduler"],
+          challenge: "Creating smooth, performant animations across all sections while maintaining accessibility and ensuring consistent rendering in both light and dark themes."
+        },
+        p4: {
+          title: "E-commerce Solution",
+          desc: "Full-featured e-commerce platform with payment gateway, inventory management, and order tracking.",
+          role: "Fullstack Developer",
+          duration: "8 months",
+          client: "Retail client",
+          features: ["Payment gateway integration", "Inventory management", "Order tracking system", "Admin dashboard", "Email notifications"],
+          challenge: "Implementing a secure payment pipeline with multiple providers and building a real-time inventory system that prevents overselling during high-traffic periods."
+        },
+      },
+      sectionLabels: {
+        role: "My Role",
+        duration: "Duration",
+        client: "Client",
+        features: "Key Features",
+        challenge: "Main Challenge",
+        techStack: "Tech Stack",
+        links: "Links",
+      },
+    },
+  },
+  fr: {
+    projects: {
+      intro:
+      "J'ai travaillé sur différents projets qui m'ont permis de renforcer mes compétences techniques et ma capacité à résoudre des problématiques concrètes. Chaque réalisation vise à offrir des solutions fiables, évolutives et centrées sur l'utilisateur.",
+      title: "― Projets",
+      subtitle: "et Défis",
+      viewAll: "Voir tous",
+      detailTitle: "Détails des projets",
+      detailSubtitle: "Découvrez mes réalisations et les technologies utilisées",
+      viewMore: "Voir plus",
+      detail: "Détail",
+      backHome: "Retour à l'accueil",
+      filterAll: "Tout",
+      techUsed: "Technologies utilisées",
+      liveDemo: "Démo en ligne",
+      sourceCode: "Code source",
+      noResults: "Aucun projet ne correspond à ce filtre.",
+      statusLabels: {
+        completed: "Terminé",
+        inProgress: "En cours",
+        standby: "En attente",
+      },
+      items: {
+        p1: {
+          title: "Plateforme SaaS",
+          desc: "Application SaaS complète avec authentification, tableaux de bord et analyse de données en temps réel.",
+          role: "Développeur Fullstack",
+          duration: "6 mois",
+          client: "Client startup",
+          features: ["Authentification & rôles", "Tableaux de bord temps réel", "Analyses & rapports", "API REST", "Design responsive"],
+          challenge: "Construire une architecture multi-tenant évolutive capable de gérer des milliers d'utilisateurs simultanés tout en maintenant la synchronisation des données en temps réel."
+        },
+        p2: {
+          title: "Portail Métier",
+          desc: "Portail métier sur mesure avec gestion des rôles, modules de reporting et intégrations API.",
+          role: "Lead Backend",
+          duration: "4 mois",
+          client: "Client entreprise",
+          features: ["Contrôle d'accès par rôles", "Reporting dynamique", "Intégration API tierces", "Export de données (CSV/PDF)", "Journal d'activités"],
+          challenge: "Intégrer plusieurs API tierces avec différents systèmes d'authentification tout en assurant la cohérence des données et un système de permissions flexible."
+        },
+        p3: {
+          title: "Site Portfolio",
+          desc: "Site portfolio moderne avec animations, mode sombre et support multilingue.",
+          role: "Développeur Frontend",
+          duration: "2 mois",
+          client: "Projet personnel",
+          features: ["Animations Framer Motion", "Thème sombre/clair", "Multilingue EN/FR", "Layout responsive", "Formulaire & planificateur"],
+          challenge: "Créer des animations fluides et performantes sur toutes les sections tout en maintenant l'accessibilité et un rendu cohérent en mode clair et sombre."
+        },
+        p4: {
+          title: "Solution E-commerce",
+          desc: "Plateforme e-commerce complète avec passerelle de paiement, gestion de stock et suivi de commandes.",
+          role: "Développeur Fullstack",
+          duration: "8 mois",
+          client: "Client retail",
+          features: ["Intégration passerelle de paiement", "Gestion de stock", "Suivi de commandes", "Dashboard admin", "Notifications email"],
+          challenge: "Implémenter un pipeline de paiement sécurisé avec plusieurs fournisseurs et un système d'inventaire temps réel empêchant la survente en période de fort trafic."
+        },
+      },
+      sectionLabels: {
+        role: "Mon Rôle",
+        duration: "Durée",
+        client: "Client",
+        features: "Fonctionnalités clés",
+        challenge: "Défi principal",
+        techStack: "Technologies",
+        links: "Liens",
+      },
+    },
+  },
+};
+
+export default projects;
