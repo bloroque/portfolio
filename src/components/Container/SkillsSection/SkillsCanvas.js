@@ -15,10 +15,10 @@ import {
   SiTailwindcss, SiBootstrap, SiJira, SiTrello, SiJsonwebtokens,
   SiNextdotjs, SiVite, SiFramer, SiVisualstudiocode
 } from "react-icons/si";
-import { TbFileTypeSql, TbComponents  } from "react-icons/tb";
+import { TbFileTypeSql, TbComponents } from "react-icons/tb";
 import { DiScrum } from "react-icons/di";
-import { MdDataObject, MdEmojiObjects, MdRocketLaunch   } from "react-icons/md";
-import { PiCodeBold, PiInfinityDuotone, PiCubeLight, PiUsersFourFill  } from "react-icons/pi";
+import { MdDataObject, MdEmojiObjects, MdRocketLaunch } from "react-icons/md";
+import { PiCodeBold, PiInfinityDuotone, PiCubeLight, PiUsersFourFill } from "react-icons/pi";
 import { VscDebugAll } from "react-icons/vsc";
 import { RiUserStarFill } from "react-icons/ri";
 import { TfiCommentsSmiley } from "react-icons/tfi";
@@ -28,70 +28,70 @@ import { BsEmojiSunglassesFill } from "react-icons/bs";
 // name: string (same in both languages) or { en, fr } for translated names
 const faceSkills = {
   frontend: [
-    { name: "JavaScript",    color: "#F7DF1E", Icon: SiJavascript },
-    { name: "TypeScript",    color: "#3178C6", Icon: SiTypescript },
-    { name: "React",         color: "#61DAFB", Icon: FaReact },
-    { name: "Vue.js",        color: "#4FC08D", Icon: SiVuedotjs },
-    { name: "Tailwind CSS",  color: "#06B6D4", Icon: SiTailwindcss },
-    { name: "Bootstrap",     color: "#7952B3", Icon: SiBootstrap },
-    { name: "shadcn/ui",     color: "#888888", Icon: TbComponents },
+    { name: "JavaScript", color: "#F7DF1E", Icon: SiJavascript },
+    { name: "TypeScript", color: "#3178C6", Icon: SiTypescript },
+    { name: "React", color: "#61DAFB", Icon: FaReact },
+    { name: "Vue.js", color: "#4FC08D", Icon: SiVuedotjs },
+    { name: "Tailwind CSS", color: "#06B6D4", Icon: SiTailwindcss },
+    { name: "Bootstrap", color: "#7952B3", Icon: SiBootstrap },
+    { name: "shadcn/ui", color: "#888888", Icon: TbComponents },
     { name: "Framer Motion", color: "#0055FF", Icon: SiFramer },
-    { name: "Next.js",       color: "#555555", Icon: SiNextdotjs },
+    { name: "Next.js", color: "#555555", Icon: SiNextdotjs },
   ],
   backend: [
-    { name: "PHP",         color: "#777BB4", Icon: FaPhp },
-    { name: "Laravel",     color: "#FF2D20", Icon: SiLaravel },
-    { name: "Symfony",     color: "#6c6c6c", Icon: SiSymfony },
+    { name: "PHP", color: "#777BB4", Icon: FaPhp },
+    { name: "Laravel", color: "#FF2D20", Icon: SiLaravel },
+    { name: "Symfony", color: "#6c6c6c", Icon: SiSymfony },
     { name: "CodeIgniter", color: "#EF4223", Icon: SiCodeigniter },
-    { name: "REST API",    color: "#009688", Icon: MdDataObject },
-    { name: "GraphQL",     color: "#E10098", Icon: SiGraphql },
-    { name: "JWT",         color: "#fb015b", Icon: SiJsonwebtokens },
+    { name: "REST API", color: "#009688", Icon: MdDataObject },
+    { name: "GraphQL", color: "#E10098", Icon: SiGraphql },
+    { name: "JWT", color: "#fb015b", Icon: SiJsonwebtokens },
   ],
   database: [
-    { name: "MySQL",      color: "#4479A1", Icon: SiMysql },
+    { name: "MySQL", color: "#4479A1", Icon: SiMysql },
     { name: "PostgreSQL", color: "#4169E1", Icon: SiPostgresql },
-    { name: "MongoDB",    color: "#47A248", Icon: SiMongodb },
-    { name: "Redis",      color: "#DC382D", Icon: SiRedis },
-    { name: "SQL",        color: "#CC7832", Icon: TbFileTypeSql },
-    { name: "ORM",   color: "#FF2D20", Icon: PiCubeLight },
+    { name: "MongoDB", color: "#47A248", Icon: SiMongodb },
+    { name: "Redis", color: "#DC382D", Icon: SiRedis },
+    { name: "SQL", color: "#CC7832", Icon: TbFileTypeSql },
+    { name: "ORM", color: "#FF2D20", Icon: PiCubeLight },
     // { name: "Prisma",     color: "#2D3748", iconText: "PR" },
     // { name: "Migration",  color: "#607D8B", iconText: "MG" },
     // { name: "Indexing",   color: "#795548", iconText: "IX" },
   ],
   tools: [
-    { name: "Git",     color: "#F05032", Icon: FaGitAlt },
-    { name: "GitHub",  color: "#6e5494", Icon: FaGithub },
-    { name: "npm",     color: "#CB3837", Icon: FaNpm },
-    { name: "Vite",    color: "#646CFF", Icon: SiVite },
-    { name: "Docker",  color: "#2496ED", Icon: FaDocker },
-    { name: "Linux",   color: "#FCC624", Icon: FaLinux },
+    { name: "Git", color: "#F05032", Icon: FaGitAlt },
+    { name: "GitHub", color: "#6e5494", Icon: FaGithub },
+    { name: "npm", color: "#CB3837", Icon: FaNpm },
+    { name: "Vite", color: "#646CFF", Icon: SiVite },
+    { name: "Docker", color: "#2496ED", Icon: FaDocker },
+    { name: "Linux", color: "#FCC624", Icon: FaLinux },
     { name: "VS Code", color: "#007ACC", Icon: SiVisualstudiocode },
-    { name: "Jira",    color: "#0052CC", Icon: SiJira },
-    { name: "Trello",  color: "#0052CC", Icon: SiTrello },
+    { name: "Jira", color: "#0052CC", Icon: SiJira },
+    { name: "Trello", color: "#0052CC", Icon: SiTrello },
   ],
   architecture: [
-    { name: { en: "Clean Code", fr: "Code propre" },  color: "#8BC34A", Icon: PiCodeBold },
-    { name: "SOLID",       color: "#E91E63",  Icon: PiCodeBold },
-    { name: "Clean Archi", color: "#00BCD4",  Icon: PiCodeBold },
+    { name: "Clean Code", color: "#8BC34A", Icon: PiCodeBold },
+    { name: "SOLID", color: "#E91E63", Icon: PiCodeBold },
+    { name: "Clean Archi", color: "#00BCD4", Icon: PiCodeBold },
     // { name: { en: "Design Pat.", fr: "Patrons conc." }, color: "#9C27B0", iconText: "DP" },
-    { name: { en: "OOP", fr: "POO" },  color: "#4A90D9", iconText: { en: "OOP", fr: "POO" } },
-    { name: "DDD",         color: "#FF9800", iconText: "DDD" },
-    { name: "TDD",         color: "#4CAF50", iconText: "TDD" },
-    { name: "MVC",         color: "#8BC34A", iconText: "MVC" },
-    { name: "CI/CD",       color: "#FF5722", Icon: PiInfinityDuotone },
-    { name: "Scrum",       color: "#3F51B5", Icon: DiScrum },
-    
+    { name: { en: "OOP", fr: "POO" }, color: "#4A90D9", iconText: { en: "OOP", fr: "POO" } },
+    { name: "DDD", color: "#FF9800", iconText: "DDD" },
+    { name: "TDD", color: "#4CAF50", iconText: "TDD" },
+    { name: "MVC", color: "#8BC34A", iconText: "MVC" },
+    { name: "CI/CD", color: "#FF5722", Icon: PiInfinityDuotone },
+    { name: "Scrum", color: "#3F51B5", Icon: DiScrum },
+
   ],
   softskills: [
-    { name: "Communication",  color: "#E91E63", Icon: TfiCommentsSmiley },
-    { name: { en: "Teamwork", fr: "Travail d'équipe" },       color: "#2196F3", Icon: PiUsersFourFill },
-    { name: { en: "Adaptability", fr: "Adaptabilité" },   color: "#FF9800", Icon: FaHandshake },
-    { name: { en: "Problem Solving", fr: "Résolution pb." },  color: "#4CAF50", Icon: VscDebugAll },
-    { name: { en: "Curiosity", fr: "Curiosité" },      color: "#9C27B0", Icon: RiUserStarFill },
-    { name: { en: "Autonomy", fr: "Autonomie" },       color: "#00BCD4", Icon: BsEmojiSunglassesFill },
+    { name: "Communication", color: "#E91E63", Icon: TfiCommentsSmiley },
+    { name: { en: "Teamwork", fr: "Travail d'équipe" }, color: "#2196F3", Icon: PiUsersFourFill },
+    { name: { en: "Adaptability", fr: "Adaptabilité" }, color: "#FF9800", Icon: FaHandshake },
+    { name: { en: "Problem Solving", fr: "Résolution pb." }, color: "#4CAF50", Icon: VscDebugAll },
+    { name: { en: "Curiosity", fr: "Curiosité" }, color: "#9C27B0", Icon: RiUserStarFill },
+    { name: { en: "Autonomy", fr: "Autonomie" }, color: "#00BCD4", Icon: BsEmojiSunglassesFill },
     // { name: { en: "Rigor", fr: "Rigueur" },          color: "#795548", iconText: "\uD83D\uDCD0" },
-    { name: { en: "Creativity", fr: "Créativité" },     color: "#FF5722", Icon: MdEmojiObjects },
-    { name: "Leadership",     color: "#607D8B", Icon: MdRocketLaunch },
+    { name: { en: "Creativity", fr: "Créativité" }, color: "#FF5722", Icon: MdEmojiObjects },
+    { name: "Leadership", color: "#607D8B", Icon: MdRocketLaunch },
   ],
 };
 
@@ -105,12 +105,12 @@ function resolveSkill(skill, lang) {
 }
 
 const faceConfig = [
-  { key: "frontend",     normal: [0, 0, 1],  label: "Frontend",       color: "#a855f7" },
-  { key: "backend",      normal: [0, 0, -1], label: "Backend",        color: "#3b82f6" },
-  { key: "tools",        normal: [1, 0, 0],  label: "Tools & DevOps", color: "#f59e0b" },
-  { key: "database",     normal: [-1, 0, 0], label: "Database",       color: "#10b981" },
-  { key: "architecture", normal: [0, 1, 0],  label: "Architecture",   color: "#e11d48" },
-  { key: "softskills",   normal: [0, -1, 0], label: "Soft Skills",    color: "#d97706" },
+  { key: "frontend", normal: [0, 0, 1], label: "Frontend", color: "#a855f7" },
+  { key: "backend", normal: [0, 0, -1], label: "Backend", color: "#3b82f6" },
+  { key: "tools", normal: [1, 0, 0], label: "Tools & DevOps", color: "#f59e0b" },
+  { key: "database", normal: [-1, 0, 0], label: "Database", color: "#10b981" },
+  { key: "architecture", normal: [0, 1, 0], label: "Architecture", color: "#e11d48" },
+  { key: "softskills", normal: [0, -1, 0], label: "Soft Skills", color: "#d97706" },
 ];
 
 // Render react-icon to SVG data URL
@@ -331,10 +331,10 @@ function SmallCube({ position, faceTextures, isDark, scrambleOffset, scrambleDel
   }, [faceTextures, isDark]);
 
   // Géométrie + contours pour l'effet Rubik's cube (arêtes noires)
-  const edgesGeo = useMemo(() => {
-    const box = new THREE.BoxGeometry(0.93, 0.93, 0.93);
-    return new THREE.EdgesGeometry(box);
-  }, []);
+  // const edgesGeo = useMemo(() => {
+  //   const box = new THREE.BoxGeometry(0.93, 0.93, 0.93);
+  //   return new THREE.EdgesGeometry(box);
+  // }, []);
 
   // Scramble animation data
   const scramble = useMemo(() => {
@@ -442,9 +442,9 @@ function SmallCube({ position, faceTextures, isDark, scrambleOffset, scrambleDel
         ))}
       </mesh>
       {/* Contour noir sur les arêtes = ombre/profondeur entre les cellules */}
-      <lineSegments geometry={edgesGeo}>
+      {/* <lineSegments geometry={edgesGeo}>
         <lineBasicMaterial color={isDark ? "#000000" : "#c0c0c0"} linewidth={1} />
-      </lineSegments>
+      </lineSegments> */}
     </group>
   );
 }
@@ -453,14 +453,31 @@ function SmallCube({ position, faceTextures, isDark, scrambleOffset, scrambleDel
 function RubiksCube({ isDark, targetFace, onAnimDone, lang, isVisible }) {
   const groupRef = useRef();
   const { camera } = useThree();
-  const [isPointerDown, setIsPointerDown] = useState(false);
-  const [autoRotate, setAutoRotate] = useState(true);
+  const autoRotateRef = useRef(true);
+  const isPointerDownRef = useRef(false);
+  const isHoveredRef = useRef(false);
+  const resumeTimerRef = useRef(null);
   const animatingRef = useRef(false);
   const targetQuatRef = useRef(null);
   const startQuatRef = useRef(new THREE.Quaternion());
   const animProgressRef = useRef(0);
   const [texturesReady, setTexturesReady] = useState(false);
   const [asyncTextures, setAsyncTextures] = useState(null);
+
+  // Helper: schedule auto-rotate resume after delay
+  const scheduleResume = useCallback((delay = 3000) => {
+    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+    resumeTimerRef.current = setTimeout(() => {
+      if (!isPointerDownRef.current && !isHoveredRef.current) {
+        autoRotateRef.current = true;
+      }
+    }, delay);
+  }, []);
+
+  // Cleanup timer on unmount
+  useEffect(() => {
+    return () => { if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current); };
+  }, []);
 
   // ═══════════════════════════════════════════════════════════════════════════
   // Construction des 27 cellules du Rubik's cube 3x3x3
@@ -606,12 +623,12 @@ function RubiksCube({ isDark, targetFace, onAnimDone, lang, isVisible }) {
       // "Up" direction on the texture at identity rotation for each face
       // (what direction in world space corresponds to "top of the text")
       const faceUpMap = {
-        frontend:     [0, 1, 0],   // +Z face: text up = +Y
-        backend:      [0, 1, 0],   // -Z face: text up = +Y
-        tools:        [0, 1, 0],   // +X face: text up = +Y
-        database:     [0, 1, 0],   // -X face: text up = +Y
+        frontend: [0, 1, 0],   // +Z face: text up = +Y
+        backend: [0, 1, 0],   // -Z face: text up = +Y
+        tools: [0, 1, 0],   // +X face: text up = +Y
+        database: [0, 1, 0],   // -X face: text up = +Y
         architecture: [0, 0, -1],  // +Y face: text up = -Z (Three.js UV mapping)
-        softskills:   [0, 0, 1],   // -Y face: text up = +Z (Three.js UV mapping)
+        softskills: [0, 0, 1],   // -Y face: text up = +Z (Three.js UV mapping)
       };
       const faceUp = new THREE.Vector3(...faceUpMap[face.key]);
 
@@ -642,7 +659,7 @@ function RubiksCube({ isDark, targetFace, onAnimDone, lang, isVisible }) {
       startQuatRef.current.copy(groupRef.current.quaternion);
       animProgressRef.current = 0;
       animatingRef.current = true;
-      setAutoRotate(false);
+      autoRotateRef.current = false;
     }
   }, [targetFace, camera]);
 
@@ -667,12 +684,14 @@ function RubiksCube({ isDark, targetFace, onAnimDone, lang, isVisible }) {
         animatingRef.current = false;
         targetQuatRef.current = null;
         if (onAnimDone) onAnimDone();
+        // Resume auto-rotate after a pause so user can read the face
+        scheduleResume(4000);
       }
       return;
     }
 
-    // Auto rotate only if not pointer down
-    if (autoRotate && !isPointerDown) {
+    // Auto rotate only if not interacting
+    if (autoRotateRef.current && !isPointerDownRef.current && !isHoveredRef.current) {
       groupRef.current.rotation.y += delta * 0.15;
       groupRef.current.rotation.x += delta * 0.05;
     }
@@ -685,11 +704,11 @@ function RubiksCube({ isDark, targetFace, onAnimDone, lang, isVisible }) {
   return (
     <group
       ref={groupRef}
-      onPointerDown={() => { setIsPointerDown(true); setAutoRotate(false); }}
-      onPointerUp={() => setIsPointerDown(false)}
-      onPointerLeave={() => setIsPointerDown(false)}
-      onPointerOver={() => setAutoRotate(false)}
-      onPointerOut={() => { if (!isPointerDown) setAutoRotate(true); }}
+      onPointerDown={() => { isPointerDownRef.current = true; autoRotateRef.current = false; }}
+      onPointerUp={() => { isPointerDownRef.current = false; scheduleResume(2000); }}
+      onPointerLeave={() => { isPointerDownRef.current = false; isHoveredRef.current = false; scheduleResume(1500); }}
+      onPointerOver={() => { isHoveredRef.current = true; autoRotateRef.current = false; }}
+      onPointerOut={() => { isHoveredRef.current = false; scheduleResume(1500); }}
     >
       {asyncTextures.map((cube, i) => (
         <SmallCube
@@ -706,6 +725,24 @@ function RubiksCube({ isDark, targetFace, onAnimDone, lang, isVisible }) {
   );
 }
 
+// -- FrameController: only invalidate the canvas when section is visible --
+function FrameController({ isVisible }) {
+  const { invalidate } = useThree();
+  useEffect(() => {
+    if (!isVisible) return;
+    let running = true;
+    const tick = () => {
+      if (running) {
+        invalidate();
+        requestAnimationFrame(tick);
+      }
+    };
+    requestAnimationFrame(tick);
+    return () => { running = false; };
+  }, [isVisible, invalidate]);
+  return null;
+}
+
 // -- Legend --
 function FaceLegend({ activeFace, onFaceClick, t }) {
   return (
@@ -713,25 +750,25 @@ function FaceLegend({ activeFace, onFaceClick, t }) {
       {faceConfig.map((face) => {
         const isActive = activeFace === face.key;
         return (
-            <button
-                key={face.key}
-                onClick={() => onFaceClick(face.key)}
-                className={
-                "flex items-center gap-1.5 px-2.5 py-1.5 rounded border transition-all duration-300 cursor-pointer " +
-                (isActive
-                    ? "border-current shadow-md scale-105"
-                    : "border-[var(--border-theme)] hover:border-current hover:shadow-sm")
-                }
-                style={{ color: face.color }}
-            >
-                    <span
-                    className="inline-block w-3 h-3 rounded-sm"
-                    style={{ backgroundColor: face.color }}
-                    />
-                    <span className={"text-xs sm:text-sm font-semibold " + (isActive ? "" : "text-[var(--text-secondary)]")}>
-                        {t("skills.cubeFaces." + face.key)}
-                    </span>
-            </button>
+          <button
+            key={face.key}
+            onClick={() => onFaceClick(face.key)}
+            className={
+              "flex items-center gap-1.5 px-2.5 py-1.5 rounded border transition-all duration-300 cursor-pointer " +
+              (isActive
+                ? "border-current shadow-md scale-105"
+                : "border-[var(--border-theme)] hover:border-current hover:shadow-sm")
+            }
+            style={{ color: face.color }}
+          >
+            <span
+              className="inline-block w-3 h-3 rounded-sm"
+              style={{ backgroundColor: face.color }}
+            />
+            <span className={"text-xs sm:text-sm font-semibold " + (isActive ? "" : "text-[var(--text-secondary)]")}>
+              {t("skills.cubeFaces." + face.key)}
+            </span>
+          </button>
         );
       })}
     </div>
@@ -757,41 +794,63 @@ const SkillsCanvas = () => {
 
   return (
     <div className="relative w-full" ref={scrollRef}>
+      {/* Outer wrapper: handles border + shadow + border-radius */}
       <div
-        className="rounded-2xl border border-[var(--border-theme)]"
         style={{
           width: "100%",
           height: "min(60vw, 520px)",
-          minHeight: "320px",
+          minHeight: "300px",
           maxHeight: "600px",
-          backgroundImage: isDark
-            ? "radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px)"
-            : "radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px)",
-          backgroundSize: "20px 20px",
+          padding: "15px",
+          borderRadius: "1rem",
+          border: "1px solid var(--border-theme)",
+          boxSizing: "border-box",
+          boxShadow: isDark
+            ? "0 20px 60px rgba(250,250,250,0.3), inset 0 1px 0 rgba(255,255,255,0.06)"
+            : "0 4px 30px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.7)",
+          backgroundColor: isDark ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.45)",
         }}
+        className="backdrop-blur-xl transition-colors duration-300"
       >
-        <Canvas
-          camera={{ position: [4.5, 3.5, 4.5], fov: 45 }}
-          gl={{ antialias: true, alpha: true, toneMapping: THREE.NoToneMapping, outputColorSpace: THREE.SRGBColorSpace }}
-          style={{ background: "transparent" }}
+        {/* Inner wrapper: handles background, overflow-hidden, and matching inner border-radius */}
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            overflow: "hidden",
+            // backgroundImage: isDark
+            //   ? "radial-gradient(circle, rgba(255,255,255,0.07) 1.5px, transparent 1px)"
+            //   : "radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px)",
+            // backgroundColor: isDark ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.45)",
+            borderRadius: ".75rem",
+            backdropFilter: "blur(12px)",
+            WebkitBackdropFilter: "blur(12px)",
+          }}
         >
+          <Canvas
+            frameloop="demand"
+            camera={{ position: [4.5, 3.5, 4.5], fov: 45 }}
+            gl={{ antialias: true, alpha: true, toneMapping: THREE.NoToneMapping, outputColorSpace: THREE.SRGBColorSpace }}
+            style={{ background: "transparent" }}
+          >
+            <FrameController isVisible={isVisible} />
             <ambientLight intensity={1.0} />
             <directionalLight position={[5, 5, 5]} intensity={1.0} />
             <directionalLight position={[-3, -3, -3]} intensity={0.4} />
             <pointLight position={[0, 5, 0]} intensity={0.5} />
             <RubiksCube isDark={false} targetFace={targetFace} onAnimDone={handleAnimDone} lang={lang} isVisible={isVisible} />
             <OrbitControls
-                enablePan={false}
-                enableZoom={true}
-                minDistance={4}
-                maxDistance={12}
+              enablePan={false}
+              enableZoom={true}
+              minDistance={4}
+              maxDistance={12}
             />
-        </Canvas>
-
+          </Canvas>
+        </div>
       </div>
       <FaceLegend activeFace={activeFace} onFaceClick={handleFaceClick} t={t} />
-      
-      
+
+
     </div>
   );
 };

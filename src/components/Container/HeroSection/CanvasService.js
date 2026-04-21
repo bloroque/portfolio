@@ -29,13 +29,13 @@ const CanvasService = ({ sectionRef }) => {
         return () => window.removeEventListener('resize', onResize);
     }, [getBreakpoint]);
 
-    const fanConfig = {
+    const fanConfig = useMemo(() => ({
         md:  { spacing: 130, cardW: 170, cardH: 180, fontSize: 9,  specFont: 10, iconSize: 22, padX: 16, padY: 28, gapIconTitle: 12, gapTitleSpec: 24, canvasPadX: 10 },
         lg:  { spacing: 135, cardW: 190, cardH: 180, fontSize: 10, specFont: 10, iconSize: 24, padX: 18, padY: 28, gapIconTitle: 12, gapTitleSpec: 24, canvasPadX: 15 },
         xl:  { spacing: 155, cardW: 190, cardH: 180, fontSize: 10, specFont: 10, iconSize: 26, padX: 18, padY: 27, gapIconTitle: 12, gapTitleSpec: 24, canvasPadX: 20 },
         '2xl': { spacing: 175, cardW: 220, cardH: 180, fontSize: 11, specFont: 11, iconSize: 30, padX: 18, padY: 28, gapIconTitle: 12, gapTitleSpec: 24, canvasPadX: 25 },
-    };
-    const currentFan = fanConfig[breakpoint] || fanConfig.md;
+    }), []);
+    const currentFan = useMemo(() => fanConfig[breakpoint] || fanConfig.md, [fanConfig, breakpoint]);
 
     const services = useMemo(() => [
         { icon: FaGlobe,      key: 'website',     color: '#3b82f6', gradStart: '#3470f1', gradEnd: '#2459ec' },

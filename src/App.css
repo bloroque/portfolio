@@ -44,8 +44,9 @@
 
 /* ===== DARK THEME ===== */
 .dark {
-    --bg-body: #2445A6;
-    --bg-card: rgba(55, 103, 210, 0.3);
+    --bg-body: #0d1117;
+        --bg-body-gradient: linear-gradient(to bottom, #161b2e, #0d1117);
+        --bg-card: rgba(22, 27, 46, 0.6);
     --color-theme-base: rgba(36, 69, 166, 1);
     --color-theme-second: rgba(9, 44, 144, .58);
     --color-accent: #3767D2;
@@ -61,14 +62,14 @@
     --border-menu: #ffffff;
 
     /* --logo-bg: #ffffff; */
-    --logo-bg: #2445A6;
-    --logo-text: #2445A6;
+    --logo-bg: #161b2e;
+        --logo-text: #161b2e;
     --logo-container-bg: #ffffff;
     --logo-color: #ffffff;
 
     --icon-color: #ffffff;
     --btn-bg: #ffffff;
-    --btn-text: #2445A6;
+    --btn-text: #161b2e;
 
     --footer-bg: rgba(9, 44, 144, .58);
     --footer-text: #ffffff;
@@ -100,6 +101,10 @@ body {
     background-color: var(--bg-body);
 }
 
+.dark body {
+    background: linear-gradient(to bottom, #161b2e, #0d1117);
+    background-attachment: fixed;
+}
 /* ===== STATIC PATTERN BACKGROUND ===== */
 body::before {
     content: '';
