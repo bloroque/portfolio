@@ -77,7 +77,7 @@ const HeroSection = (props) => {
                 style={{ position: "relative", overflow: "hidden" }}
             >
                 
-                <div className="mx-auto max-w-screen-lg px-2 pt-24 2xl:pt-5 w-full relative z-10 flex items-center justify-center">
+                <div className="mx-auto max-w-screen-lg px-2 pt-32 2xl:pt-5 w-full relative z-10 flex items-center justify-center">
 
                     <motion.div
                         className="w-full h-full flex flex-col gap-2 items-center text-center"
@@ -217,7 +217,7 @@ const HeroSection = (props) => {
                
                 </div>
 
-                <div className="mx-auto max-w-screen-lg px-2 pt-24 2xl:pt-5 w-full relative z-10 flex items-center justify-center">
+                <div className="mx-auto max-w-screen-lg px-2 pt-4 2xl:pt-5 w-full relative z-10 flex items-center justify-center">
 
                     {/* Services — Desktop fan layout (Canvas) */}
                     <motion.div

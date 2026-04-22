@@ -66,6 +66,10 @@ const useSmoothScroll = (lerp = 0.09) => {
 
         const onScroll = () => {
             target = window.scrollY;
+            // Restart loop only if it was idle
+            if (rafId == null) {
+                rafId = requestAnimationFrame(animate);
+            }
         };
         window.addEventListener('scroll', onScroll, { passive: true });
 
@@ -78,7 +82,13 @@ const useSmoothScroll = (lerp = 0.09) => {
             }
 
             wrapper.style.transform = `translate3d(0, ${-current}px, 0)`;
-            rafId = requestAnimationFrame(animate);
+
+            // Stop the loop when fully converged
+            if (current !== target) {
+                rafId = requestAnimationFrame(animate);
+            } else {
+                rafId = null;
+            }
         };
         rafId = requestAnimationFrame(animate);
 

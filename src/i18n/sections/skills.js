@@ -35,6 +35,23 @@ const skills = {
         title: "Soft Skills",
         description: "Technical rigor and clear communication shape my work. I value collaboration, fast adaptation, structured problem-solving, and continuous curiosity to keep improving."
       },
+      cubeFaces: {
+        frontend: "Frontend",
+        backend: "Backend",
+        database: "Database",
+        tools: "Tools & DevOps",
+        architecture: "Engineering & Development",
+        softskills: "Soft Skills",
+      },
+      solver: {
+        playGame: "Play Cube Solver",
+        backToSkills: "Back to Skills",
+        moves: "Moves",
+        solved: "Solved!",
+        scramble: "Scramble",
+        solve: "Solve",
+        reset: "Reset",
+      },
     },
   },
   fr: {
@@ -72,6 +89,23 @@ const skills = {
       softSkills: {
         title: "Soft Skills",
         description: "Rigueur technique et communication claire structurent mon travail. J'accorde une forte importance à la collaboration, à l'adaptation rapide et à une analyse méthodique des problèmes, avec une curiosité constante pour progresser."
+      },
+      cubeFaces: {
+        frontend: "Frontend",
+        backend: "Backend",
+        database: "Base de données",
+        tools: "Outils & DevOps",
+        architecture: "Ingénierie & Développement",
+        softskills: "Soft Skills",
+      },
+      solver: {
+        playGame: "Jouer au Cube Solver",
+        backToSkills: "Retour aux Skills",
+        moves: "Mouvements",
+        solved: "Résolu !",
+        scramble: "Mélanger",
+        solve: "Résoudre",
+        reset: "Réinitialiser",
       },
     },
   },

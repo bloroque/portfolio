@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import headerCSS from './Header.module.css';
+import headerCSS from './header.module.css';
 import { FaGithub, FaLinkedin, FaSun, FaMoon, FaBars, FaTimes } from "react-icons/fa";
 import { useTheme } from "../../context/ThemeContext";
 import { useLanguage } from "../../context/LanguageContext";
