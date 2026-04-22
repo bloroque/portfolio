@@ -805,10 +805,10 @@ const SkillsCanvas = () => {
           borderRadius: "1rem",
           border: "1px solid var(--border-theme)",
           boxSizing: "border-box",
-          boxShadow: isDark
-            ? "0 20px 60px rgba(250,250,250,0.3), inset 0 1px 0 rgba(255,255,255,0.06)"
-            : "0 4px 30px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.7)",
-          backgroundColor: isDark ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.45)",
+          // boxShadow: isDark
+          //   ? "0 20px 60px rgba(250,250,250,0.3), inset 0 1px 0 rgba(255,255,255,0.06)"
+          //   : "0 4px 30px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.7)",
+          // backgroundColor: isDark ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.45)",
         }}
         className="backdrop-blur-xl transition-colors duration-300"
       >
