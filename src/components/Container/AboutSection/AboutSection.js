@@ -65,13 +65,16 @@ const AboutSection = (props) => {
                                 backgroundSize: "10px 10px"
                             }}></div>
                             {/* Main image */}
-                            <div className="relative w-full h-full overflow-hidden rounded-2xl shadow-xl">
+                            <div className={`${AboutCSS.profileCard} relative w-full h-full overflow-hidden rounded-2xl shadow-xl`}>
                                 <img
                                     src={require('../../../assets/images/image2.png')}
                                     alt={t('about.imageAlt')}
                                     loading="lazy"
                                     className="w-full h-full object-cover"
                                 />
+
+                                {/* Overlay d'informations en bas */}
+                                <div className={AboutCSS.profileOverlay}></div>
                                 {/* Subtle gradient overlay at bottom */}
                                 <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/20 to-transparent"></div>
                             </div>

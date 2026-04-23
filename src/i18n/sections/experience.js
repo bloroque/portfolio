@@ -2,10 +2,11 @@ const experience = {
   en: {
     experience: {
       title: "― Experience",
-      subtitle: "My professional journey and career path.",
+      subtitle:
+        "4+ years building fullstack web apps with PHP/Laravel and Vue.js — from ERP maintenance to custom client solutions. Open to new challenges.",
       jobs: [
         {
-          role: "Open to New Opportunities",
+          role: "Looking for New Opportunities",
           type: "Full-time / Freelance",
           location: "Remote / Madagascar",
           isLooking: true,
@@ -13,20 +14,28 @@ const experience = {
         },
         {
           role: "Fullstack Developer",
-          company: "Freelance",
-          type: "Self-employed",
+          company: "Manao logiciel",
+          type: "Permanent contract",
           dateStart: "08-2020",
-          dateFinish: "03-2026",
+          dateFinish: null,
           location: "Fianarantsoa, Madagascar",
-          remote: "Remote",
+          remote: "On-site",
           current: false,
-          description: "Design and development of modern web applications for various clients. Complete management from requirements gathering through deployment.",
+          description: "",
           achievements: [
-            "Built responsive portfolio and SaaS platforms with React & Node.js",
-            "Integrated third-party APIs (Google Calendar, payment gateways)",
-            "Delivered 5+ projects end-to-end with high client satisfaction",
+            "Led evolutionary maintenance and performance improvements on Manao ERP, serving multiple business clients.",
+            "Designed and delivered end-to-end custom web applications for CELAVIpierre — from requirements gathering to production.",
           ],
-          skills: ["React", "Node.js", "Tailwind CSS", "MongoDB", "REST API", "Git"],
+          skills: [
+            "PHP",
+            "CodeIgniter",
+            "Laravel",
+            "Vue.js",
+            "jQuery",
+            "MySQL",
+            "Redis",
+            "Git/Gitflow",
+          ],
         },
       ],
     },
@@ -34,7 +43,8 @@ const experience = {
   fr: {
     experience: {
       title: "― Expériences",
-      subtitle: "Mon parcours professionnel et mes réalisations.",
+      subtitle:
+        "Plus de 4 ans à développer des applications web fullstack avec PHP/Laravel et Vue.js — de la maintenance ERP aux solutions sur mesure. Ouvert à de nouvelles opportunités.",
       jobs: [
         {
           role: "À la recherche de nouvelles opportunités",
@@ -45,20 +55,28 @@ const experience = {
         },
         {
           role: "Développeur Fullstack",
-          company: "Freelance",
-          type: "Indépendant",
+          company: "Manao logiciel",
+          type: "CDI",
           dateStart: "08-2020",
           dateFinish: null,
           location: "Fianarantsoa, Madagascar",
-          remote: "À distance",
+          remote: "Présentiel",
           current: false,
-          description: "Conception et développement d'applications web modernes pour divers clients. Gestion complète du recueil des besoins jusqu'au déploiement.",
+          description: "",
           achievements: [
-            "Création de portfolios et plateformes SaaS avec PHP & Laravel",
-            "Intégration d'APIs tierces (Google Calendar, passerelles de paiement)",
-            "Livraison de 5+ projets de bout en bout avec satisfaction client élevée",
+            "Maintenance évolutive et amélioration des performances de l'ERP Manao, utilisé par plusieurs clients entreprises.",
+            "Développement complet d'applications web sur mesure pour CELAVIpierre — recueil des besoins, conception technique et mise en production.",
           ],
-          skills: ["PHP", "CodeIgniter", "Laravel/Lumen", "Symfony", "Vue.js", "jQuery", "Wordpress"],
+          skills: [
+            "PHP",
+            "CodeIgniter",
+            "Laravel",
+            "Vue.js",
+            "jQuery",
+            "MySQL",
+            "Redis",
+            "Git/Gitflow",
+          ],
         },
       ],
     },

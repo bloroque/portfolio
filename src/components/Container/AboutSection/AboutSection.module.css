@@ -2,3 +2,84 @@
 .homeSectionTitle >  h2{
     font-family: 'Inter', sans-serif;
 }
+
+
+.profileCardContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 10px; /* Espace pour laisser respirer le halo */
+}
+
+/* Le trait lumineux bleu au dessus */
+.neonBeam {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 60px;
+    background: #0084ff;
+    box-shadow: 
+        0 0 15px #0084ff,
+        0 0 30px #0084ff;
+    z-index: 2;
+}
+
+.profileCard {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #1a1a1a;
+    /* La bordure lumineuse bleue */
+    border: 2px solid #0084ff;
+    box-shadow: 
+        0 0 20px rgba(0, 132, 255, 0.4),
+        inset 0 0 15px rgba(0, 132, 255, 0.2);
+}
+
+.profileImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Le dégradé bleu en bas qui contient le texte */
+.profileOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30%;
+    background: linear-gradient(
+        to top,
+        rgba(0, 81, 255, 0.6) 0%,
+        rgba(0, 81, 255, 0.4) 30%,
+        transparent 100%
+    );
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+.profileInfo {
+    color: white;
+}
+
+/* Animation optionnelle pour le halo */
+.profileCardContainer::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 20px;
+    background: #0084ff;
+    filter: blur(25px);
+    opacity: 0.6;
+    border-radius: 50%;
+}

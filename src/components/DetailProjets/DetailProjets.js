@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import DetailProjetsCSS from "./DetailProjets.module.css";
@@ -6,6 +6,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { useLanguage } from "../../context/LanguageContext";
 import { FaArrowLeft, FaExternalLinkAlt, FaGithub, FaUserTie, FaClock, FaBriefcase, FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
+import CustomCursor from "../CustomCursor/CustomCursor";
 
 import Image1 from "../../assets/images/Image1.png";
 import Image2 from "../../assets/images/image2.png";
@@ -18,15 +19,23 @@ const STATUS_STYLES = {
     standby: { bg: "bg-slate-400/15", text: "text-slate-500", dot: "bg-slate-400" },
 };
 
+/* Image map: resolves string keys from i18n to imported assets */
+const IMAGE_MAP = { Image1, Image2, Image3, Image4 };
+
 const DetailProjets = () => {
     const { t, isTransitioning } = useLanguage();
 
-    const projects = [
-        { id: 1, image: Image1, key: "p1", tags: ["React", "Node.js", "MongoDB"], status: "completed", liveUrl: "#", githubUrl: "#" },
-        { id: 2, image: Image2, key: "p2", tags: ["Laravel", "Vue.js", "MySQL"], status: "in-progress", liveUrl: "#", githubUrl: "#" },
-        { id: 3, image: Image3, key: "p3", tags: ["React", "Tailwind", "Firebase"], status: "completed", liveUrl: "#", githubUrl: "#" },
-        { id: 4, image: Image4, key: "p4", tags: ["PHP", "Symfony", "PostgreSQL"], status: "standby", liveUrl: "#", githubUrl: "#" },
-    ];
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    /* Build project list dynamically from i18n items */
+    const items = t('projects.items') || {};
+    const projects = Object.keys(items).map((key) => ({
+        key,
+        ...items[key],
+        image: IMAGE_MAP[items[key].image] || Image1,
+    }));
 
     const fadeInUp = {
         hidden: { opacity: 0, y: 40 },
@@ -50,6 +59,7 @@ const DetailProjets = () => {
 
     return (
         <div className="bg-[var(--bg-body)] min-h-screen transition-colors duration-300">
+            <CustomCursor />
             <div
                 className="transition-opacity duration-300 ease-in-out"
                 style={{ opacity: isTransitioning ? 0 : 1 }}
@@ -109,12 +119,11 @@ const DetailProjets = () => {
                     {projects.map((project, index) => {
                         const isEven = index % 2 === 0;
                         const statusStyle = STATUS_STYLES[project.status] || STATUS_STYLES.standby;
-                        const p = `projects.items.${project.key}`;
-                        const features = t(`${p}.features`);
+                        const features = project.features;
 
                         return (
                             <motion.section
-                                key={project.id}
+                                key={project.key}
                                 initial="hidden"
                                 whileInView="visible"
                                 viewport={{ once: true, amount: 0.15 }}
@@ -130,7 +139,7 @@ const DetailProjets = () => {
                                         </span>
                                         <div>
                                             <h2 className="text-[var(--text-heading)] font-bold text-fluid-3xl">
-                                                {t(`${p}.title`)}
+                                                {project.title}
                                             </h2>
                                             <div className="flex items-center gap-3 mt-2">
                                                 <div className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold ${statusStyle.bg} ${statusStyle.text}`}>
@@ -152,7 +161,7 @@ const DetailProjets = () => {
                                             <div className="relative group rounded-2xl overflow-hidden shadow-lg border border-[var(--border-theme)]">
                                                 <img
                                                     src={project.image}
-                                                    alt={t(`${p}.title`)}
+                                                    alt={project.title}
                                                     loading="lazy"
                                                     className="w-full h-48 sm:h-64 md:h-80 object-cover transition-transform duration-500 group-hover:scale-105"
                                                 />
@@ -167,7 +176,7 @@ const DetailProjets = () => {
                                         >
                                             {/* Description */}
                                             <p className="text-[var(--text-primary)] text-fluid-base leading-relaxed mb-4 sm:mb-6">
-                                                {t(`${p}.desc`)}
+                                                {project.desc}
                                             </p>
 
                                             {/* Info cards row */}
@@ -178,7 +187,7 @@ const DetailProjets = () => {
                                                         {t('projects.sectionLabels.role')}
                                                     </span>
                                                     <span className="text-[var(--text-heading)] text-xs font-bold mt-0.5 block">
-                                                        {t(`${p}.role`)}
+                                                        {project.role}
                                                     </span>
                                                 </div>
                                                 <div className="card-hover-lift bg-[var(--bg-card)] border border-[var(--border-theme)] rounded-xl p-2 sm:p-3 text-center">
@@ -187,7 +196,7 @@ const DetailProjets = () => {
                                                         {t('projects.sectionLabels.duration')}
                                                     </span>
                                                     <span className="text-[var(--text-heading)] text-xs font-bold mt-0.5 block">
-                                                        {t(`${p}.duration`)}
+                                                        {project.duration}
                                                     </span>
                                                 </div>
                                                 <div className="card-hover-lift bg-[var(--bg-card)] border border-[var(--border-theme)] rounded-xl p-2 sm:p-3 text-center">
@@ -196,7 +205,7 @@ const DetailProjets = () => {
                                                         {t('projects.sectionLabels.client')}
                                                     </span>
                                                     <span className="text-[var(--text-heading)] text-xs font-bold mt-0.5 block">
-                                                        {t(`${p}.client`)}
+                                                        {project.client}
                                                     </span>
                                                 </div>
                                             </div>
@@ -271,7 +280,7 @@ const DetailProjets = () => {
                                                 </h4>
                                             </div>
                                             <p className="text-[var(--text-primary)] text-fluid-sm leading-relaxed">
-                                                {t(`${p}.challenge`)}
+                                                {project.challenge}
                                             </p>
                                         </div>
                                     </motion.div>

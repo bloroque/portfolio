@@ -2,9 +2,7 @@ import React, { useRef, useState, useMemo, useCallback, useEffect } from "react"
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
-import { useTheme } from "../../../context/ThemeContext";
 import { useLanguage } from "../../../context/LanguageContext";
-import useScrollReveal from "../../../hooks/useScrollReveal";
 import { renderToStaticMarkup } from "react-dom/server";
 
 // react-icons
@@ -59,7 +57,7 @@ const faceSkills = {
     // { name: "Indexing",   color: "#795548", iconText: "IX" },
   ],
   tools: [
-    { name: "Git", color: "#F05032", Icon: FaGitAlt },
+    { name: "Git & Gitflow", color: "#F05032", Icon: FaGitAlt },
     { name: "GitHub", color: "#6e5494", Icon: FaGithub },
     { name: "npm", color: "#CB3837", Icon: FaNpm },
     { name: "Vite", color: "#646CFF", Icon: SiVite },
@@ -145,7 +143,7 @@ function drawFallbackIcon(ctx, cx, size, skill) {
 }
 
 // Texture vide : même fond et bordure que les autres cellules, sans icône ni label
-function createEmptyStickerTexture(faceColor, isDark) {
+function createEmptyStickerTexture(faceColor) {
   const size = 256;
   const canvas = document.createElement("canvas");
   canvas.width = size;
@@ -159,7 +157,7 @@ function createEmptyStickerTexture(faceColor, isDark) {
 
   ctx.beginPath();
   ctx.roundRect(0, 0, size, size, r);
-  ctx.fillStyle = isDark ? "#0f172a" : "#ffffff";
+  ctx.fillStyle = "#ffffff";
   ctx.fill();
 
   ctx.beginPath();
@@ -170,7 +168,7 @@ function createEmptyStickerTexture(faceColor, isDark) {
 
   ctx.beginPath();
   ctx.roundRect(12, 12, size - 24, size - 24, r - 6);
-  ctx.strokeStyle = isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.06)";
+  ctx.strokeStyle = "rgba(0,0,0,0.06)";
   ctx.lineWidth = 1;
   ctx.stroke();
 
@@ -190,7 +188,7 @@ function createEmptyStickerTexture(faceColor, isDark) {
 //
 // Retourne une Promise<THREE.CanvasTexture> car le chargement SVG → Image est async
 // ═══════════════════════════════════════════════════════════════════════════════
-function createStickerTextureAsync(skill, faceColor, isDark) {
+function createStickerTextureAsync(skill, faceColor) {
   return new Promise((resolve) => {
     // Taille du canvas de la texture (256x256 pixels)
     const size = 256;
@@ -205,10 +203,10 @@ function createStickerTextureAsync(skill, faceColor, isDark) {
     // ── Étape 1 : Dessiner le fond + bordures de la cellule ──
     const r = 18;
     const drawBase = () => {
-      // Fond blanc (clair) ou sombre selon le thème — coins arrondis
+      // Fond blanc — coins arrondis
       ctx.beginPath();
       ctx.roundRect(0, 0, size, size, r);
-      ctx.fillStyle = isDark ? "#0f172a" : "#ffffff";
+      ctx.fillStyle = "#ffffff";
       ctx.fill();
 
       // Bordure extérieure colorée (couleur de la catégorie/face)
@@ -221,7 +219,7 @@ function createStickerTextureAsync(skill, faceColor, isDark) {
       // Bordure intérieure subtile pour effet de profondeur
       ctx.beginPath();
       ctx.roundRect(12, 12, size - 24, size - 24, r - 6);
-      ctx.strokeStyle = isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.06)";
+      ctx.strokeStyle = "rgba(0,0,0,0.06)";
       ctx.lineWidth = 1;
       ctx.stroke();
     };
@@ -229,7 +227,7 @@ function createStickerTextureAsync(skill, faceColor, isDark) {
     // ── Étape 2 : Dessiner le libellé (nom du skill) en bas de la cellule ──
     const drawLabel = () => {
       const cx = size / 2;
-      ctx.fillStyle = isDark ? "#f1f5f9" : "#0f172a";
+      ctx.fillStyle = "#0f172a";
       const fontSize = 22;
       ctx.font = "700 " + fontSize + "px Inter, system-ui, sans-serif";
       ctx.textAlign = "center";
@@ -304,7 +302,7 @@ function createStickerTextureAsync(skill, faceColor, isDark) {
 // Au montage, chaque cube part d'une position/rotation aléatoire (scramble)
 // et s'anime vers sa position finale (solve).
 // ═══════════════════════════════════════════════════════════════════════════════
-function SmallCube({ position, faceTextures, isDark, scrambleOffset, scrambleDelay, isVisible }) {
+function SmallCube({ position, faceTextures, scrambleOffset, scrambleDelay, isVisible }) {
   const groupRef = useRef();
   const meshRef = useRef();
   const [hovered, setHovered] = useState(false);
@@ -316,9 +314,8 @@ function SmallCube({ position, faceTextures, isDark, scrambleOffset, scrambleDel
 
   // Créer les 6 matériaux du cube (un par face)
   const materials = useMemo(() => {
-    const defaultColor = isDark ? "#141425" : "#ffffff";
     const mats = Array(6).fill(null).map(() =>
-      new THREE.MeshLambertMaterial({ color: defaultColor })
+      new THREE.MeshLambertMaterial({ color: "#ffffff" })
     );
     if (faceTextures) {
       Object.entries(faceTextures).forEach(([faceIdx, texture]) => {
@@ -328,7 +325,7 @@ function SmallCube({ position, faceTextures, isDark, scrambleOffset, scrambleDel
       });
     }
     return mats;
-  }, [faceTextures, isDark]);
+  }, [faceTextures]);
 
   // Géométrie + contours pour l'effet Rubik's cube (arêtes noires)
   // const edgesGeo = useMemo(() => {
@@ -450,7 +447,7 @@ function SmallCube({ position, faceTextures, isDark, scrambleOffset, scrambleDel
 }
 
 // -- RubiksCube --
-function RubiksCube({ isDark, targetFace, onAnimDone, lang, isVisible }) {
+function RubiksCube({ targetFace, onAnimDone, lang, isVisible }) {
   const groupRef = useRef();
   const { camera } = useThree();
   const autoRotateRef = useRef(true);
@@ -558,10 +555,10 @@ function RubiksCube({ isDark, targetFace, onAnimDone, lang, isVisible }) {
 
                 if (skill) {
                   // Créer la texture (sticker) du skill pour cette face
-                  texPromises[matIdx] = createStickerTextureAsync(skill, face.color, isDark);
+                  texPromises[matIdx] = createStickerTextureAsync(skill, face.color);
                 } else {
                   // Cellule vide : même fond + bordure, sans icône ni label
-                  texPromises[matIdx] = Promise.resolve(createEmptyStickerTexture(face.color, isDark));
+                  texPromises[matIdx] = Promise.resolve(createEmptyStickerTexture(face.color));
                 }
               }
             });
@@ -607,7 +604,7 @@ function RubiksCube({ isDark, targetFace, onAnimDone, lang, isVisible }) {
     }
     buildTextures();
     return () => { cancelled = true; };
-  }, [isDark, lang]);
+  }, [lang]);
 
   // Handle target face change — compute quaternion that aligns face normal toward
   // camera AND keeps texture text upright (not reversed/flipped)
@@ -715,7 +712,6 @@ function RubiksCube({ isDark, targetFace, onAnimDone, lang, isVisible }) {
           key={i}
           position={cube.position}
           faceTextures={cube.faceTextures}
-          isDark={isDark}
           scrambleOffset={cube.scrambleOffset}
           scrambleDelay={cube.scrambleDelay}
           isVisible={isVisible}
@@ -743,10 +739,10 @@ function FrameController({ isVisible }) {
   return null;
 }
 
-// -- Legend --
-function FaceLegend({ activeFace, onFaceClick, t }) {
+// -- Legend -- (exported for use in SkillsSection)
+export function FaceLegend({ activeFace, onFaceClick, t }) {
   return (
-    <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mt-4">
+    <div className="flex flex-wrap gap-2">
       {faceConfig.map((face) => {
         const isActive = activeFace === face.key;
         return (
@@ -754,7 +750,7 @@ function FaceLegend({ activeFace, onFaceClick, t }) {
             key={face.key}
             onClick={() => onFaceClick(face.key)}
             className={
-              "flex items-center gap-1.5 px-2.5 py-1.5 rounded border transition-all duration-300 cursor-pointer " +
+              "flex items-center gap-1.5 px-2.5 py-1 rounded border transition-all duration-300 cursor-pointer " +
               (isActive
                 ? "border-current shadow-md scale-105"
                 : "border-[var(--border-theme)] hover:border-current hover:shadow-sm")
@@ -776,52 +772,30 @@ function FaceLegend({ activeFace, onFaceClick, t }) {
 }
 
 // -- Main --
-const SkillsCanvas = () => {
-  const { isDark } = useTheme();
-  const { t, lang } = useLanguage();
-  const [scrollRef, isVisible] = useScrollReveal({ threshold: 0.2, once: false });
-  const [activeFace, setActiveFace] = useState(null);
-  const [targetFace, setTargetFace] = useState(null);
-
-  const handleFaceClick = useCallback((faceKey) => {
-    setActiveFace(faceKey);
-    setTargetFace(faceKey);
-  }, []);
-
-  const handleAnimDone = useCallback(() => {
-    setTargetFace(null);
-  }, []);
+const SkillsCanvas = ({ targetFace, onAnimDone, isVisible }) => {
+  const { lang } = useLanguage();
+  const scrollRef = React.useRef(null);
 
   return (
     <div className="relative w-full" ref={scrollRef}>
-      {/* Outer wrapper: handles border + shadow + border-radius */}
       <div
         style={{
           width: "100%",
           height: "min(60vw, 520px)",
           minHeight: "300px",
           maxHeight: "600px",
-          padding: "15px",
+          padding: "5px",
           borderRadius: "1rem",
-          border: "1px solid var(--border-theme)",
+          // border: "1px solid var(--border-theme)",
           boxSizing: "border-box",
-          // boxShadow: isDark
-          //   ? "0 20px 60px rgba(250,250,250,0.3), inset 0 1px 0 rgba(255,255,255,0.06)"
-          //   : "0 4px 30px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.7)",
-          // backgroundColor: isDark ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.45)",
         }}
         className="backdrop-blur-xl transition-colors duration-300"
       >
-        {/* Inner wrapper: handles background, overflow-hidden, and matching inner border-radius */}
         <div
           style={{
             width: "100%",
             height: "100%",
             overflow: "hidden",
-            // backgroundImage: isDark
-            //   ? "radial-gradient(circle, rgba(255,255,255,0.07) 1.5px, transparent 1px)"
-            //   : "radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px)",
-            // backgroundColor: isDark ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.45)",
             borderRadius: ".75rem",
             backdropFilter: "blur(12px)",
             WebkitBackdropFilter: "blur(12px)",
@@ -838,7 +812,7 @@ const SkillsCanvas = () => {
             <directionalLight position={[5, 5, 5]} intensity={1.0} />
             <directionalLight position={[-3, -3, -3]} intensity={0.4} />
             <pointLight position={[0, 5, 0]} intensity={0.5} />
-            <RubiksCube isDark={false} targetFace={targetFace} onAnimDone={handleAnimDone} lang={lang} isVisible={isVisible} />
+            <RubiksCube targetFace={targetFace} onAnimDone={onAnimDone} lang={lang} isVisible={isVisible} />
             <OrbitControls
               enablePan={false}
               enableZoom={true}
@@ -848,9 +822,6 @@ const SkillsCanvas = () => {
           </Canvas>
         </div>
       </div>
-      <FaceLegend activeFace={activeFace} onFaceClick={handleFaceClick} t={t} />
-
-
     </div>
   );
 };

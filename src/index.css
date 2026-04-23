@@ -7,22 +7,113 @@
    ══════════════════════════════════════════════ */
 
 @layer base {
-  /* Default fluid font-size for base elements (overridden by Tailwind utilities) */
+  /* ══════════════════════════════════════════════
+     UNIFIED BASE TYPOGRAPHY
+     Uses CSS variables from App.css (--text-size-*)
+     ══════════════════════════════════════════════ */
+
+  h1 {
+    font-size: var(--text-size-h1);
+    line-height: 1.15;
+    font-weight: 800;
+    color: var(--text-heading);
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
+    font-size: var(--text-size-h2);
+    line-height: 1.2;
+    font-weight: 700;
+    color: var(--text-heading);
+    letter-spacing: -0.01em;
+  }
+
+  h3 {
+    font-size: var(--text-size-h3);
+    line-height: 1.3;
+    font-weight: 600;
+    color: var(--text-heading);
+  }
+
+  h4 {
+    font-size: var(--text-size-h4);
+    line-height: 1.4;
+    font-weight: 600;
+    color: var(--text-heading);
+  }
+
+  h5 {
+    font-size: var(--text-size-h5);
+    line-height: 1.45;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  h6 {
+    font-size: var(--text-size-h6);
+    line-height: 1.5;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
   p {
-    font-size: clamp(0.75rem, 0.65rem + 0.3vw, 1rem);
+    font-size: var(--text-size-body);
     line-height: 1.65;
+    color: var(--text-primary);
   }
 
   a {
-    font-size: clamp(0.75rem, 0.65rem + 0.3vw, 1rem);
+    font-size: var(--text-size-body);
+    color: var(--text-link);
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: var(--text-link-hover);
   }
 
   button {
-    font-size: clamp(0.75rem, 0.65rem + 0.3vw, 0.9375rem);
+    font-size: var(--text-size-small);
   }
 
   span {
     font-size: inherit;
+    color: inherit;
+  }
+
+  small {
+    font-size: var(--text-size-xs);
+    color: var(--text-muted);
+  }
+
+  label {
+    font-size: var(--text-size-small);
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  li {
+    font-size: var(--text-size-body);
+    color: var(--text-primary);
+  }
+
+  blockquote {
+    font-size: var(--text-size-body);
+    color: var(--text-secondary);
+    border-left: 3px solid var(--color-accent);
+    padding-left: 1rem;
+    font-style: italic;
+  }
+
+  input, textarea, select {
+    font-size: var(--text-size-body);
+    color: var(--text-primary);
+    background-color: var(--bg-input);
+    border-radius: var(--radius-md);
+  }
+
+  input:focus, textarea:focus, select:focus {
+    background-color: var(--bg-input-focus);
   }
 }
 

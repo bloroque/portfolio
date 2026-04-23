@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import headerCSS from './Header.module.css';
 import { FaGithub, FaLinkedin, FaSun, FaMoon, FaBars, FaTimes } from "react-icons/fa";
 import { useTheme } from "../../context/ThemeContext";
@@ -12,15 +12,28 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   const location = useLocation();
+  const navigate = useNavigate();
   const isDetailPage = location.pathname === '/detail-projets';
   const linkPrefix = isDetailPage ? '/' : '';
+
+  const handleNavClick = (e, sectionId) => {
+    if (isDetailPage) {
+      e.preventDefault();
+      navigate('/', { state: { scrollTo: sectionId } });
+    }
+  };
 
   return (
     <header className={headerCSS.stickyHeader + ' sticky top-0 w-full pt-4 pb-2 px-2 z-50'}>
       
       <div className={headerCSS.menuHeader+' mx-auto flex max-w-screen-lg shadow-md bg-[var(--header-bg)] backdrop-blur-xl transition-colors duration-300'}>
           <div className={headerCSS.divLogo+' px-2 py-2 md:px-6 lg:px-8 lg:py-[.8rem]'}>
-            <a href={isDetailPage ? '/' : '#homeSection'} className={headerCSS.myLogo}>
+            <a href={isDetailPage ? '/' : '#homeSection'} className={headerCSS.myLogo} onClick={(e) => {
+              if (isDetailPage) {
+                e.preventDefault();
+                navigate('/');
+              }
+            }}>
               <div className={headerCSS.ligneLogo}></div>
               <div className={headerCSS.logoImg}>
                   <span>LB</span>
@@ -36,19 +49,19 @@ const Header = () => {
             <nav className="hidden sm:flex text-fluid-sm leading-6 font-semibold px-1 sm:px-2">
               <ul className="flex sm:space-x-2 md:space-x-4">
                   <li>
-                    <a className="link-underline-grow text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href={`${linkPrefix}#aboutSection`}>{t('nav.about')}</a>
+                    <a className="link-underline-grow text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href={`${linkPrefix}#aboutSection`} onClick={(e) => handleNavClick(e, 'aboutSection')}>{t('nav.about')}</a>
                   </li>
                   <li>
-                    <a className="link-underline-grow text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href={`${linkPrefix}#skillsSection`}>{t('nav.skills')}</a>
+                    <a className="link-underline-grow text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href={`${linkPrefix}#skillsSection`} onClick={(e) => handleNavClick(e, 'skillsSection')}>{t('nav.skills')}</a>
                   </li>
                   <li>
-                    <a className="link-underline-grow text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href={`${linkPrefix}#experienceSection`}>{t('nav.experience')}</a>
+                    <a className="link-underline-grow text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href={`${linkPrefix}#experienceSection`} onClick={(e) => handleNavClick(e, 'experienceSection')}>{t('nav.experience')}</a>
                   </li>
                   <li>
-                    <a className="link-underline-grow text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href={`${linkPrefix}#projectsSection`}>{t('nav.projects')}</a>
+                    <a className="link-underline-grow text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href={`${linkPrefix}#projectsSection`} onClick={(e) => handleNavClick(e, 'projectsSection')}>{t('nav.projects')}</a>
                   </li>
                   <li>
-                    <a className="link-underline-grow text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href={`${linkPrefix}#contactsSection`}>{t('nav.contact')}</a>
+                    <a className="link-underline-grow text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors" href={`${linkPrefix}#contactsSection`} onClick={(e) => handleNavClick(e, 'contactsSection')}>{t('nav.contact')}</a>
                   </li>
                 </ul>
               </nav>
@@ -82,19 +95,19 @@ const Header = () => {
           <nav className="bg-[var(--bg-card)] border border-[var(--border-theme)] rounded-lg shadow-lg p-4 backdrop-blur-md">
             <ul className="flex flex-col gap-3">
               <li>
-                <a className="block text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors font-semibold text-sm py-1" href={`${linkPrefix}#aboutSection`} onClick={() => setMobileMenuOpen(false)}>{t('nav.about')}</a>
+                <a className="block text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors font-semibold text-sm py-1" href={`${linkPrefix}#aboutSection`} onClick={(e) => { handleNavClick(e, 'aboutSection'); setMobileMenuOpen(false); }}>{t('nav.about')}</a>
               </li>
               <li>
-                <a className="block text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors font-semibold text-sm py-1" href={`${linkPrefix}#skillsSection`} onClick={() => setMobileMenuOpen(false)}>{t('nav.skills')}</a>
+                <a className="block text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors font-semibold text-sm py-1" href={`${linkPrefix}#skillsSection`} onClick={(e) => { handleNavClick(e, 'skillsSection'); setMobileMenuOpen(false); }}>{t('nav.skills')}</a>
               </li>
               <li>
-                <a className="block text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors font-semibold text-sm py-1" href={`${linkPrefix}#experienceSection`} onClick={() => setMobileMenuOpen(false)}>{t('nav.experience')}</a>
+                <a className="block text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors font-semibold text-sm py-1" href={`${linkPrefix}#experienceSection`} onClick={(e) => { handleNavClick(e, 'experienceSection'); setMobileMenuOpen(false); }}>{t('nav.experience')}</a>
               </li>
               <li>
-                <a className="block text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors font-semibold text-sm py-1" href={`${linkPrefix}#projectsSection`} onClick={() => setMobileMenuOpen(false)}>{t('nav.projects')}</a>
+                <a className="block text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors font-semibold text-sm py-1" href={`${linkPrefix}#projectsSection`} onClick={(e) => { handleNavClick(e, 'projectsSection'); setMobileMenuOpen(false); }}>{t('nav.projects')}</a>
               </li>
               <li>
-                <a className="block text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors font-semibold text-sm py-1" href={`${linkPrefix}#contactsSection`} onClick={() => setMobileMenuOpen(false)}>{t('nav.contact')}</a>
+                <a className="block text-[var(--text-nav)] hover:text-[var(--text-nav-hover)] transition-colors font-semibold text-sm py-1" href={`${linkPrefix}#contactsSection`} onClick={(e) => { handleNavClick(e, 'contactsSection'); setMobileMenuOpen(false); }}>{t('nav.contact')}</a>
               </li>
             </ul>
           </nav>

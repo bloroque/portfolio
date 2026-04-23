@@ -1,7 +1,7 @@
 /* ===== LIGHT THEME (default) ===== */
 :root {
     --font-family-heading: 'Inter', sans-serif;
---bg-body: #eef2ff;
+    --bg-body: #eef2ff;
     --bg-card: #ffffff;
     --color-theme-base: #2445A6;
     --color-theme-second: rgba(36, 69, 166, 0.12);
@@ -12,9 +12,11 @@
     --text-heading: #0f172a;
     --text-nav: #1e293b;
     --text-nav-hover: #3767D2;
+    --text-muted: #94a3b8;
+    --text-link: #3767D2;
+    --text-link-hover: #2445A6;
 
     --border-theme: rgba(36, 69, 166, 0.25);
-    /* --border-menu: rgba(36, 69, 166, 0.25); */
     --border-menu: #2445A6;
 
     --logo-bg: #ffffff;
@@ -40,13 +42,41 @@
     --svg-deco-sparkle: #e63946;
     --svg-deco-arrow: #059669;
     --svg-deco-circle: #7c3aed;
+
+    /* ── Unified Typography Scale (fluid) ── */
+    --text-size-h1: clamp(2rem, 1.5rem + 1.6vw, 3.5rem);        /* 32px → 56px */
+    --text-size-h2: clamp(1.5rem, 1.1rem + 1.2vw, 2.5rem);      /* 24px → 40px */
+    --text-size-h3: clamp(1.25rem, 1rem + 0.8vw, 1.75rem);       /* 20px → 28px */
+    --text-size-h4: clamp(1.125rem, 0.95rem + 0.55vw, 1.375rem); /* 18px → 22px */
+    --text-size-h5: clamp(1rem, 0.85rem + 0.45vw, 1.125rem);     /* 16px → 18px */
+    --text-size-h6: clamp(0.875rem, 0.8rem + 0.3vw, 1rem);       /* 14px → 16px */
+    --text-size-body: clamp(0.875rem, 0.75rem + 0.35vw, 1rem);   /* 14px → 16px */
+    --text-size-small: clamp(0.75rem, 0.65rem + 0.3vw, 0.875rem);/* 12px → 14px */
+    --text-size-xs: clamp(0.625rem, 0.55rem + 0.2vw, 0.75rem);   /* 10px → 12px */
+
+    /* ── Unified Border Radius ── */
+    --radius-none: 0;
+    --radius-sm: 0.25rem;     /* 4px */
+    --radius-md: 0.5rem;      /* 8px */
+    --radius-lg: 0.75rem;     /* 12px */
+    --radius-xl: 1rem;        /* 16px */
+    --radius-2xl: 1.5rem;     /* 24px */
+    --radius-full: 9999px;
+
+    /* ── Unified Backgrounds ── */
+    --bg-surface: #f8fafc;
+    --bg-surface-hover: #f1f5f9;
+    --bg-overlay: rgba(0, 0, 0, 0.04);
+    --bg-badge: rgba(36, 69, 166, 0.08);
+    --bg-input: #ffffff;
+    --bg-input-focus: #ffffff;
 }
 
 /* ===== DARK THEME ===== */
 .dark {
     --bg-body: #0d1117;
-        --bg-body-gradient: linear-gradient(to bottom, #161b2e, #0d1117);
-        --bg-card: rgba(22, 27, 46, 0.6);
+    --bg-body-gradient: linear-gradient(to bottom, #161b2e, #0d1117);
+    --bg-card: rgba(22, 27, 46, 0.6);
     --color-theme-base: rgba(36, 69, 166, 1);
     --color-theme-second: rgba(9, 44, 144, .58);
     --color-accent: #3767D2;
@@ -56,14 +86,15 @@
     --text-heading: #ffffff;
     --text-nav: #ffffff;
     --text-nav-hover: #38bdf8;
+    --text-muted: #64748b;
+    --text-link: #60a5fa;
+    --text-link-hover: #93c5fd;
 
     --border-theme: rgba(9, 44, 144, .58);
-    /* --border-menu: rgba(9, 44, 144, .58); */
     --border-menu: #ffffff;
 
-    /* --logo-bg: #ffffff; */
     --logo-bg: #161b2e;
-        --logo-text: #161b2e;
+    --logo-text: #161b2e;
     --logo-container-bg: #ffffff;
     --logo-color: #ffffff;
 
@@ -85,6 +116,14 @@
     --svg-deco-sparkle: #fb7185;
     --svg-deco-arrow: #34d399;
     --svg-deco-circle: #a78bfa;
+
+    /* ── Dark Backgrounds ── */
+    --bg-surface: rgba(30, 41, 59, 0.5);
+    --bg-surface-hover: rgba(30, 41, 59, 0.7);
+    --bg-overlay: rgba(255, 255, 255, 0.04);
+    --bg-badge: rgba(55, 103, 210, 0.15);
+    --bg-input: rgba(22, 27, 46, 0.8);
+    --bg-input-focus: rgba(30, 41, 59, 0.9);
 }
 
 html{
