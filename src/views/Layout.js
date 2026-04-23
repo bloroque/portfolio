@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useLocation } from 'react-router-dom';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import Container from '../components/Container/Container';
@@ -10,18 +11,37 @@ import useSmoothScroll from '../hooks/useSmoothScroll';
 const Layout = () => {
     const { isTransitioning } = useLanguage();
     const smoothRef = useSmoothScroll(0.08);
+    const location = useLocation();
 
     useEffect(() => {
-        const hash = window.location.hash;
-        if (hash) {
-            setTimeout(() => {
-                const element = document.querySelector(hash);
-                if (element) {
-                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            }, 100);
+        const scrollTo = location.state?.scrollTo;
+        const hash = scrollTo ? `#${scrollTo}` : window.location.hash;
+
+        // Always scroll to top on initial load (no hash, no state)
+        if (!hash) {
+            window.scrollTo(0, 0);
+            return;
         }
-    }, []);
+
+        // Reset scroll to top first
+        window.scrollTo(0, 0);
+
+        // Wait for smooth scroll hook to initialize and content to render
+        const tryScroll = () => {
+            const element = document.querySelector(hash);
+            if (element) {
+                // Trigger a click on an anchor so useSmoothScroll's onHashClick handles it
+                const tempLink = document.createElement('a');
+                tempLink.href = hash;
+                tempLink.style.display = 'none';
+                document.body.appendChild(tempLink);
+                tempLink.click();
+                document.body.removeChild(tempLink);
+            }
+        };
+        // Delay to let smooth scroll hook set up and content render
+        setTimeout(tryScroll, 400);
+    }, [location]);
 
     return (
         <div className="min-h-screen transition-colors duration-300">

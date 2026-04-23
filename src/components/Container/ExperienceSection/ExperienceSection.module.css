@@ -1,245 +1,172 @@
+/* ─── Section wrapper ─────────────────────────────────────────────────────── */
 .Experience {
-    position: relative;
+  width: 100%;
 }
 
-/* ============================================
-   CENTERED TIMELINE
-   ============================================ */
-
-/* Vertical center line */
+/* ─── Center vertical line ────────────────────────────────────────────────── */
 .timelineCenterLine {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: var(--border-theme);
-    z-index: 0;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--border-theme) 8%,
+    var(--border-theme) 92%,
+    transparent 100%
+  );
+  pointer-events: none;
 }
 
-/* Timeline item container */
+/* ─── Timeline item ───────────────────────────────────────────────────────── */
 .timelineItem {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+  position: relative;
 }
 
-/* Timeline dot at center */
+/* ─── Dot (center) ────────────────────────────────────────────────────────── */
 .timelineDotCenter {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 4px;
-    width: 28px;
-        height: 28px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2;
+  position: absolute;
+  left: 50%;
+  top: 12px;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-@media (min-width: 768px) {
-    .timelineDotCenter {
-        width: 34px;
-        height: 34px;
-    }
-}
 .dotCurrent {
-    background: var(--color-accent);
-    box-shadow: 0 0 0 4px rgba(var(--color-accent-rgb, 99, 102, 241), 0.15);
+  background-color: #d1fae5;
+  border: 1.5px solid #34d399;
+  color: #065f46;
+}
+
+:global(.dark) .dotCurrent {
+  background-color: rgba(6, 78, 59, 0.35);
+  border-color: #34d399;
+  color: #6ee7b7;
 }
 
 .dotPast {
-    background: var(--color-accent);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-theme);
+  color: var(--text-secondary);
 }
 
+/* Ping animation ring */
 .dotPing {
-    position: absolute;
-    inset: -1px;
-    border-radius: 50%;
-    border: 2px solid var(--color-accent);
-    animation: dotPingAnim 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1.5px solid #34d399;
+  opacity: 0;
+  animation: ping 2s ease-out infinite;
+  pointer-events: none;
 }
 
-@keyframes dotPingAnim {
-    0% {
-        transform: scale(1);
-        opacity: 0.6;
-    }
-    75%, 100% {
-        transform: scale(1.8);
-        opacity: 0;
-    }
+@keyframes ping {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
 }
 
-/* ============================================
-   ALTERNATING CARDS (Left/Right)
-   ============================================ */
-
-/* Card positioned on LEFT side */
+/* ─── Card sides ──────────────────────────────────────────────────────────── */
 .cardLeft {
-    width: 100%;
-    max-width: 480px;
-    margin-right: auto;
-    padding-right: 55px;
-        /* Space for center dot */
+  width: calc(50% - 28px);
+  padding-right: 0;
 }
 
-/* Card positioned on RIGHT side */
 .cardRight {
-    width: 100%;
-    max-width: 480px;
-    margin-left: auto;
-    padding-left: 55px;
-        /* Space for center dot */
-    }
-    
-    @media (min-width: 1024px) {
-        .cardLeft {
-            max-width: 520px;
-            padding-right: 80px;
-        }
-    
-        .cardRight {
-            max-width: 520px;
-            padding-left: 80px;
-        }
+  width: calc(50% - 28px);
+  margin-left: calc(50% + 28px);
 }
 
-/* Mobile: Stack vertically, no alternating */
-@media (max-width: 767px) {
-    .timelineCenterLine {
-        left: 1rem;
-        transform: none;
-    }
-    
-    .timelineDotCenter {
-        left: 1rem;
-            width: 24px;
-            height: 24px;
-        transform: translateX(-50%);
-    }
-    
-    .cardLeft,
-    .cardRight {
-        padding-left: 2.5rem;
-        padding-right: 0;
-        margin: 0;
-        max-width: 100%;
-    }
-}
-
-/* ============================================
-   CARD STYLES
-   ============================================ */
-
+/* ─── Card ────────────────────────────────────────────────────────────────── */
 .card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-theme);
-    border-radius: 0.75rem;
-    padding: 0.875rem 1rem;
-    transition: all 0.3s ease;
-    position: relative;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  background: var(--bg-card);
+  border: 0.5px solid var(--border-theme);
+  border-radius: var(--radius-lg);
+  padding: 14px 16px;
+  transition: border-color 0.3s ease, transform 0.15s ease,
+              background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-@media (min-width: 640px) {
-    .card {
-        padding: 1rem 1.25rem;
-    }
-}
-
-@media (min-width: 1024px) {
-    .card {
-        padding: 1.25rem 1.5rem;
-    }
-}
 .card:hover {
-    border-color: var(--color-accent);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-    transform: translateY(-2px);
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(55, 103, 210, 0.08);
 }
 
+:global(.dark) .card:hover {
+  box-shadow: 0 4px 20px rgba(55, 103, 210, 0.15);
+}
+
+/* Highlighted border for current job */
 .cardCurrent {
-    border-left: 3px solid var(--color-accent);
-    background: linear-gradient(135deg, 
-        rgba(var(--color-accent-rgb, 99, 102, 241), 0.03) 0%, 
-        transparent 100%);
+  border-color: rgba(55, 103, 210, 0.4);
 }
 
-/* "Looking for opportunities" special card */
+:global(.dark) .cardCurrent {
+  border-color: rgba(96, 165, 250, 0.35);
+}
+
+/* "Looking" card variant */
 .cardLooking {
-    border: 2px dashed var(--color-accent);
-    background: linear-gradient(135deg,
-        rgba(var(--color-accent-rgb, 99, 102, 241), 0.06) 0%,
-        transparent 100%);
-    text-align: center;
-    padding: 1.25rem 1.5rem;
+  border-color: rgba(52, 211, 153, 0.4);
+  background: rgba(209, 250, 229, 0.2);
+  text-align: center;
 }
 
-/* Current badge */
-.currentBadge {
-    position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
-    font-size: 0.625rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--color-accent);
-    background: rgba(var(--color-accent-rgb, 99, 102, 241), 0.1);
-    padding: 0.25rem 0.6rem;
-    border-radius: 9999px;
-    border: 1px solid rgba(var(--color-accent-rgb, 99, 102, 241), 0.2);
+:global(.dark) .cardLooking {
+  border-color: rgba(52, 211, 153, 0.3);
+  background: rgba(6, 78, 59, 0.2);
 }
 
-/* ============================================
-   LEGACY STYLES (kept for fallback)
-   ============================================ */
-
-/* Timeline vertical line (old) */
-.timelineLine {
-    position: absolute;
-    left: calc(1.25rem + 12px);
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: var(--border-theme);
+/* ─── Duration badge ──────────────────────────────────────────────────────── */
+.durationBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--text-size-xs);
+  color: var(--text-muted);
+  background: var(--bg-surface);
+  border: 0.5px solid var(--border-theme);
+  border-radius: var(--radius-full);
+  padding: 2px 8px;
+  margin-bottom: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Timeline dot (old) */
-.timelineDot {
-    position: absolute;
-    left: 0;
-    top: 6px;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2;
-    border: 3px solid var(--bg-card);
-}
+/* ─── Responsive: stack on small screens ─────────────────────────────────── */
+@media (max-width: 540px) {
+  .timelineCenterLine {
+    left: 20px;
+  }
 
-@media (min-width: 768px) {
-    .timelineDot {
-        left: 0.5rem;
-    }
-}
+  .timelineDotCenter {
+    left: 20px;
+  }
 
-/* Company logo placeholder (if needed later) */
-.logoWrap {
-    width: 48px;
-    height: 48px;
-    border-radius: 0.5rem;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-theme);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+  .timelineItem {
+    padding-left: 56px !important;
+  }
+
+  .cardLeft,
+  .cardRight {
+    width: 100%;
+    margin-left: 0;
+    padding-right: 0;
+  }
 }

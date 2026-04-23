@@ -17,40 +17,8 @@ const STATUS_STYLES = {
     "standby": { bg: "bg-slate-400/20", text: "text-slate-400", dot: "bg-slate-400" },
 };
 
-const projects = [
-    {
-        id: 1,
-        image: Image1,
-        titleKey: "projects.items.p1.title",
-        descKey: "projects.items.p1.desc",
-        tags: ["React", "Node.js", "MongoDB"],
-        status: "completed",
-    },
-    {
-        id: 2,
-        image: Image2,
-        titleKey: "projects.items.p2.title",
-        descKey: "projects.items.p2.desc",
-        tags: ["Laravel", "Vue.js", "MySQL"],
-        status: "in-progress",
-    },
-    {
-        id: 3,
-        image: Image3,
-        titleKey: "projects.items.p3.title",
-        descKey: "projects.items.p3.desc",
-        tags: ["React", "Tailwind", "Firebase"],
-        status: "completed",
-    },
-    {
-        id: 4,
-        image: Image4,
-        titleKey: "projects.items.p4.title",
-        descKey: "projects.items.p4.desc",
-        tags: ["PHP", "Symfony", "PostgreSQL"],
-        status: "standby",
-    },
-];
+/* Image map: resolves string keys from i18n to imported assets */
+const IMAGE_MAP = { Image1, Image2, Image3, Image4 };
 
 const ProjectSection = (props) => {
     const classeCSS = props.className;
@@ -58,6 +26,14 @@ const ProjectSection = (props) => {
     const { t } = useLanguage();
 
     const swiperRef = useRef(null);
+
+    /* Build project list dynamically from i18n items */
+    const items = t('projects.items') || {};
+    const projectList = Object.keys(items).map((key) => ({
+        key,
+        ...items[key],
+        image: IMAGE_MAP[items[key].image] || Image1,
+    }));
 
     const handlePrev = () => {
         if (swiperRef.current) swiperRef.current.slidePrev();
@@ -185,16 +161,16 @@ const ProjectSection = (props) => {
                                         1024: { slidesPerView: 3 },
                                     }}>
 
-                                    {projects.map((project) => {
-                                        const statusStyle = STATUS_STYLES[project.status];
+                                    {projectList.map((project) => {
+                                        const statusStyle = STATUS_STYLES[project.status] || STATUS_STYLES["standby"];
                                         return (
-                                            <SwiperSlide key={project.id} className="m-0 h-full flex flex-col justify-center">
+                                            <SwiperSlide key={project.key} className="m-0 h-full flex flex-col justify-center">
                                                 <div className="flex flex-col">
                                                     <div className="h-[20px] sm:h-[40px]"></div>
                                                     <div className="h-60 sm:h-72 lg:h-80 relative overflow-hidden group cursor-pointer rounded-lg border border-[var(--border-theme)] shadow-sm hover:shadow-xl transition-shadow duration-500">
                                                         <img
                                                             src={project.image}
-                                                            alt={t(project.titleKey)}
+                                                            alt={project.title}
                                                             loading="lazy"
                                                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                                         />
@@ -213,13 +189,13 @@ const ProjectSection = (props) => {
                                                         {/* Content */}
                                                         <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col gap-1.5 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
                                                             <h3 className="text-white font-bold text-sm leading-tight">
-                                                                {t(project.titleKey)}
+                                                                {project.title}
                                                             </h3>
                                                             <p className="text-white/60 text-xs line-clamp-2 leading-relaxed">
-                                                                {t(project.descKey)}
+                                                                {project.desc}
                                                             </p>
                                                             <div className="flex flex-wrap gap-1 mt-0.5">
-                                                                {project.tags.map((tag) => (
+                                                                {(project.tags || []).map((tag) => (
                                                                     <span
                                                                         key={tag}
                                                                         className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-white/10 text-white/80 border border-white/15 backdrop-blur-sm"
