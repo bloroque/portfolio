@@ -3,7 +3,7 @@ const skills = {
     skills: {
       title: "― Development Expertise",
       description:
-      "I build modern, high-performance web experiences — clean code, thoughtful design, and the right tools at the right time. My expertise spans reactive frontends, robust backends, and the engineering practices that truly matter: Clean Architecture, SOLID, TDD — not to tick boxes, but to ship reliable products.",
+      "I build modern, high-performance web experiences — clean code, thoughtful design, and the right tools at the right time. My expertise spans reactive frontends, robust backends, and the engineering practices that truly matter: Clean code, SOLID — to ship reliable products.",
       whatIKnow: "What I Master",
       hardSkillsTitle: "Hard Skills (Stack)",
       cta: "Let's work together!",
@@ -30,7 +30,7 @@ const skills = {
     skills: {
       title: "― Expertise en Développement",
       description:
-        "Je crée des expériences web modernes et performantes, avec un code propre, un design soigné et les bons outils au bon moment. Mon expertise couvre le frontend réactif, le backend robuste et les bonnes pratiques qui font la différence : Clean Architecture, SOLID, TDD — pas pour cocher des cases, mais pour livrer des produits fiables.",
+        "Je crée des expériences web modernes et performantes, avec un code propre, un design soigné et les bons outils au bon moment. Mon expertise couvre le frontend réactif, le backend robuste et les bonnes pratiques qui font la différence : Clean code, SOLID — pour livrer des produits fiables.",
       whatIKnow: "Ce que je maîtrise",
       hardSkillsTitle: "Compétences techniques (Stack)",
       cta: "Travaillons ensemble !",
