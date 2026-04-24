@@ -23,6 +23,7 @@ const IMAGE_MAP = { Image1, Image2, Image3, Image4 };
 const ProjectSection = (props) => {
     const classeCSS = props.className;
     const idSection = props.id;
+    const sectionStyle = props.style;
     const { t } = useLanguage();
 
     const swiperRef = useRef(null);
@@ -82,7 +83,7 @@ const ProjectSection = (props) => {
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.2 }}
                 variants={containerVariants}
-                style={{ position: "relative", overflow: "hidden" }}
+                style={{ position: "relative", overflow: "hidden", ...sectionStyle }}
             >
                 <div className="mx-auto max-w-screen-lg px-3 sm:px-4 pb-4 sm:pb-6 md:pb-8 pt-4 md:pt-5 w-full">
 
@@ -96,9 +97,9 @@ const ProjectSection = (props) => {
                                 </h2>
                             </motion.div>
                             <motion.div variants={introVariants} className="flex-1 text-[var(--text-primary)]">
-                                <p className="text-justify text-fluid-sm leading-relaxed">
+                                <motion.p className="text-[var(--text-secondary)] text-sm sm:text-base leading-relaxed">
                                     {t('projects.intro')}
-                                </p>
+                                </motion.p>
                             </motion.div>
                         </div>
 

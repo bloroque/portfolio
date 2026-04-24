@@ -1,60 +1,97 @@
-.mainPage>.section {
+/* ══════════════════════════════════════════════
+   OVERLAPPING SECTIONS / SLIDE-UP OVERLAY
+   GSAP ScrollTrigger pins each section at top.
+   The next section (higher z-index) scrolls up
+   over it like a stacked card.
+   ══════════════════════════════════════════════ */
+
+/* ── Section Overlay Wrapper ── */
+.sectionOverlay {
+    position: relative;
+    will-change: transform, filter;
+    transform-origin: center top;
+}
+
+.sectionOverlay:first-child {
+    background-color: transparent;
+}
+
+/* All sections except first: rounded top corners + shadow */
+.sectionOverlay:not(:first-child) {
+    border-radius: 1.5rem 1.5rem 0 0;
+    box-shadow: var(--section-shadow);
+}
+
+/* ── Inner section sizing ── */
+.section {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
-.mainPage>.section:first-child {
+
+/* Inherit rounded corners from wrapper */
+.sectionOverlay:not(:first-child) .section {
+    border-radius: 1.5rem 1.5rem 0 0;
+}
+
+.sectionOverlay:first-child > .section {
     min-height: 100vh;
 }
 
-.mainPage > .section:last-child{
+.sectionOverlay:last-child > .section {
     min-height: calc(100vh - 60px);
 }
 
-/* Mobile: sections auto-height with padding */
+/* ═══ Responsive ═══ */
+
+/* Mobile */
 @media (max-width: 639px) {
-    .mainPage>.section {
+    .sectionOverlay > .section {
         min-height: auto;
         padding-top: 1.5rem;
         padding-bottom: 1.5rem;
     }
 
-    .mainPage>.section:first-child {
+    .sectionOverlay:first-child > .section {
         min-height: 100vh;
         padding-top: 0;
     }
 
-    .mainPage>.section:last-child {
+    .sectionOverlay:last-child > .section {
         min-height: auto;
+    }
+
+    .sectionOverlay:not(:first-child) {
+        border-radius: 1rem 1rem 0 0;
     }
 }
 
-/* Small tablets (sm): reduce min-height */
+/* Small tablets (sm) */
 @media (min-width: 640px) and (max-width: 767px) {
-    .mainPage>.section {
+    .sectionOverlay > .section {
         min-height: auto;
         padding-top: 2rem;
         padding-bottom: 2rem;
     }
 
-    .mainPage>.section:first-child {
+    .sectionOverlay:first-child > .section {
         min-height: 100vh;
     }
 
-    .mainPage>.section:last-child {
+    .sectionOverlay:last-child > .section {
         min-height: auto;
     }
 }
 
-/* Tablets / small laptops (md): reduce padding */
+/* Tablets / small laptops (md) */
 @media (min-width: 768px) and (max-width: 1023px) {
-    .mainPage>.section {
+    .sectionOverlay > .section {
         min-height: auto;
         padding-top: 2.5rem;
         padding-bottom: 2.5rem;
     }
 
-    .mainPage>.section:first-child {
+    .sectionOverlay:first-child > .section {
         min-height: 100vh;
     }
 }

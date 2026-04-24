@@ -11,6 +11,7 @@ import SkillsCanvas, { FaceLegend } from "./SkillsCanvas";
 const SkillsSection = (props) => {
     const classeCSS = props.className;
     const idSection = props.id;
+    const sectionStyle = props.style;
     const { t } = useLanguage();
     const [scrollRef, isVisible] = useScrollReveal({ threshold: 0.2, once: false });
     const [activeFace, setActiveFace] = useState(null);
@@ -46,6 +47,7 @@ const SkillsSection = (props) => {
         <motion.section
             id={idSection}
             className={`${classeCSS} ${SkillsCSS.Skills} items-center justify-center`}
+            style={sectionStyle}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: false, amount: 0.15 }}

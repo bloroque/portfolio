@@ -7,6 +7,7 @@ import { FaCode, FaLightbulb, FaUsers, FaArrowRight } from "react-icons/fa";
 const AboutSection = (props) => {
     const classeCSS = props.className;
     const idSection = props.id;
+    const sectionStyle = props.style;
     const { t } = useLanguage();
 
     const containerVariants = {
@@ -44,6 +45,7 @@ const AboutSection = (props) => {
         <motion.section
             id={idSection}
             className={`${classeCSS} ${AboutCSS.About}`}
+            style={sectionStyle}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: false, amount: 0.25 }}
