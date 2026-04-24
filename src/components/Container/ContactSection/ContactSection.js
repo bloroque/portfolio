@@ -8,6 +8,7 @@ import useContactForm from "../../../services/formContact/useContactForm";
 const ContactSection = (props) => {
     const classeCSS = props.className;
     const idSection = props.id;
+    const sectionStyle = props.style;
     const { t, lang } = useLanguage();
     const { nameRef, emailRef, messageRef, status, handleSubmit } = useContactForm();
     const [activeTab, setActiveTab] = useState("form");
@@ -57,7 +58,7 @@ const ContactSection = (props) => {
             whileInView="visible"
             viewport={{ once: false, amount: 0.15 }}
             variants={containerVariants}
-            style={{ position: "relative", overflow: "hidden" }}
+            style={{ position: "relative", overflow: "hidden", ...sectionStyle }}
         >
             {/* Background decoration */}
             <div className="absolute inset-0 pointer-events-none">

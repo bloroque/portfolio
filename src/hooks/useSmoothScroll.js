@@ -1,9 +1,13 @@
 import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 /**
- * Lerp-based smooth scroll for the entire page.
- * Creates a buttery smooth scroll feel by interpolating
- * the actual scroll position with a lerp factor.
+ * Lerp-based smooth scroll using window.scrollTo().
+ * Unlike fixed+transform, this preserves position:sticky
+ * and keeps GSAP ScrollTrigger in sync natively.
  *
  * @param {number} lerp - Smoothing factor (0.06–0.12 = silky, 0.15+ = snappier)
  */
@@ -16,83 +20,67 @@ const useSmoothScroll = (lerp = 0.09) => {
         // Skip if user prefers reduced motion
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-        const body = document.body;
-        const html = document.documentElement;
-
-        // Measure full page height
-        const getPageHeight = () => Math.max(
-            body.scrollHeight, body.offsetHeight,
-            html.scrollHeight, html.offsetHeight
-        );
-
-        // Create a wrapper that holds all content
-        const wrapper = scrollRef.current;
-        if (!wrapper) return;
+        if (!window.location.hash) {
+            window.scrollTo(0, 0);
+        }
 
         let current = window.scrollY;
         let target = window.scrollY;
         let rafId = null;
-        let resizeObserver = null;
+        let selfTriggered = false;
 
-        // Set body to fixed, wrapper will translate
-        const enable = () => {
-            const height = getPageHeight();
-            body.style.height = `${height}px`;
-            wrapper.style.position = 'fixed';
-            wrapper.style.top = '0';
-            wrapper.style.left = '0';
-            wrapper.style.width = '100%';
-            wrapper.style.willChange = 'transform';
-        };
+        const getMaxScroll = () =>
+            Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
 
-        const disable = () => {
-            body.style.height = '';
-            wrapper.style.position = '';
-            wrapper.style.top = '';
-            wrapper.style.left = '';
-            wrapper.style.width = '';
-            wrapper.style.willChange = '';
-            wrapper.style.transform = '';
-        };
-
-        enable();
-
-        // Update body height when content changes
-        resizeObserver = new ResizeObserver(() => {
-            const height = getPageHeight();
-            body.style.height = `${height}px`;
-        });
-        resizeObserver.observe(wrapper);
-
-        const onScroll = () => {
-            target = window.scrollY;
-            // Restart loop only if it was idle
+        const startLoop = () => {
             if (rafId == null) {
                 rafId = requestAnimationFrame(animate);
             }
         };
-        window.addEventListener('scroll', onScroll, { passive: true });
+
+        // Intercept wheel to apply lerp smoothing
+        const onWheel = (e) => {
+            e.preventDefault();
+            target += e.deltaY;
+            target = Math.max(0, Math.min(target, getMaxScroll()));
+            startLoop();
+        };
+
+        // For non-wheel scrolls (scrollbar drag, keyboard, etc.): sync immediately
+        const onScroll = () => {
+            if (selfTriggered) {
+                selfTriggered = false;
+                return;
+            }
+            // External scroll source — snap to it
+            current = window.scrollY;
+            target = window.scrollY;
+        };
 
         const animate = () => {
             current += (target - current) * lerp;
 
-            // Snap when close enough to avoid infinite micro-renders
+            // Snap when close enough
             if (Math.abs(current - target) < 0.5) {
                 current = target;
             }
 
-            wrapper.style.transform = `translate3d(0, ${-current}px, 0)`;
+            selfTriggered = true;
+            window.scrollTo({ top: Math.round(current), behavior: 'instant' });
 
-            // Stop the loop when fully converged
+            // Keep ScrollTrigger in sync
+            ScrollTrigger.update();
+
             if (current !== target) {
                 rafId = requestAnimationFrame(animate);
             } else {
                 rafId = null;
             }
         };
+
         rafId = requestAnimationFrame(animate);
 
-        // Handle anchor link clicks to work with smooth scroll
+        // Handle anchor link clicks
         const onHashClick = (e) => {
             const link = e.target.closest('a[href^="#"]');
             if (!link) return;
@@ -101,20 +89,20 @@ const useSmoothScroll = (lerp = 0.09) => {
             const el = document.querySelector(hash);
             if (!el) return;
             e.preventDefault();
-            // Calculate the element's position relative to the wrapper
             const rect = el.getBoundingClientRect();
-            const offset = rect.top + current;
-            target = Math.max(0, offset - 80); // 80px offset for fixed header
-            window.scrollTo(0, target);
+            target = Math.max(0, rect.top + window.scrollY - 80);
+            startLoop();
         };
+
+        window.addEventListener('wheel', onWheel, { passive: false });
+        window.addEventListener('scroll', onScroll, { passive: true });
         document.addEventListener('click', onHashClick);
 
         return () => {
-            cancelAnimationFrame(rafId);
+            if (rafId) cancelAnimationFrame(rafId);
+            window.removeEventListener('wheel', onWheel);
             window.removeEventListener('scroll', onScroll);
             document.removeEventListener('click', onHashClick);
-            if (resizeObserver) resizeObserver.disconnect();
-            disable();
         };
     }, [lerp]);
 

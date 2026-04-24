@@ -9,6 +9,7 @@ import CanvasService from "./CanvasService";
 const HeroSection = (props) => {
     const classeCSS = props.className;
     const idSection = props.id;
+    const sectionStyle = props.style;
     const { t } = useLanguage();
     const sectionRef = useRef(null);
 
@@ -74,7 +75,7 @@ const HeroSection = (props) => {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
                 variants={containerVariants}
-                style={{ position: "relative", overflow: "hidden" }}
+                style={{ position: "relative", overflow: "hidden", ...sectionStyle }}
             >
                 
                 <div className="mx-auto max-w-screen-lg px-2 pt-32 2xl:pt-5 w-full relative z-10 flex items-center justify-center">

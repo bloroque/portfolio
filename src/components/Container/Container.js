@@ -6,15 +6,46 @@ import ExperienceSection from "./ExperienceSection/ExperienceSection";
 import ProjectSection from "./ProjectSection/ProjectSection";
 import ContactSection from "./ContactSection/ContactSection";
 import HeroSection from "./HeroSection/HeroSection";
+import useOverlappingSections from "../../hooks/useOverlappingSections";
+
+const sections = [
+    { key: "hero",       Component: HeroSection,       id: "homeSection" },
+    { key: "about",      Component: AboutSection,      id: "aboutSection" },
+    { key: "skills",     Component: SkillsSection,      id: "skillsSection" },
+    { key: "experience", Component: ExperienceSection,  id: "experienceSection" },
+    { key: "projects",   Component: ProjectSection,     id: "projectsSection" },
+    { key: "contacts",   Component: ContactSection,     id: "contactsSection" },
+];
+
 const Container = () => {
+    const overlappingRef = useOverlappingSections();
+
     return (
-        <main className={containerCSS.mainPage + " w-full"}>
-            <HeroSection id="homeSection" className={`${containerCSS.section} flex align-center justify-center`}/>
-            <AboutSection id="aboutSection" className={`${containerCSS.section} flex align-center justify-center`} />
-            <SkillsSection id="skillsSection" className={`${containerCSS.section} flex align-center justify-center`} />
-            <ExperienceSection id="experienceSection" className={`${containerCSS.section} flex align-center justify-center`} />
-            <ProjectSection id="projectsSection" className={`${containerCSS.section} flex align-center justify-center`} />
-            <ContactSection id="contactsSection" className={`${containerCSS.section} flex align-center justify-center`} />
+        <main ref={overlappingRef} className={containerCSS.mainPage + " w-full"}>
+            {sections.map(({ key, Component, id }, index) => {
+                const isFirst = index === 0;
+                const isEven = index % 2 === 0;
+                const bg = isFirst
+                    ? 'transparent'
+                    : isEven
+                        ? 'var(--bg-section)'
+                        : 'var(--bg-section-alt)';
+
+                return (
+                    <div
+                        key={key}
+                        data-section-overlay
+                        className={containerCSS.sectionOverlay}
+                        style={{ zIndex: index + 1, backgroundColor: bg }}
+                    >
+                        <Component
+                            id={id}
+                            className={`${containerCSS.section} flex align-center justify-center`}
+                            style={{ backgroundColor: bg }}
+                        />
+                    </div>
+                );
+            })}
         </main>
     );
 };

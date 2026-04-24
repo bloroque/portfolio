@@ -4,6 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// Prevent browser from restoring scroll position on reload
+if ('scrollRestoration' in window.history) {
+  window.history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

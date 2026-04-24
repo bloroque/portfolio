@@ -70,6 +70,11 @@
     --bg-badge: rgba(36, 69, 166, 0.08);
     --bg-input: #ffffff;
     --bg-input-focus: #ffffff;
+
+    /* ── Section Overlay Backgrounds ── */
+    --bg-section: #eef2ff;
+    --bg-section-alt: #e8edfc;
+    --section-shadow: 0 -8px 30px rgba(0, 0, 0, 0.08);
 }
 
 /* ===== DARK THEME ===== */
@@ -124,6 +129,11 @@
     --bg-badge: rgba(55, 103, 210, 0.15);
     --bg-input: rgba(22, 27, 46, 0.8);
     --bg-input-focus: rgba(30, 41, 59, 0.9);
+
+    /* ── Section Overlay Backgrounds ── */
+    --bg-section: #0f1520;
+    --bg-section-alt: #131a2b;
+    --section-shadow: 0 -8px 30px rgba(0, 0, 0, 0.35);
 }
 
 html{

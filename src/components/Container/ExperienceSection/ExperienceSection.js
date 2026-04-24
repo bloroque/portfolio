@@ -7,6 +7,7 @@ import { FaBriefcase, FaMapMarkerAlt, FaClock } from "react-icons/fa";
 const ExperienceSection = (props) => {
   const classeCSS = props.className;
   const idSection = props.id;
+  const sectionStyle = props.style;
   const { t, lang } = useLanguage();
 
   const experiences = t("experience.jobs");
@@ -86,6 +87,7 @@ const ExperienceSection = (props) => {
     <motion.section
       id={idSection}
       className={`${classeCSS} ${ExperienceCSS.Experience}`}
+      style={sectionStyle}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, amount: 0.1 }}
