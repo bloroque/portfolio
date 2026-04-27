@@ -1,37 +1,66 @@
 /* ─── Section wrapper ─────────────────────────────────────────────────────── */
 .Experience {
   width: 100%;
+  position: relative;
+    overflow: hidden;
 }
 
-/* ─── Center vertical line ────────────────────────────────────────────────── */
-.timelineCenterLine {
+/* ─── Pin wrapper — visible container, clips the track ────────────────────── */
+.pinWrapper {
+  overflow: hidden;
+}
+
+/* ─── Horizontal timeline wrapper ─────────────────────────────────────────── */
+.timelineWrapper {
+  position: relative;
+  overflow: visible;
+  padding: 20px 0;
+}
+
+.timelineTrack {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  position: relative;
+  width: max-content;
+  padding: 0 15px;
+  gap: 30px;
+  /* GSAP will translateX this element */
+}
+
+/* ─── Single horizontal line (absolute inside wrapper) ────────────────────── */
+.timelineLine {
   position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  transform: translateX(-50%);
+  left: 0;
+    right: 0;
+    /* 20px wrapper padding + 60px cardBottom + 16px half-dot = dot center */
+    bottom: 80px;
+    height: 1px;
   background: linear-gradient(
-    to bottom,
+    to right,
     transparent 0%,
-    var(--border-theme) 8%,
-    var(--border-theme) 92%,
+    var(--border-theme) 4%,
+      var(--border-theme) 96%,
     transparent 100%
   );
   pointer-events: none;
+  z-index: 1;
 }
 
 /* ─── Timeline item ───────────────────────────────────────────────────────── */
 .timelineItem {
   position: relative;
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    min-width: 280px;
+    flex-shrink: 0;
 }
 
 /* ─── Dot (center) ────────────────────────────────────────────────────────── */
 .timelineDotCenter {
-  position: absolute;
-  left: 50%;
-  top: 12px;
-  transform: translateX(-50%);
+  position: relative;
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -39,6 +68,7 @@
   align-items: center;
   justify-content: center;
   z-index: 2;
+  flex-shrink: 0;
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
@@ -67,7 +97,7 @@
   border-radius: 50%;
   border: 1.5px solid #34d399;
   opacity: 0;
-  animation: ping 2s ease-out infinite;
+  animation: ping 1s ease-out infinite;
   pointer-events: none;
 }
 
@@ -82,25 +112,49 @@
   }
 }
 
-/* ─── Card sides ──────────────────────────────────────────────────────────── */
-.cardLeft {
-  width: calc(50% - 28px);
-  padding-right: 0;
+/* ─── Card positions (top / bottom) ───────────────────────────────────────── */
+.cardTop {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 12px;
+  width: 100%;
 }
 
-.cardRight {
-  width: calc(50% - 28px);
-  margin-left: calc(50% + 28px);
+.cardBottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 12px;
+  /* This height determines the line position — keep in sync with --timeline-line-bottom */
+  min-height: 60px;
+}
+
+.cardEmpty {
+  flex: 1;
+  min-height: 180px;
+}
+
+/* ─── Date badge (below dot) ──────────────────────────────────────────────── */
+.dateBadge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
 }
 
 /* ─── Card ────────────────────────────────────────────────────────────────── */
 .card {
   background: var(--bg-card);
-  border: 0.5px solid var(--border-theme);
+  border: 1px solid var(--border-theme);
   border-radius: var(--radius-lg);
   padding: 14px 16px;
   transition: border-color 0.3s ease, transform 0.15s ease,
-              background-color 0.3s ease, box-shadow 0.3s ease;
+          background-color 0.3s ease,
+            box-shadow 0.3s ease;
 }
 
 .card:hover {
@@ -127,6 +181,8 @@
   border-color: rgba(52, 211, 153, 0.4);
   background: rgba(209, 250, 229, 0.2);
   text-align: center;
+  margin-bottom: 5px;
+    width: 100%;
 }
 
 :global(.dark) .cardLooking {
@@ -149,24 +205,33 @@
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* ─── Responsive: stack on small screens ─────────────────────────────────── */
-@media (max-width: 540px) {
-  .timelineCenterLine {
-    left: 20px;
+/* ─── Responsive: vertical stack on small screens ─────────────────────────── */
+@media (max-width: 640px) {
+  .timelineTrack {
+    flex-direction: column;
+    min-width: unset;
+    width: 100% !important;
+    padding: 0;
+    align-items: flex-start;
+    transform: none !important;
   }
 
-  .timelineDotCenter {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .timelineLine {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  position: absolute;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  top: 0;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  bottom: 0;
     left: 20px;
+    right: auto;
+      width: 1px;
+      height: auto;
+      background: linear-gradient(to bottom, transparent 0%, var(--border-theme) 4%, var(--border-theme) 96%, transparent 100%);
   }
 
   .timelineItem {
-    padding-left: 56px !important;
-  }
-
-  .cardLeft,
-  .cardRight {
+    flex-direction: row;
     width: 100%;
-    margin-left: 0;
-    padding-right: 0;
+    min-width: unset;
+      padding-left: 56px;
+      align-items: flex-start;
   }
 }

@@ -75,6 +75,9 @@
     --bg-section: #eef2ff;
     --bg-section-alt: #e8edfc;
     --section-shadow: 0 -8px 30px rgba(0, 0, 0, 0.08);
+/* ── Layout ── */
+    --header-height: 4.5rem;
+    --footer-height: 5rem;
 }
 
 /* ===== DARK THEME ===== */

@@ -31,23 +31,52 @@ const useOverlappingSections = () => {
 
                     const nextOverlay = overlays[i + 1];
 
+                    // Check if this overlay contains a horizontal-scroll track
+                    const hTrack = overlay.querySelector('[data-h-track]');
+                    const hContainer = overlay.querySelector('[data-h-container]');
+                    const hasHorizontalScroll = hTrack && hContainer;
+
+                    // Extra scroll distance for horizontal timeline
+                    const getExtraScroll = () => {
+                        if (!hasHorizontalScroll) return 0;
+                        return Math.max(0, hTrack.scrollWidth - hContainer.offsetWidth);
+                    };
+
                     // Pin the section while the next one scrolls up over it
                     ScrollTrigger.create({
                         trigger: overlay,
                         start: 'top top',
                         endTrigger: nextOverlay,
-                        end: 'top top',
+                        end: () => `top+=${getExtraScroll()} top`,
                         pin: true,
-                        pinSpacing: false,
+                        pinSpacing: hasHorizontalScroll,
+                        invalidateOnRefresh: true,
                         onUpdate: (self) => {
-                            const p = self.progress;
-                            const scale = 1 - p * 0.05;       // 1 → 0.95
-                            const brightness = 1 - p * 0.3;   // 1 → 0.7
-                            const radius = p * 20;             // 0 → 20px
+                            // Only apply scale/dim after horizontal scroll is done
+                            const extra = getExtraScroll();
+                            const totalDistance = self.end - self.start;
+
+                            let visualProgress;
+                            if (hasHorizontalScroll && extra > 0 && totalDistance > 0) {
+                                // How much of the pin is just horizontal scroll
+                                const hScrollRatio = extra / totalDistance;
+
+                                // Drive horizontal track translation during pin
+                                const hScrollProgress = Math.min(1, self.progress / hScrollRatio);
+                                const scrollDist = hTrack.scrollWidth - hContainer.offsetWidth;
+                                gsap.set(hTrack, { x: -scrollDist * hScrollProgress });
+
+                                // Visual effects only start after horizontal scroll ends
+                                visualProgress = Math.max(0, (self.progress - hScrollRatio) / (1 - hScrollRatio));
+                            } else {
+                                visualProgress = self.progress;
+                            }
+
+                            const scale = 1 - visualProgress * 0.05;       // 1 → 0.95
+                            const radius = visualProgress * 20;             // 0 → 20px
 
                             gsap.set(overlay, {
                                 scale,
-                                filter: `brightness(${brightness})`,
                                 borderBottomLeftRadius: `${radius}px`,
                                 borderBottomRightRadius: `${radius}px`,
                             });

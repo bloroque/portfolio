@@ -40,7 +40,7 @@ const Container = () => {
                     >
                         <Component
                             id={id}
-                            className={`${containerCSS.section} flex align-center justify-center`}
+                            className={`${containerCSS.section} ${key === 'contacts' ? containerCSS.sectionContact : ''} flex align-center justify-center`}
                             style={{ backgroundColor: bg }}
                         />
                     </div>

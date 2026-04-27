@@ -27,6 +27,15 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    padding-top: var(--header-height, 4.5rem);
+        /* clear sticky header */
+    }
+    
+    /* Contact section: fit between header and footer */
+    .sectionContact {
+        min-height: auto;
+        height: calc(100vh - var(--footer-height, 5rem));
+        padding-top: var(--header-height, 4.5rem);
 }
 
 /* Inherit rounded corners from wrapper */
