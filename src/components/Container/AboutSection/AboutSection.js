@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from "framer-motion";
 import AboutCSS from "./AboutSection.module.css";
-import { useLanguage } from "../../../context/LanguageContext";
+import { useLanguage } from "@/context/LanguageContext";
 import { FaCode, FaLightbulb, FaUsers, FaArrowRight } from "react-icons/fa";
 
 const AboutSection = (props) => {

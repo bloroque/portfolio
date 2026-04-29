@@ -2,7 +2,7 @@ import React, { useRef, useState, useMemo, useCallback, useEffect } from "react"
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
-import { useLanguage } from "../../../context/LanguageContext";
+import { useLanguage } from "@/context/LanguageContext";
 import { renderToStaticMarkup } from "react-dom/server";
 
 // react-icons

@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 import { FaAngleLeft, FaAngleRight, FaArrowRight } from "react-icons/fa";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import { useLanguage } from "../../../context/LanguageContext";
+import { useLanguage } from "@/context/LanguageContext";
 
-import Image1 from "../../../assets/images/Image1.png";
-import Image2 from "../../../assets/images/image2.png";
-import Image3 from "../../../assets/images/image3.png";
-import Image4 from "../../../assets/images/image2.png";
+import Image1 from "@/assets/images/Image1.png";
+import Image2 from "@/assets/images/image2.png";
+import Image3 from "@/assets/images/image3.png";
+import Image4 from "@/assets/images/image2.png";
 
 const STATUS_STYLES = {
     "completed": { bg: "bg-emerald-500/20", text: "text-emerald-400", dot: "bg-emerald-400" },

@@ -6,7 +6,7 @@ import ExperienceSection from "./ExperienceSection/ExperienceSection";
 import ProjectSection from "./ProjectSection/ProjectSection";
 import ContactSection from "./ContactSection/ContactSection";
 import HeroSection from "./HeroSection/HeroSection";
-import useOverlappingSections from "../../hooks/useOverlappingSections";
+import useOverlappingSections from "@/hooks/useOverlappingSections";
 
 const sections = [
     { key: "hero",       Component: HeroSection,       id: "homeSection" },
