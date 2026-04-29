@@ -2,12 +2,26 @@
 .Experience {
   width: 100%;
   position: relative;
-    overflow: hidden;
+  overflow: hidden;
+  /* Toujours plein écran : la section reste épinglée plein écran pendant
+       que la timeline défile horizontalement. */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* ─── Pin wrapper — visible container, clips the track ────────────────────── */
 .pinWrapper {
   overflow: hidden;
+  /* Occupe l'espace restant sous le titre pour centrer verticalement la timeline */
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* La timeline doit prendre toute la largeur du pin wrapper */
+  .pinWrapper>.timelineWrapper {
+    width: 100%;
 }
 
 /* ─── Horizontal timeline wrapper ─────────────────────────────────────────── */
