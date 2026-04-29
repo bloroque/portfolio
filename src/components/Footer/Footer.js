@@ -1,7 +1,7 @@
 import React  from "react";
 import { useLocation } from "react-router-dom";
 import footerCSS from './Footer.module.css';
-import { useLanguage } from "../../context/LanguageContext";
+import { useLanguage } from "@/context/LanguageContext";
 
 const Footer = () => {
     const { t } = useLanguage();

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import headerCSS from './Header.module.css';
 import { FaGithub, FaLinkedin, FaSun, FaMoon, FaBars, FaTimes } from "react-icons/fa";
-import { useTheme } from "../../context/ThemeContext";
-import { useLanguage } from "../../context/LanguageContext";
+import { useTheme } from "@/context/ThemeContext";
+import { useLanguage } from "@/context/LanguageContext";
 
 
 const Header = () => {

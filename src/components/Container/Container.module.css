@@ -25,13 +25,24 @@
 /* ── Inner section sizing ── */
 .section {
     min-height: 100vh;
+    height: 100vh;
+        /* plein écran imposé pour le pin GSAP */
     display: flex;
     flex-direction: column;
+    padding-top: var(--header-height, 4.5rem);
+        /* clear sticky header */
+    }
+    
+    /* Contact section: fit between header and footer */
+    .sectionContact {
+        min-height: auto;
+        height: calc(100vh - var(--footer-height, 5rem));
+        padding-top: var(--header-height, 4.5rem);
 }
 
 /* Inherit rounded corners from wrapper */
 .sectionOverlay:not(:first-child) .section {
-    border-radius: 1.5rem 1.5rem 0 0;
+    /* border-radius: 1.5rem 1.5rem 0 0; */
 }
 
 .sectionOverlay:first-child > .section {
@@ -48,6 +59,7 @@
 @media (max-width: 639px) {
     .sectionOverlay > .section {
         min-height: auto;
+        height: auto;
         padding-top: 1.5rem;
         padding-bottom: 1.5rem;
     }
@@ -70,6 +82,7 @@
 @media (min-width: 640px) and (max-width: 767px) {
     .sectionOverlay > .section {
         min-height: auto;
+        height: auto;
         padding-top: 2rem;
         padding-bottom: 2rem;
     }
@@ -87,6 +100,7 @@
 @media (min-width: 768px) and (max-width: 1023px) {
     .sectionOverlay > .section {
         min-height: auto;
+        height: auto;
         padding-top: 2.5rem;
         padding-bottom: 2.5rem;
     }

@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect, useCallback, useMemo } from "react";
 import { FaGlobe, FaLayerGroup, FaServer, FaCloud, FaCog } from "react-icons/fa";
-import { useLanguage } from "../../../context/LanguageContext";
+import { useLanguage } from "@/context/LanguageContext";
 
 const CanvasService = ({ sectionRef }) => {
     const { t } = useLanguage();

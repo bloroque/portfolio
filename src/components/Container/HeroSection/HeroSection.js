@@ -2,8 +2,8 @@ import React, { useRef, useMemo } from "react";
 import { motion } from "framer-motion";
 import HomeCSS from "./HeroSection.module.css";
 import { FaArrowRight, FaFileDownload, FaGlobe, FaLayerGroup, FaCloud, FaServer, FaCog } from "react-icons/fa";
-import { useLanguage } from "../../../context/LanguageContext";
-import DownloadPopup from "../../DownloadPopup/DownloadPopup";
+import { useLanguage } from "@/context/LanguageContext";
+import DownloadPopup from "@/components/DownloadPopup/DownloadPopup";
 import CanvasService from "./CanvasService";
 
 const HeroSection = (props) => {

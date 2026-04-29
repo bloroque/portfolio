@@ -2,16 +2,16 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import DetailProjetsCSS from "./DetailProjets.module.css";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
-import { useLanguage } from "../../context/LanguageContext";
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
+import { useLanguage } from "@/context/LanguageContext";
 import { FaArrowLeft, FaExternalLinkAlt, FaGithub, FaUserTie, FaClock, FaBriefcase, FaCheckCircle, FaExclamationTriangle } from "react-icons/fa";
-import CustomCursor from "../CustomCursor/CustomCursor";
+import CustomCursor from "@/components/CustomCursor/CustomCursor";
 
-import Image1 from "../../assets/images/Image1.png";
-import Image2 from "../../assets/images/image2.png";
-import Image3 from "../../assets/images/image3.png";
-import Image4 from "../../assets/images/image3.png";
+import Image1 from "@/assets/images/Image1.png";
+import Image2 from "@/assets/images/image2.png";
+import Image3 from "@/assets/images/image3.png";
+import Image4 from "@/assets/images/image3.png";
 
 const STATUS_STYLES = {
     completed: { bg: "bg-emerald-500/15", text: "text-emerald-600", dot: "bg-emerald-500" },

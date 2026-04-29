@@ -6,7 +6,7 @@ import ExperienceSection from "./ExperienceSection/ExperienceSection";
 import ProjectSection from "./ProjectSection/ProjectSection";
 import ContactSection from "./ContactSection/ContactSection";
 import HeroSection from "./HeroSection/HeroSection";
-import useOverlappingSections from "../../hooks/useOverlappingSections";
+import useOverlappingSections from "@/hooks/useOverlappingSections";
 
 const sections = [
     { key: "hero",       Component: HeroSection,       id: "homeSection" },
@@ -40,7 +40,7 @@ const Container = () => {
                     >
                         <Component
                             id={id}
-                            className={`${containerCSS.section} flex align-center justify-center`}
+                            className={`${containerCSS.section} ${key === 'contacts' ? containerCSS.sectionContact : ''} flex align-center justify-center`}
                             style={{ backgroundColor: bg }}
                         />
                     </div>

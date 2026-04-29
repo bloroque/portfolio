@@ -1,8 +1,8 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { useLanguage } from "../../../context/LanguageContext";
+import React, { useRef, useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 import ExperienceCSS from "./ExperienceSection.module.css";
-import { FaBriefcase, FaMapMarkerAlt, FaClock } from "react-icons/fa";
+import { FaBriefcase, FaMapMarkerAlt, FaClock, FaTimes } from "react-icons/fa";
 
 const ExperienceSection = (props) => {
   const classeCSS = props.className;
@@ -11,6 +11,19 @@ const ExperienceSection = (props) => {
   const { t, lang } = useLanguage();
 
   const experiences = t("experience.jobs");
+
+  const sectionRef = useRef(null);
+  const [modalJob, setModalJob] = useState(null);
+
+  /* ── Lock body scroll when modal is open ──────────────────────────────── */
+  useEffect(() => {
+    if (modalJob) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [modalJob]);
 
   /* ── Date helpers ─────────────────────────────────────────────────────── */
   const monthNamesEn = [
@@ -84,18 +97,20 @@ const ExperienceSection = (props) => {
       : `${monthNamesEn[now.getMonth()]} ${now.getFullYear()}`;
 
   return (
-    <motion.section
+    <section
+      ref={sectionRef}
       id={idSection}
       className={`${classeCSS} ${ExperienceCSS.Experience}`}
       style={sectionStyle}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: false, amount: 0.1 }}
-      variants={containerVariants}
     >
-      <div className="mx-auto max-w-screen-lg w-full flex flex-col justify-center px-3 sm:px-4 py-2 sm:py-3">
-
-        {/* ── Section title ───────────────────────────────────────────────── */}
+      {/* ── Section title ───────────────────────────────────────────────── */}
+      <motion.div
+        className="mx-auto max-w-screen-lg w-full px-3 sm:px-4 py-2 sm:py-3"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.3 }}
+        variants={containerVariants}
+      >
         <motion.div
           variants={titleVariants}
           className="px-1 sm:px-3 md:pe-7 space-y-1.5 sm:space-y-2 mb-2 sm:my-4 lg:mb-10 relative"
@@ -134,17 +149,19 @@ const ExperienceSection = (props) => {
           </motion.p>
 
         </motion.div>
+      </motion.div>
 
-        {/* ── Timeline ────────────────────────────────────────────────────── */}
-        <div className="relative px-1 sm:px-3">
-          <div className={ExperienceCSS.timelineCenterLine} />
+      {/* ── Timeline (GSAP pins the section, scrolls the track) ───────────── */}
+      <div data-h-container className={`${ExperienceCSS.pinWrapper} mx-auto max-w-screen-lg w-full px-3 sm:px-4`}>
+        <div className={ExperienceCSS.timelineWrapper}>
+          <div data-h-track className={ExperienceCSS.timelineTrack}>
+            <div className={ExperienceCSS.timelineLine} />
 
-          <div className="flex flex-col gap-0">
             {experiences.map((job, index) => {
               const isCurrent = job.current;
               const isLooking = job.isLooking;
               const realIndex = isLooking ? 0 : index;
-              const isLeft = realIndex % 2 === 0;
+              const isTop = realIndex % 2 === 0;
 
               /* ── "Looking" card ─────────────────────────────────────── */
               if (isLooking) {
@@ -152,21 +169,11 @@ const ExperienceSection = (props) => {
                   <motion.div
                     key={index}
                     variants={itemVariants}
-                    className={`relative pb-6 ${ExperienceCSS.timelineItem}`}
+                    className={ExperienceCSS.timelineItem}
                   >
-                    {/* Dot */}
-                    <div className={`${ExperienceCSS.timelineDotCenter} ${ExperienceCSS.dotCurrent}`}>
-                      <span className={ExperienceCSS.dotPing} />
-                      {/* Star / sparkle icon */}
-                      <span className="text-emerald-700 dark:text-emerald-300 text-xs font-bold">✦</span>
-                    </div>
-
-                    {/* Card — left side */}
-                    <div className={ExperienceCSS.cardLeft}>
+                    {/* Top area */}
+                    <div className={ExperienceCSS.cardTop}>
                       <div className={`${ExperienceCSS.card} ${ExperienceCSS.cardLooking}`}>
-                        <p className="text-emerald-700 dark:text-emerald-300 text-fluid-xs mb-1 tracking-wide">
-                          {currentMonthYear}
-                        </p>
                         <h3 className="text-emerald-700 dark:text-emerald-300 font-semibold text-fluid-sm leading-snug mb-1.5">
                           {job.role}
                         </h3>
@@ -181,127 +188,274 @@ const ExperienceSection = (props) => {
                         </div>
                       </div>
                     </div>
+
+                    {/* Dot */}
+                    <div className={`${ExperienceCSS.timelineDotCenter} ${ExperienceCSS.dotCurrent}`}>
+                      <span className={ExperienceCSS.dotPing} />
+                      <span className="text-emerald-700 dark:text-emerald-300 text-xs font-bold">✦</span>
+                    </div>
+
+                    {/* Date below the dot */}
+                    <div className={ExperienceCSS.cardBottom}>
+                      <div className={ExperienceCSS.dateBadge}>
+                        <span className="text-emerald-700 dark:text-emerald-300 text-fluid-xs">
+                          {currentMonthYear}
+                        </span>
+                      </div>
+                    </div>
                   </motion.div>
                 );
               }
 
               /* ── Regular job card ───────────────────────────────────── */
               const duration = calcDuration(job.dateStart, job.dateFinish);
+              const hasDetails = job.achievements && job.achievements.some(
+                (a) => a.details && a.details.length > 0
+              );
+
+              const cardContent = (
+                <div
+                  className={`${ExperienceCSS.card} ${isCurrent ? ExperienceCSS.cardCurrent : ""
+                    }`}
+                >
+                  {/* Role */}
+                  <h3 className="text-heading font-semibold text-fluid-base leading-snug mb-1">
+                    {job.role}
+                  </h3>
+
+                  {/* Company + type */}
+                  <div className="mb-2 space-y-1">
+                    <p className="text-primary text-fluid-sm font-medium">
+                      {job.company}
+                      {job.type && (
+                        <span className="text-secondary font-normal">
+                          {" "}· {job.type}
+                        </span>
+                      )}
+                    </p>
+
+                    {/* Location */}
+                    {job.location && (
+                      <p className="text-secondary text-fluid-xs flex items-center gap-1">
+                        <FaMapMarkerAlt className="text-[9px] shrink-0" />
+                        <span>{job.location}</span>
+                        {job.remote && (
+                          <span className="opacity-60"> · {job.remote}</span>
+                        )}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Description */}
+                  {job.description && job.description.length > 0 && (
+                    <p className="text-primary text-fluid-xs leading-relaxed mb-2">
+                      {job.description}
+                    </p>
+                  )}
+
+                  {/* Achievements (titles only) */}
+                  {job.achievements && job.achievements.length > 0 && (
+                    <ul className="space-y-1.5 mb-3">
+                      {job.achievements.map((a, i) => (
+                        <li
+                          key={i}
+                          className="flex items-start gap-2 text-fluid-xs text-primary"
+                        >
+                          <span className="mt-[6px] w-[5px] h-[5px] rounded-full bg-[var(--color-accent)] shrink-0" />
+                          <span className="leading-relaxed">{typeof a === "string" ? a : a.title}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+
+                  {/* See more button */}
+                  {hasDetails && (
+                    <button
+                      onClick={() => setModalJob(job)}
+                      className={ExperienceCSS.seeMoreBtn}
+                    >
+                      {lang === "fr" ? "Plus de détails" : "See more"}
+                    </button>
+                  )}
+
+                  {/* Skills */}
+                  {job.skills && job.skills.length > 0 && (
+                    <div className="flex flex-wrap gap-1">
+                      {job.skills.map((skill, i) => (
+                        <span
+                          key={i}
+                          className="px-2 py-[3px] text-fluid-xs font-medium rounded-full
+                                     bg-[var(--color-accent)]/10 text-[var(--color-accent)]
+                                     border border-[var(--color-accent)]/20
+                                     shimmer"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+
+              /* ── Date + duration badge (below the dot) ──────────────── */
+              const dateBadge = (
+                <div className={ExperienceCSS.dateBadge}>
+                  <span className="text-[var(--text-muted)] text-fluid-xs">
+                    {formatDate(job.dateStart)} – {formatDate(job.dateFinish)}
+                  </span>
+                  {duration && (
+                    <div className={ExperienceCSS.durationBadge}>
+                      <FaClock className="text-[9px]" />
+                      <span>{duration}</span>
+                    </div>
+                  )}
+                </div>
+              );
 
               return (
                 <motion.div
                   key={index}
                   variants={itemVariants}
-                  className={`relative pb-12 last:pb-0 ${ExperienceCSS.timelineItem}`}
+                  className={ExperienceCSS.timelineItem}
                 >
+                  {/* Card always on top */}
+                  <div className={ExperienceCSS.cardTop}>{cardContent}</div>
+
                   {/* Dot */}
                   <div
-                    className={`${ExperienceCSS.timelineDotCenter} ${
-                      isCurrent ? ExperienceCSS.dotCurrent : ExperienceCSS.dotPast
-                    }`}
+                    className={`${ExperienceCSS.timelineDotCenter} ${isCurrent ? ExperienceCSS.dotCurrent : ExperienceCSS.dotPast
+                      }`}
                   >
                     {isCurrent && <span className={ExperienceCSS.dotPing} />}
                     <FaBriefcase className="text-[var(--text-secondary)] text-[13px]" />
                   </div>
 
-                  {/* Card */}
-                  <div className={isLeft ? ExperienceCSS.cardLeft : ExperienceCSS.cardRight}>
-                    <div
-                      className={`${ExperienceCSS.card} ${
-                        isCurrent ? ExperienceCSS.cardCurrent : ""
-                      }`}
-                    >
-                      {/* Date range */}
-                      <p className="text-[var(--text-muted)] text-fluid-xs mb-1.5 flex items-center gap-1.5 flex-wrap">
-                        <span>
-                          {formatDate(job.dateStart)} – {formatDate(job.dateFinish)}
-                        </span>
-                      </p>
-
-                      {/* Duration badge */}
-                      {duration && (
-                        <div className={ExperienceCSS.durationBadge}>
-                          <FaClock className="text-[9px]" />
-                          <span>{duration}</span>
-                        </div>
-                      )}
-
-                      {/* Role */}
-                      <h3 className="text-heading font-semibold text-fluid-base leading-snug mb-1">
-                        {job.role}
-                      </h3>
-
-                      {/* Company + type */}
-                      <div className="mb-2 space-y-1">
-                        <p className="text-primary text-fluid-sm font-medium">
-                          {job.company}
-                          {job.type && (
-                            <span className="text-secondary font-normal">
-                              {" "}· {job.type}
-                            </span>
-                          )}
-                        </p>
-
-                        {/* Location */}
-                        {job.location && (
-                          <p className="text-secondary text-fluid-xs flex items-center gap-1">
-                            <FaMapMarkerAlt className="text-[9px] shrink-0" />
-                            <span>{job.location}</span>
-                            {job.remote && (
-                              <span className="opacity-60"> · {job.remote}</span>
-                            )}
-                          </p>
-                        )}
-                      </div>
-
-                      {/* Description */}
-                      {job.description && job.description.length > 0 && (
-                        <p className="text-primary text-fluid-xs leading-relaxed mb-2">
-                          {job.description}
-                        </p>
-                      )}
-
-                      {/* Achievements */}
-                      {job.achievements && job.achievements.length > 0 && (
-                        <ul className="space-y-1.5 mb-3">
-                          {job.achievements.map((item, i) => (
-                            <li
-                              key={i}
-                              className="flex items-start gap-2 text-fluid-xs text-primary"
-                            >
-                              <span className="mt-[6px] w-[5px] h-[5px] rounded-full bg-[var(--color-accent)] shrink-0" />
-                              <span className="leading-relaxed">{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-
-                      {/* Skills */}
-                      {job.skills && job.skills.length > 0 && (
-                        <div className="flex flex-wrap gap-1">
-                          {job.skills.map((skill, i) => (
-                            <span
-                              key={i}
-                              className="px-2 py-[3px] text-fluid-xs font-medium rounded-full
-                                         bg-[var(--color-accent)]/10 text-[var(--color-accent)]
-                                         border border-[var(--color-accent)]/20
-                                         shimmer"
-                            >
-                              {skill}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </div>
+                  {/* Date + duration below the dot */}
+                  <div className={ExperienceCSS.cardBottom}>{dateBadge}</div>
                 </motion.div>
               );
             })}
           </div>
         </div>
-
       </div>
-    </motion.section>
+
+      {/* ── Modal ───────────────────────────────────────────────────────── */}
+      <AnimatePresence>
+        {modalJob && (
+          <motion.div
+            className={ExperienceCSS.modalOverlay}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setModalJob(null)}
+          >
+            <motion.div
+              className={ExperienceCSS.modalContent}
+              initial={{ opacity: 0, scale: 0.92, y: 30 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.92, y: 30 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close button */}
+              <button
+                className={ExperienceCSS.modalClose}
+                onClick={() => setModalJob(null)}
+              >
+                <FaTimes />
+              </button>
+
+              {/* Role */}
+              <h3 className="text-heading font-semibold text-lg leading-snug mb-1">
+                {modalJob.role}
+              </h3>
+
+              {/* Company + type */}
+              <div className="mb-3 space-y-1">
+                <p className="text-primary text-sm font-medium">
+                  {modalJob.company}
+                  {modalJob.type && (
+                    <span className="text-secondary font-normal">
+                      {" "}· {modalJob.type}
+                    </span>
+                  )}
+                </p>
+                {modalJob.location && (
+                  <p className="text-secondary text-xs flex items-center gap-1">
+                    <FaMapMarkerAlt className="text-[9px] shrink-0" />
+                    <span>{modalJob.location}</span>
+                    {modalJob.remote && (
+                      <span className="opacity-60"> · {modalJob.remote}</span>
+                    )}
+                  </p>
+                )}
+                <p className="text-secondary text-xs">
+                  {formatDate(modalJob.dateStart)} – {formatDate(modalJob.dateFinish)}
+                  {" "}
+                  <span className="opacity-60">
+                    ({calcDuration(modalJob.dateStart, modalJob.dateFinish)})
+                  </span>
+                </p>
+              </div>
+
+              {/* Description */}
+              {modalJob.description && modalJob.description.length > 0 && (
+                <p className="text-primary text-sm leading-relaxed mb-3">
+                  {modalJob.description}
+                </p>
+              )}
+
+              {/* All achievements with details (independent scroll) */}
+              {modalJob.achievements && modalJob.achievements.length > 0 && (
+                <div className={ExperienceCSS.modalAchievements}>
+                  {modalJob.achievements.map((a, i) => {
+                    const achievement = typeof a === "string" ? { title: a, details: [] } : a;
+                    return (
+                      <div key={i} className="mb-4 last:mb-0">
+                        <div className="flex items-start gap-2 text-sm text-primary font-medium">
+                          <span className="mt-[6px] w-[5px] h-[5px] rounded-full bg-[var(--color-accent)] shrink-0" />
+                          <span className="leading-relaxed">{achievement.title}</span>
+                        </div>
+                        {achievement.details && achievement.details.length > 0 && (
+                          <ul className={`mt-2 ml-4 space-y-1.5 ${ExperienceCSS.modalSubDetails}`}>
+                            {achievement.details.map((detail, j) => (
+                              <li
+                                key={j}
+                                className="flex items-start gap-2 text-xs text-primary"
+                              >
+                                <span className="mt-[5px] w-[4px] h-[4px] rounded-full bg-[var(--text-muted)] shrink-0 opacity-50" />
+                                <span className="leading-relaxed">{detail}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+
+              {/* Skills */}
+              {modalJob.skills && modalJob.skills.length > 0 && (
+                <div className="flex flex-wrap gap-1.5">
+                  {modalJob.skills.map((skill, i) => (
+                    <span
+                      key={i}
+                      className="px-2.5 py-1 text-xs font-medium rounded-full
+                                 bg-[var(--color-accent)]/10 text-[var(--color-accent)]
+                                 border border-[var(--color-accent)]/20"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+    </section>
   );
 };
 

@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import SkillsCSS from "./SkillsSection.module.css";
-import { useLanguage } from "../../../context/LanguageContext";
-import useScrollReveal from "../../../hooks/useScrollReveal";
+import { useLanguage } from "@/context/LanguageContext";
+import useScrollReveal from "@/hooks/useScrollReveal";
 
 import SkillsCanvas, { FaceLegend } from "./SkillsCanvas";
 

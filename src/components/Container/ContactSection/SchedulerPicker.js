@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useLanguage } from "../../../context/LanguageContext";
-import useGoogleCalendar from "../../../services/agendaConnexion/useGoogleCalendar";
+import { useLanguage } from "@/context/LanguageContext";
+import useGoogleCalendar from "@/services/agendaConnexion/useGoogleCalendar";
 
 const FALLBACK_SLOT_GROUPS = [
     {

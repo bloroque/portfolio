@@ -2,7 +2,7 @@ import React, { useRef, useState, useMemo, useCallback, useEffect } from "react"
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
-import { useLanguage } from "../../../context/LanguageContext";
+import { useLanguage } from "@/context/LanguageContext";
 import { renderToStaticMarkup } from "react-dom/server";
 
 // react-icons
@@ -775,10 +775,35 @@ export function FaceLegend({ activeFace, onFaceClick, t }) {
 const SkillsCanvas = ({ targetFace, onAnimDone, isVisible }) => {
   const { lang } = useLanguage();
   const scrollRef = React.useRef(null);
+  const zoomAreaRef = React.useRef(null);
+  // 'zoom-in' (scroll up = +) or 'zoom-out' (scroll down = -) ; 'grab' au repos
+  const [cursorMode, setCursorMode] = React.useState('grab');
+
+  // Bascule l'icône du curseur selon le sens de la molette quand on est dans
+  // la zone canvas. Réinitialise après un court délai sans action.
+  useEffect(() => {
+    const el = zoomAreaRef.current;
+    if (!el) return;
+    let resetTimer = null;
+    const onWheel = (e) => {
+      // deltaY < 0 → scroll vers le haut → zoom in
+      // deltaY > 0 → scroll vers le bas → zoom out
+      setCursorMode(e.deltaY < 0 ? 'zoom-in' : 'zoom-out');
+      if (resetTimer) clearTimeout(resetTimer);
+      resetTimer = setTimeout(() => setCursorMode('grab'), 350);
+    };
+    el.addEventListener('wheel', onWheel, { passive: true });
+    return () => {
+      el.removeEventListener('wheel', onWheel);
+      if (resetTimer) clearTimeout(resetTimer);
+    };
+  }, []);
 
   return (
     <div className="relative w-full" ref={scrollRef}>
       <div
+        ref={zoomAreaRef}
+        data-zoom-area
         style={{
           width: "100%",
           height: "min(60vw, 520px)",
@@ -788,6 +813,7 @@ const SkillsCanvas = ({ targetFace, onAnimDone, isVisible }) => {
           borderRadius: "1rem",
           // border: "1px solid var(--border-theme)",
           boxSizing: "border-box",
+          cursor: cursorMode,
         }}
         className="backdrop-blur-xl transition-colors duration-300"
       >

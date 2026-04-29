@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
-import Header from '../components/Header/Header';
-import Footer from '../components/Footer/Footer';
-import Container from '../components/Container/Container';
-import { useLanguage } from '../context/LanguageContext';
-import CustomCursor from '../components/CustomCursor/CustomCursor';
-import useSmoothScroll from '../hooks/useSmoothScroll';
+import Header from '@/components/Header/Header';
+import Footer from '@/components/Footer/Footer';
+import Container from '@/components/Container/Container';
+import { useLanguage } from '@/context/LanguageContext';
+import CustomCursor from '@/components/CustomCursor/CustomCursor';
+import useSmoothScroll from '@/hooks/useSmoothScroll';
 
 
 const Layout = () => {

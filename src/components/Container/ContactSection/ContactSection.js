@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useLanguage } from "../../../context/LanguageContext";
+import { useLanguage } from "@/context/LanguageContext";
 import { FaEnvelope, FaCalendarAlt, FaPaperPlane, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
 import SchedulerPicker from "./SchedulerPicker";
-import useContactForm from "../../../services/formContact/useContactForm";
+import useContactForm from "@/services/formContact/useContactForm";
 
 const ContactSection = (props) => {
     const classeCSS = props.className;

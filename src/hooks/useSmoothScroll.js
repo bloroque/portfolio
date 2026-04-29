@@ -40,6 +40,13 @@ const useSmoothScroll = (lerp = 0.09) => {
 
         // Intercept wheel to apply lerp smoothing
         const onWheel = (e) => {
+            // Si le curseur est dans une zone "zoom" (ex: canvas 3D Skills),
+            // on laisse le wheel à OrbitControls pour zoomer dans le canvas
+            // au lieu de scroller la page.
+            const t = e.target;
+            if (t && t.closest && t.closest('[data-zoom-area]')) {
+                return;
+            }
             e.preventDefault();
             target += e.deltaY;
             target = Math.max(0, Math.min(target, getMaxScroll()));
