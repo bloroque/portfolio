@@ -47,6 +47,10 @@ const useSmoothScroll = (lerp = 0.09) => {
             if (t && t.closest && t.closest('[data-zoom-area]')) {
                 return;
             }
+            // If inside a modal overlay, let the modal scroll normally
+            if (t && t.closest && t.closest('[data-modal-overlay]')) {
+                return;
+            }
             e.preventDefault();
             target += e.deltaY;
             target = Math.max(0, Math.min(target, getMaxScroll()));

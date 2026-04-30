@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 import ExperienceCSS from "./ExperienceSection.module.css";
@@ -339,16 +340,18 @@ const ExperienceSection = (props) => {
         </div>
       </div>
 
-      {/* ── Modal ───────────────────────────────────────────────────────── */}
-      <AnimatePresence>
-        {modalJob && (
-          <motion.div
-            className={ExperienceCSS.modalOverlay}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setModalJob(null)}
-          >
+      {/* ── Modal (portaled to body to avoid GSAP transform breaking fixed positioning) */}
+      {createPortal(
+        <AnimatePresence>
+          {modalJob && (
+            <motion.div
+              className={ExperienceCSS.modalOverlay}
+              data-modal-overlay
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setModalJob(null)}
+            >
             <motion.div
               className={ExperienceCSS.modalContent}
               initial={{ opacity: 0, scale: 0.92, y: 30 }}
@@ -453,7 +456,9 @@ const ExperienceSection = (props) => {
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence>,
+      document.body
+      )}
 
     </section>
   );
