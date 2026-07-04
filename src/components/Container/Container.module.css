@@ -1,42 +1,35 @@
 /* ══════════════════════════════════════════════
-   OVERLAPPING SECTIONS / SLIDE-UP OVERLAY
-   GSAP ScrollTrigger pins each section at top.
-   The next section (higher z-index) scrolls up
-   over it like a stacked card.
+   SECTIONS — défilement vertical normal (l'effet "overlapping / slide-up" GSAP a été
+ désactivé dans useOverlappingSections.js)
    ══════════════════════════════════════════════ */
 
 /* ── Section Overlay Wrapper ── */
 .sectionOverlay {
     position: relative;
-    will-change: transform, filter;
-    transform-origin: center top;
 }
 
 .sectionOverlay:first-child {
     background-color: transparent;
 }
 
-/* All sections except first: rounded top corners + shadow */
+/* All sections except first: rounded top corners */
 .sectionOverlay:not(:first-child) {
     border-radius: 1.5rem 1.5rem 0 0;
-    box-shadow: var(--section-shadow);
 }
 
 /* ── Inner section sizing ── */
 .section {
     min-height: 100vh;
-    height: 100vh;
-        /* plein écran imposé pour le pin GSAP */
     display: flex;
     flex-direction: column;
     padding-top: var(--header-height, 4.5rem);
         /* clear sticky header */
     }
     
-    /* Contact section: fit between header and footer */
+        /* Contact section: hauteur naturelle (s'adapte au contenu) */
     .sectionContact {
         min-height: auto;
-        height: calc(100vh - var(--footer-height, 5rem));
+        height: auto;
         padding-top: var(--header-height, 4.5rem);
 }
 
