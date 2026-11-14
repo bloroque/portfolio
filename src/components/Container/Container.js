@@ -24,12 +24,9 @@ const Container = () => {
         <main ref={overlappingRef} className={containerCSS.mainPage + " w-full"}>
             {sections.map(({ key, Component, id }, index) => {
                 const isFirst = index === 0;
-                const isEven = index % 2 === 0;
-                const bg = isFirst
-                    ? 'transparent'
-                    : isEven
-                        ? 'var(--bg-section)'
-                        : 'var(--bg-section-alt)';
+                // Toutes les sections partagent le même fond, sauf la première
+                // (Hero) qui reste transparente pour laisser voir le canvas.
+                const bg = isFirst ? 'transparent' : 'var(--bg-section)';
 
                 return (
                     <div
